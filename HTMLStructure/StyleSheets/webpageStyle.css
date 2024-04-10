@@ -1,0 +1,14 @@
+div.nameContainer {
+    display: flex;
+    border-radius: 50%;
+    background-color: green;
+    justify-content: center;
+    align-items: center;
+}
+
+
+h1.nameValue {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
