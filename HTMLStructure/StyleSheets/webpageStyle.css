@@ -1,14 +1,17 @@
-div.nameContainer {
-    display: flex;
+#nameCointainer {
+    width:10%;
+    height:10%;
+    background-color: palegreen;
     border-radius: 50%;
-    background-color: green;
     justify-content: center;
     align-items: center;
 }
 
-
-h1.nameValue {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#name {
+    color: grey;
+    text-align: center;
+    padding-top: 20%;
+    padding-bottom: 10%;
 }
+
+
