@@ -9,7 +9,7 @@ $userName = "root";
 //Sets the password to an empty string
 $password = "";
 
-//Sets the name of the database to be connected to to company
+//Sets the name of the database to be connected to company
 $dbName = "company";
 
 //All of the above variables are passed as parameters to the connect function to create teh database connection
