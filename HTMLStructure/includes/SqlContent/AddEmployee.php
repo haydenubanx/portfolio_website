@@ -6,20 +6,12 @@ include 'TableFormatting.php';
 include_once 'db.php';
 
 
-
-
 //The print statement for the question as presented in the assignment instructions
 $question = "<blockquote>Use This Page to Add a New Employee.</blockquote>";
 
 
-
 //The print statement for the question, query, and function call to print statement for the table
 echo '<p><strong>' . $question . '</strong></p>';
-
-
-
-
-
 
 
 //Function to create name submission form, print welcome message, and validate inputs
@@ -214,8 +206,5 @@ if (isset($_SESSION['managerID'])) {
 if (isset($_SESSION['departmentID'])) {
     $_SESSION['departmentID'] = "";
 }
-
-
-
 
 ?>

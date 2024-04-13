@@ -3,12 +3,20 @@
 
     <?php
 
-    if (isset($_GET['clicked']) &&  $_GET['clicked'] == 'C') {
-        include '../SqlContent/MinMaxSalaries.php';
+    if (isset($_GET['clicked']) &&  ($_GET['clicked'] == 'Home' || $_GET['clicked'] == '#')) {
+        include '../landingPage.php';
+    }
+
+    else if (isset($_GET['clicked']) &&  $_GET['clicked'] == 'CyberSecurity') {
+        include '../CyberSecurityContent/cyberSecurityHome.php';
+    }
+
+    else if (isset($_GET['clicked']) &&  $_GET['clicked'] == 'CyberSecurity') {
+        include '../CyberSecurityContent/cyberSecurityHome.php';
     }
 
     //If the clicked parameter in the url is 'MinMaxSalaries' include that file to the content section
-    if (isset($_GET['clicked']) &&  $_GET['clicked'] == 'MinMaxSalaries') {
+    else if (isset($_GET['clicked']) &&  $_GET['clicked'] == 'MinMaxSalaries') {
         include '../SqlContent/MinMaxSalaries.php';
     }
 
@@ -50,6 +58,9 @@
     //If the clicked parameter in the url is 'DeleteEmployee' include that file to the content section
     else if (isset($_GET['clicked']) && $_GET['clicked'] == 'DeleteEmployee') {
         include '../SqlContent/DeleteEmployee.php';
+    }
+    if (isset($_GET['clicked']) &&  $_GET['clicked'] == 'AboutMe') {
+        include '../AboutMe/aboutMe.php';
     }
     ?>
 </section>

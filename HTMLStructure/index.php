@@ -158,10 +158,7 @@ $cookie_value = null;
 
 
 <!--Pre-formatted text containing my introduction.-->
-<p id="bodyText">
-	    		--Portfolio Information Goes Here--
-
-</p>
+<p id="bodyText">--Portfolio Information Goes Here-- </p>
 
 		<!--Includes the content file for the dynamically changing content-->
 		<?php include("./includes/PageStructure/content.php"); ?>

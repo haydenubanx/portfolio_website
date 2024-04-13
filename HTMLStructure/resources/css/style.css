@@ -11,7 +11,7 @@ The background color is also set to mediumseagreen and the text color to white*/
 header {
     align-items: center;
     padding: 1em;
-    background-color: black;
+    background-color: darkslategrey;
     color: white;
 }
 
@@ -66,7 +66,7 @@ header > h1 {
 
 /* Add a red background color to navbar links on hover */
 .navbar a:hover, .dropdown:hover .dropbtn {
-    background-color: green;
+    background-color: seagreen;
 }
 
 /* Dropdown content (hidden by default) */
@@ -170,6 +170,10 @@ a {
 
 }
 
+#bodyText {
+    margin-left: 1%;
+}
+
 /*Creates the spacing for the welcome message form*/
 form {
     padding-top: 2em;
@@ -254,7 +258,7 @@ section > p {
 
 /*Sets the footers background to mediumseagreen, text to white, alignment to center, and spacing*/
 footer {
-    background-color: black;
+    background-color: darkslategrey;
     padding: 0.5em;
     color: white;
     text-align: center;
@@ -268,5 +272,5 @@ footer {
 
 #footerLinks {
     text-decoration: underline;
-    color: dodgerblue;
+    color: deepskyblue;
 }
