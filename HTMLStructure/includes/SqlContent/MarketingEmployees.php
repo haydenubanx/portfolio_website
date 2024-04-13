@@ -1,7 +1,7 @@
 <?php
 
 //Include statements for the database connection and formatting output file
-include 'tableFormatting.php';
+include 'TableFormatting.php';
 include_once 'db.php';
 
 

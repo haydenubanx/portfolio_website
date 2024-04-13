@@ -3,7 +3,7 @@
 	session_start();
 
 	//Includes the database connection file for interacting with the database
-	include_once 'includes/db.php';
+	include_once 'includes/DbConnection/db.php';
 
 	//Session variable to track if the sign in form has been shown so that it only shows in the header
 	$_SESSION['ListShown'] = 0;
@@ -143,7 +143,7 @@ $cookie_value = null;
 
 
 
-	<title>Hayden Eubanks PHP Project 2</title>
+	<title>Hayden Eubanks Portfolio</title>
 
 	<!--Links the stylesheet I created -->
 	<link rel="stylesheet" href="./resources/css/style.css" />
@@ -151,29 +151,23 @@ $cookie_value = null;
 </head>
 	<body>
 		<!--Adds the header file to the main page-->
-		<?php include("./includes/header.php"); ?>
+		<?php include("./includes/PageStructure/header.php"); ?>
 
 
 		<?php $_SESSION['ListShown'] = 1; ?>
 
 
 <!--Pre-formatted text containing my introduction.-->
-<pre>
-	    		Welcome to my Project 2:Queries, Add, Delete, Cookies Assignment! To perform a query, select the desired query
- 		question from the navigation list above. This is the main page of the website and by clicking on the different options above,
-		this page dynamically changes as queries are performed and presented. When a query is clicked, the question the query is answering
-		will be presented in orange and the query itself will be presented in a box below that and then a table containing the query results.
-		When you log in to the login section at the top of the page, cookies will be created to track the name that was entered and the ammount
-		of times the site has been visited. A welcome message will be displayed upon the first time a user logs into the site and then will be
-		only displayed in the footer of the page with the visit counter from that point onward.
+<p id="bodyText">
+	    		--Portfolio Information Goes Here--
 
-</pre>
+</p>
 
 		<!--Includes the content file for the dynamically changing content-->
-		<?php include("./includes/content.php"); ?>
+		<?php include("./includes/PageStructure/content.php"); ?>
 
 		<!--Adds the footer file to the main page-->
-		<?php include("./includes/footer.php"); ?>
+		<?php include("./includes/PageStructure/footer.php"); ?>
 
 	</body>
 </html>

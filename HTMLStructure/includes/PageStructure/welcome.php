@@ -1,9 +1,4 @@
 <?php
-
-
-
-
-
 //Function to create name submission form, print welcome message, and validate inputs
 function welcomeMessage() {
 
@@ -32,8 +27,6 @@ function welcomeMessage() {
             $_SESSION['lastName'] = $_POST['lastName'];
         }
     }
-
-
 
     //If the session variables have been set and equal the professor's name
     if ((isset($_SESSION['firstName']) &&  $_SESSION['firstName'] == "Laurie") &&

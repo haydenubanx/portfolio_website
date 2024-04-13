@@ -1,6 +1,6 @@
 <header>
     <!-- header link for index page -->
-    <h1> <a href="index.php">Hayden Eubanks Project 2: Queries, Add, Delete, Cookies Assignment </a> </h1>
+    <h1 id="Title Name"> <a href="index.php">Hayden Eubanks</a> </h1>
 
 
 
