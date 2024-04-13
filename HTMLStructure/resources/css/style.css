@@ -1,0 +1,192 @@
+
+/*Sets the entire pages background to a very light grey with some transparency*/
+html {
+    background-color: rgba(236,236,236,0.6);
+}
+
+
+/*Formats the header to align the items to the center of the header and gives a padding to space them out
+The background color is also set to mediumseagreen and the text color to white*/
+
+header {
+    align-items: center;
+    padding: 1em;
+    background-color: mediumseagreen;
+    color: white;
+}
+
+
+/*Formats the home page hyperlink to have white text*/
+
+header > h1 > a {
+    color: white;
+}
+
+
+/*Aligns the heading to the center of the header*/
+header > h1 {
+    text-align: center;
+
+}
+
+
+/*When the navigation items are clicked or have been visited, they remain the same color*/
+nav > ul > li > a:active, nav > li > a:visited {
+    color: inherit;
+}
+
+
+/*Adds the box and shading to all preformatted text blocks
+This is used for the introduction and SQL Queries*/
+
+pre {
+    padding: 2em 0;
+    border: 1px double;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.4);
+    background-color: rgba(60,179,113,0.1)
+}
+
+
+/*Sets the padding of the table header and cells*/
+th, td {
+    padding: 0.5em;
+}
+
+/*Sets every even numbered row to a colored cell*/
+tr:nth-child(even) {
+    background-color: rgba(60,179,113,0.4);
+}
+
+
+/*When the main page link is clicked or active, its color will remain the same*/
+header > h1 > a:active, header > a:visited, header > a:active {
+    color: inherit;
+
+}
+
+/*Sets the spacing and centering of the navigation list items within themselves*/
+li {
+    display: inline;
+    padding: 1em;
+
+
+
+}
+
+/*Sets the background color, padding, and alignment of the navigation list*/
+
+nav {
+
+    background-color: MediumSeaGreen;
+    text-align: center;
+    padding-top: 2em;
+
+}
+
+/*Creates the boxes for the navigation items*/
+nav > ul > li {
+    border: 1px double;
+    border-color: white;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.4);
+    background-color: rgba(60,179,113,0.1);
+    margin: 1em 1em;
+    line-height: 4em;
+}
+
+
+/*Removes the underline from all hyperlinks and sets text color to white*/
+a {
+    text-decoration: none;
+    color: white;
+
+}
+
+/*Creates the spacing for the welcome message form*/
+form {
+    padding-top: 2em;
+}
+
+
+/*Floats the labels so they can be presented horizontally as well as adding spacing and text color*/
+form > label {
+    float: left;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-right: 0.5em;
+    padding-left: 0.2em;
+    color:white;
+}
+
+/*Floats the input boxes to allow for horizontal presenting*/
+form > input {
+    float: left;
+    text-align: center;
+    padding-right: 1em;
+    clear: right;
+}
+
+section > form {
+    clear: right;
+    background-color: rgba(60,179,113,0.6);
+    margin: 1em 1em;
+}
+
+section > form > input {
+    float:right;
+    margin-right: 58em;
+}
+
+section > form > input[name=yes] {
+    float: none;
+    margin: auto auto;
+    margin-left: 40em;
+    text-align: center;
+}
+
+section > form > input[name=no] {
+    float: none;
+    margin: auto auto;
+    text-align: center;
+}
+
+
+section > form > label {
+    color: white;
+
+
+}
+
+/*Centers the welcome message on the screen*/
+header >  p {
+
+    text-align: center;
+}
+
+/*Sets the spacing for the table*/
+table {
+    margin: 0 auto;
+    padding: 1em;
+    font-size: 0.9em;
+    max-width: 100%;
+}
+
+/*Sets the question text to orange*/
+section > blockquote {
+    color: orange;
+}
+
+section > p {
+
+    text-align: center;
+    margin: auto auto;
+    font-weight: bold;
+
+}
+
+/*Sets the footers background to mediumseagreen, text to white, alignment to center, and spacing*/
+footer {
+    background-color: mediumseagreen;
+    padding: 0.5em;
+    color: white;
+    text-align: center;
+}
