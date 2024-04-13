@@ -9,7 +9,7 @@
 	$_SESSION['ListShown'] = 0;
 
 	//Declare variable to store the cookie value
-	$cookie_value;
+$cookie_value = null;
 
 
 
