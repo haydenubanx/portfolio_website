@@ -7,8 +7,15 @@ html {
 
 /*Formats the header to align the items to the center of the header and gives a padding to space them out
 The background color is also set to mediumseagreen and the text color to white*/
+@keyframes animatedBg {
+    0% { background-color: #999999; }    /* Dark Grey */
+    25% { background-color: #888888; }   /* Very Dark Grey */
+    50% { background-color: #777777; }   /* Even Darker Grey */
+    100% { background-color: #666666; }  /* Almost Black Grey */
+}
 
 header {
+    /*animation: animatedBg 10s linear infinite;*/
     align-items: center;
     padding: 1em;
     background-color: darkslategrey;
@@ -258,6 +265,7 @@ section > p {
 
 /*Sets the footers background to mediumseagreen, text to white, alignment to center, and spacing*/
 footer {
+    /*animation: animatedBg 10s linear infinite;*/
     background-color: darkslategrey;
     padding: 0.5em;
     color: white;
