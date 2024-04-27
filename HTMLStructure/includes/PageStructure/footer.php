@@ -13,7 +13,7 @@
         <p>Hayden Eubanks </p>
         <p>Computer Science: Cybersecurity Professional</p>
         <p>Email: haydenubanx@gmail.com</p>
-        <p>Phone: +44 07950 447141</p>
+        <p>Phone: +44 7950 447141</p>
         <p><a id = "footerLinks" href="https://www.linkedin.com/in/hayden-eubanks-794265280">LinkedIn</a></p>
     </div>
 
