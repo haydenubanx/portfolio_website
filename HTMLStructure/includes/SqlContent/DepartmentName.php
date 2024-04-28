@@ -16,12 +16,12 @@ $question = "<blockquote>Write a query to get the department name for all employ
 //The query to be passed to the database
 $sqlQuery = "
 	SELECT employees.First_NAME AS 'First Name', employees.Last_Name AS 'Last Name', departments.department_name AS 'Department Name'
-	FROM Employees, departments
+	FROM employees, departments
 	WHERE (employees.department_ID = departments.department_ID)
 	ORDER BY departments.department_name ASC, employees.Last_Name ASC, employees.Last_Name ASC;";
 
 //The fuction to perform the query and store the results in the resultNames variable
-$resultNames= mysqli_query($dbConnection, $sqlQuery);
+$resultNames= mysqli_query($_SESSION['dbConnection'], $sqlQuery);
 
 //The print statement for the question, query, and function call to print statement for the table
 echo '<p><strong>' . $question . '</strong></p>' .

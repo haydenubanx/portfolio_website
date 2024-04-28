@@ -15,4 +15,6 @@ $dbName = "sql8702603";
 //All of the above variables are passed as parameters to the connect function to create teh database connection
 $dbConnection = mysqli_connect($serverName, $userName, $password, $dbName);
 
+$_SESSION['dbConnection'] = $dbConnection;
+
 ?>

@@ -15,8 +15,8 @@ $sqlQuery = "
 	SELECT COUNT(DISTINCT Job_ID) AS 'Number of Different Jobs'
 	FROM employees";
 
-//The fuction to perform the query and store the results in the resultNames variable
-$resultNames= mysqli_query($dbConnection, $sqlQuery);
+//The function to perform the query and store the results in the resultNames variable
+$resultNames= mysqli_query($_SESSION['dbConnection'], $sqlQuery);
 
 //The print statement for the question, query, and function call to print statement for the table
 echo '<p><strong>' . $question . '</strong></p>' .

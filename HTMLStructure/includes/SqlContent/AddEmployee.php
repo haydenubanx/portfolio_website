@@ -119,7 +119,7 @@ if (isset($_SESSION['addedFirstName']) && isset($_SESSION['addedLastName']) && i
         $sqlIncrementValueQuery = "SELECT MAX(employee_id) FROM employees;";
 
         //Variable to store the number of highest primary key
-        $valueToIncrement = mysqli_query($dbConnection, $sqlIncrementValueQuery);
+        $valueToIncrement = mysqli_query($_SESSION['dbConnection'], $sqlIncrementValueQuery);
 
         //An array to store the contents of the employ that is to be added to the database
         $incrementValueArray = mysqli_fetch_row($valueToIncrement);
@@ -134,7 +134,7 @@ if (isset($_SESSION['addedFirstName']) && isset($_SESSION['addedLastName']) && i
             $_SESSION['managerID']."' , '".$_SESSION['departmentID']."');";
 
         //Run the first query to add the name
-        mysqli_query($dbConnection, $sqlQuery);
+        mysqli_query($_SESSION['dbConnection'], $sqlQuery);
 
         //Second Query for retrieving entered name
         $secondSqlQuery = "SELECT employee_ID AS 'Employee ID', first_name AS 'First Name', 
@@ -150,7 +150,7 @@ if (isset($_SESSION['addedFirstName']) && isset($_SESSION['addedLastName']) && i
 //Checks that the second query is set
 if(isset($secondSqlQuery)) {
     //The fuction to perform the query and store the results in the resultNames variable
-    $resultNames= mysqli_query($dbConnection, $secondSqlQuery);
+    $resultNames= mysqli_query($_SESSION['dbConnection'], $secondSqlQuery);
 
 
     //The print statement for the question, query, and function call to print statement for the table

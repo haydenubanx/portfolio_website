@@ -14,12 +14,12 @@ $question = "<blockquote>Write a query to get the number of employees working in
 //The query to be passed
 $sqlQuery = "
 	SELECT COUNT(DISTINCT employees.Employee_ID) AS 'Number of Marketing Managers'
-	FROM Employees, jobs, departments
+	FROM employees, jobs, departments
 	WHERE (employees.department_ID = departments.department_ID) AND (departments.department_name = 'Marketing') AND
 	 (employees.job_ID = jobs.Job_ID) AND (jobs.Job_Title = 'Marketing Manager');";
 
 //The statement which actually performs the query
-$resultNames= mysqli_query($dbConnection, $sqlQuery);
+$resultNames= mysqli_query($_SESSION['dbConnection'], $sqlQuery);
 
 //Prints the question and query and calls function to print table of results
 echo '<p><strong>' . $question . '</strong></p>' .

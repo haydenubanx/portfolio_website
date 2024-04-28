@@ -34,7 +34,7 @@ else if(isset($_POST['yes'])) {
     $_POST['employeeID'] = '';
 
     //Run the delete query on the database
-    mysqli_query($dbConnection, $sqlDelete);
+    mysqli_query($_SESSION['dbConnection'], $sqlDelete);
 
     //New query to search and confirm the deleted employee
     $sqlQuery = "SELECT * 
@@ -42,7 +42,7 @@ else if(isset($_POST['yes'])) {
 					 WHERE employee_ID = '".$_SESSION['IDToCheck']."' ;";
 
     //Runs the query on the database
-    $results = mysqli_query($dbConnection, $sqlQuery);
+    $results = mysqli_query($_SESSION['dbConnection'], $sqlQuery);
     echo tableFormatting($results);
 
     if(empty($results)) {
@@ -102,7 +102,7 @@ if( isset($_SESSION['IDToCheck']) && is_numeric($_SESSION['IDToCheck']) && $_SES
 
 
     //The fuction to perform the query and store the results in the resultNames variable
-    $resultNames= mysqli_query($dbConnection, $sqlQuery);
+    $resultNames= mysqli_query($_SESSION['dbConnection'], $sqlQuery);
 
     //Echo employee queried for confirmation
     echo tableFormatting($resultNames);

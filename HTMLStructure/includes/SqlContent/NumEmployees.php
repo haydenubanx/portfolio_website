@@ -14,10 +14,10 @@ $question = "<blockquote>Write a query to get the average salary and the total n
 //The query to be passed to the database
 $sqlQuery = "
 	SELECT CONCAT('$', MIN(format(SALARY, 'C2'))) AS 'Average Salary', COUNT(DISTINCT Employee_ID) AS 'Number of Employees'
-	FROM Employees;";
+	FROM employees;";
 
 //The fuction to perform the query and store the results in the resultNames variable
-$resultNames= mysqli_query($dbConnection, $sqlQuery);
+$resultNames= mysqli_query($_SESSION['dbConnection'], $sqlQuery);
 
 //The print statement for the question, query, and function call to print statement for the table
 echo '<p><strong>' . $question . '</strong></p>' .
