@@ -1,6 +1,6 @@
 <?php
 //
-//This File contains a function whichformats the data results from the SQL
+//This File contains a function which formats the data results from SQL
 //Queries for output to the tables and echos out the results
 //
 

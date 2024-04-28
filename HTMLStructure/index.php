@@ -14,14 +14,17 @@ $cookie_value = null;
 
 function updateVisitCount()
 {
+    $visitNumber = 0;
+
     if (isset($_COOKIE['timesVisited'])) {
-        $_COOKIE['timesVisited'] += 1;
+        $visitNumber = $_COOKIE['timesVisited'];
+        $visitNumber += 1;
     } else {
-        $visitNumber = isset($_SESSION['visitNumber']) ? $_SESSION['visitNumber'] : (isset($_COOKIE['timesVisited']) ? $_COOKIE['timesVisited'] : 0);
+        $visitNumber = $_SESSION['visitNumber'] ?? (isset($_COOKIE['timesVisited']) ? $_COOKIE['timesVisited'] : 0);
         $visitNumber += 1;
     }
-    $_SESSION['VisitNumber'] = isset($_COOKIE['timesVisited']) ? $_COOKIE['timesVisited'] : $visitNumber;
-    $_SESSION['firstTimeVisiting'] = $_COOKIE['timesVisited'] <= 1 ? true : false;
+    $_SESSION['visitNumber'] = $_COOKIE['timesVisited'] ?? $visitNumber;
+    $_SESSION['firstTimeVisiting'] = $visitNumber <= 1;
 }
 
 function setVisitCookies($cookieName, $cookieValue)
@@ -35,7 +38,7 @@ function setVisitCookies($cookieName, $cookieValue)
 }
 
 // Starts a session and include the dependency
-session_start();
+//session_start();
 include_once 'includes/DbConnection/db.php';
 
 $cookie_value = null;

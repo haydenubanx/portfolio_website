@@ -2,7 +2,7 @@
 
 //Include statements for the database connection and output formatting
 include 'TableFormatting.php';
-include_once 'db.php';
+include_once __DIR__ . "/../DbConnection/db.php";
 
 
 

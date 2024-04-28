@@ -1,10 +1,7 @@
 <?php
 //Include statements for the database connection and output formatting
 include 'TableFormatting.php';
-include_once 'db.php';
-
-
-
+include_once __DIR__ . "/../DbConnection/db.php";
 
 //The print statement for the question as presented in the assignment instructions
 $question = "<blockquote>Write a query to get the maximum and minimum salary from the employees 
@@ -22,9 +19,5 @@ $resultNames= mysqli_query($dbConnection, $sqlQuery);
 echo '<p><strong>' . $question . '</strong></p>' .
     '<pre>' . $sqlQuery .'</pre>' .
     tableFormatting($resultNames);
-
-
-
-
 
 ?>
