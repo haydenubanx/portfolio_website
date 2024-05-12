@@ -2,3 +2,4 @@ workspace.xml
 *.xml
 *.meta
 *.iml
+settings.json

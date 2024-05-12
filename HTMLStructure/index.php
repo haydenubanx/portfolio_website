@@ -88,6 +88,10 @@ if (!isset($_COOKIE['user']) || !isset($_COOKIE['timesVisited'])) {
 	<!--Links the stylesheet I created -->
 	<link rel="stylesheet" href="./resources/css/style.css" />
 
+    <!-- linking to PyScript assets -->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2022.12.1/pyscript.css" />
+    <script defer src="https://pyscript.net/releases/2022.12.1/pyscript.js"></script>
+
 </head>
 	<body>
 		<!--Adds the header file to the main page-->

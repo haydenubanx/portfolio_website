@@ -1,4 +1,6 @@
 import math
+import sys
+
 
 # This function returns the number of digits in a base 10 number
 def digit_counter(input_value):
@@ -11,12 +13,14 @@ def digit_counter(input_value):
     else:
         return math.floor(math.log10(abs(input_value)) + 1)
 
+
 # This function takes an input base 10 number and returns the text version of that number
 def int_to_string(number):
     # Store the original number for later use
     original_number = number
     # Take absolute value so negative numbers are processed normally
     number = abs(number)
+    lastNumberFlag = False
     # Get the number of digits in the number
     num_digits = digit_counter(number)
     # The number of digits will reveal the power of ten that the number is relative too
@@ -40,35 +44,43 @@ def int_to_string(number):
     if num_digits == 9:
         # If the digit in the hundred thousandths place is a zero, skip it ex: 1,010,987
         if int(number / 100000000) != 0:
-            checkIfLastNumber(number, 100000000)
+            lastNumberFlag = checkIfLastNumber(number, 100000000)
+            if lastNumberFlag:
+                print("And ", end="")
             print(digitToText(int(number / 100000000)) + "Hundred ", end="")
             number -= int(number / 100000000) * 100000000
             # Print the Word 'And' When Necessary
-            if int(number % 100000000) != 0 and abs(original_number) > 100000000:
+            if 9 > digit_counter(number) >= 7:
                 print("And ", end="")
-            elif digit_counter(number) == 1 and number % 10 == 0:
+            if digit_counter(number) < 7:
                 print("Million ", end="")
         num_digits = digit_counter(number)
     # 10 Million
     if num_digits == 8:
         # If the number is in the teens, do not print a number for the ten thousands but choose the teens instead
         if int(number / 10000000) == 1:
-            checkIfLastNumber(number, 10000000)
+            lastNumberFlag = checkIfLastNumber(number, 10000000)
+            if lastNumberFlag:
+                print("And ", end="")
             print(digitToTextTeens(int(((number / 1000000) % 10))) + "Million ", end="")
             number -= int(number / 1000000) * 1000000
             # Remove another digit to skip the thousands
             num_digits = digit_counter(number)
         # Otherwise check that not zero
         if int(number / 10000000) != 0:
-            checkIfLastNumber(number, 10000000)
+            lastNumberFlag = checkIfLastNumber(number, 10000000)
+            if lastNumberFlag:
+                print("And ", end="")
             print(digitToTextTens(int(number / 10000000)), end="")
             number -= int(number / 10000000) * 10000000
-            if digit_counter(number) == 1 and number % 10 == 0:
+            if digit_counter(number) < 7:
                 print("Million ", end="")
         num_digits = digit_counter(number)
     # 1 Million
     if num_digits == 7:
-        checkIfLastNumber(number, 1000000)
+        lastNumberFlag = checkIfLastNumber(number, 1000000)
+        if lastNumberFlag:
+            print("And ", end="")
         # Print text of digit in the millions place followed by million
         print(digitToText(int(number / 1000000)) + "Million ", end="")
         # Reduce number so the millions part is removed
@@ -79,42 +91,52 @@ def int_to_string(number):
     if num_digits == 6:
         # If the digit in the hundred thousandths place is a zero, skip it ex: 1,010,987
         if int(number / 100000) != 0:
-            checkIfLastNumber(number, 100000)
+            lastNumberFlag = checkIfLastNumber(number, 100000)
+            if lastNumberFlag:
+                print("And ", end="")
             print(digitToText(int(number / 100000)) + "Hundred ", end="")
             number -= int(number / 100000) * 100000
             # Print the Word 'And' When Necessary
-            if int(number % 100000) != 0 and abs(original_number) > 100000:
+            if 6 > digit_counter(number) >= 4:
                 print("And ", end="")
-            elif digit_counter(number) == 1 and number % 10 == 0:
+            if digit_counter(number) < 4:
                 print("Thousand ", end="")
         num_digits = digit_counter(number)
     # 10 Thousand
     if num_digits == 5:
         # If the number is in the teens, do not print a number for the ten thousands but choose the teens instead
         if int(number / 10000) == 1:
-            checkIfLastNumber(number, 10000)
+            lastNumberFlag = checkIfLastNumber(number, 10000)
+            if lastNumberFlag:
+                print("And ", end="")
             print(digitToTextTeens(int(((number / 1000) % 10))) + "Thousand ", end="")
             number -= int(number / 1000) * 1000
             # Remove another digit to skip the thousands
             num_digits = digit_counter(number)
         # Otherwise check that not zero
         if int(number / 10000) != 0:
-            checkIfLastNumber(number, 10000)
+            lastNumberFlag = checkIfLastNumber(number, 10000)
+            if lastNumberFlag:
+                print("And ", end="")
             print(digitToTextTens(int(number / 10000)), end="")
             number -= int(number / 10000) * 10000
-            if digit_counter(number) == 1 and number % 10 == 0:
+            if digit_counter(number) < 4:
                 print("Thousand ", end="")
         num_digits = digit_counter(number)
     # 1 Thousands
     if num_digits == 4:
-        checkIfLastNumber(number, 1000)
+        lastNumberFlag = checkIfLastNumber(number, 1000)
+        if lastNumberFlag:
+            print("And ", end="")
         print(digitToText(int(number / 1000)) + "Thousand ", end="")
         number -= int(number / 1000) * 1000
         num_digits = digit_counter(number)
     # Hundreds
     if num_digits == 3:
         if int(number / 100) != 0:
-            checkIfLastNumber(number, 100)
+            lastNumberFlag = checkIfLastNumber(number, 100)
+            if lastNumberFlag:
+                print("And ", end="")
             print(digitToText(int(number / 100)) + "Hundred ", end="")
             number -= int(number / 100) * 100
         num_digits = digit_counter(number)
@@ -124,12 +146,16 @@ def int_to_string(number):
     # Tens
     if num_digits == 2:
         if int(number / 10) == 1:
-            checkIfLastNumber(number, 10)
+            lastNumberFlag = checkIfLastNumber(number, 10)
+            if lastNumberFlag:
+                print("And ", end="")
             print(digitToTextTeens(int(number % 10)), end="")
             number -= int(number / 10) * 10
             return 0
         else:
-            checkIfLastNumber(number, 10)
+            lastNumberFlag = checkIfLastNumber(number, 10)
+            if lastNumberFlag:
+                print("And ", end="")
             print(digitToTextTens(int(number / 10)), end="")
             number -= int(number / 10) * 10
         num_digits = digit_counter(number)
@@ -139,6 +165,7 @@ def int_to_string(number):
             print(digitToText(int(number % 10)), end="")
         elif original_number == 0:
             print("Zero", end="")
+
 
 # This function converts a number between 0 - 9 to text
 def digitToText(value):
@@ -163,6 +190,8 @@ def digitToText(value):
             return "Eight "
         case (9):
             return "Nine "
+
+
 # This function converts multiples of ten to text i.e. 10, 20, 30...
 def digitToTextTens(value):
     match (value):
@@ -186,6 +215,8 @@ def digitToTextTens(value):
             return "Eighty "
         case (9):
             return "Ninety "
+
+
 # This function converts numbers in the teens to text i.e. 11, 12, 13...
 def digitToTextTeens(value):
     match (value):
@@ -209,14 +240,16 @@ def digitToTextTeens(value):
             return "Eighteen "
         case (9):
             return "Nineteen "
+
+
 def checkIfLastNumber(value, degree):
     tempNumber = (value - int(value / degree)) * degree
 
     if digit_counter(tempNumber) == 0:
-        print("And ", end="")
         return True
     else:
         return False
+
 
 # Main Program
 input_number = 0
