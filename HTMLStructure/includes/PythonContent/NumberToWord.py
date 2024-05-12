@@ -52,7 +52,7 @@ def int_to_string(number):
             # Print the Word 'And' When Necessary
             if 9 > digit_counter(number) >= 7:
                 print("And ", end="")
-            if digit_counter(number) < 7:
+            elif digit_counter(number) < 7:
                 print("Million ", end="")
         num_digits = digit_counter(number)
     # 10 Million
@@ -243,9 +243,10 @@ def digitToTextTeens(value):
 
 
 def checkIfLastNumber(value, degree):
-    tempNumber = (value - int(value / degree)) * degree
+    tempNumber = value
+    tempNumber -= int(value / degree) * degree
 
-    if digit_counter(tempNumber) == 0:
+    if tempNumber == 0:
         return True
     else:
         return False
