@@ -44,10 +44,11 @@ include_once 'includes/DbConnection/db.php';
 $cookie_value = null;
 $cookie_name = 'user';
 
-if (!isset($_COOKIE['user']) || !isset($_COOKIE['timesVisited'])) {
+if (!isset($_COOKIE['user']) || !isset($_COOKIE['timesVisited']) || !isset($_COOKIE['firstName']) || !isset($_COOKIE['lastName'])) {
     updateVisitCount();
     setVisitCookies($cookie_name, $cookie_value);
-} else {
+}
+else {
     updateVisitCount();
     setVisitCookies('user', $_SESSION['firstName'] . "&nbsp" . $_SESSION['lastName']);
 }
@@ -87,10 +88,6 @@ if (!isset($_COOKIE['user']) || !isset($_COOKIE['timesVisited'])) {
 
 	<!--Links the stylesheet I created -->
 	<link rel="stylesheet" href="./resources/css/style.css" />
-
-    <!-- linking to PyScript assets -->
-    <link rel="stylesheet" href="https://pyscript.net/releases/2022.12.1/pyscript.css" />
-    <script defer src="https://pyscript.net/releases/2022.12.1/pyscript.js"></script>
 
 </head>
 	<body>

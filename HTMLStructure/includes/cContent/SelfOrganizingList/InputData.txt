@@ -1,0 +1,13 @@
+77,seventy-seven
+70,seventy
+75,seventy-five
+66,sixty-six
+79,seventy-nine
+68,sixty-eight
+67,sixty-seven
+69,sixty-nine
+90,ninety
+85,eighty-five
+83,eighty-three
+87,eighty-seven
+65,sixty-five

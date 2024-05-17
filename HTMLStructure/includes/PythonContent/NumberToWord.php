@@ -22,6 +22,10 @@ function submitNumberToWordForm() {
 
 ?>
 
+<!-- linking to PyScript assets -->
+<link rel="stylesheet" href="https://pyscript.net/releases/2022.12.1/pyscript.css" />
+<script defer src="https://pyscript.net/releases/2022.12.1/pyscript.js"></script>
+
 <form method="post" action="index.php?clicked=NumberToWord">
     <label for="NumberToWord">Input a Number: </label>
     <input type="text" id="NumberToWord" name="NumberToWord"> <br /><br />
