@@ -1,7 +1,7 @@
 <header>
     <!-- header link for index page -->
     <h1 id="Title Name"> <a href="index.php">Hayden Eubanks</a> </h1>
-    <h1 id="Title Job"><a href="index.php">Computer Science: Cybersecurity Professional</a></h1>
+    <h1 id="Title Job"><a href="index.php">Computer Science: Cybersecurity</a></h1>
 
 
 
