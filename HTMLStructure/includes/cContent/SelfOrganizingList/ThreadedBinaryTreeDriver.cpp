@@ -16,7 +16,7 @@ int main() {
 	cout << "Using insert function to build binary tree \n";
 
 	//Read data in from file and create node for each pair
-	infile.open("InputData.txt");
+	infile.open("HTMLStructure/includes/cContent/SelfOrganizingList/InputData.txt");
 
 
 
