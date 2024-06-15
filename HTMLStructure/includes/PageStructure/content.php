@@ -22,7 +22,7 @@
 
     $allowed_python_pages = ['NumberToWord'];
 
-    $allowed_C_pages = ['#'];
+    $allowed_C_pages = ['SelfBalBinTree'];
 
     $allowed_java_pages = ['#'];
 

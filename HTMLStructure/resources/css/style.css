@@ -1,284 +1,251 @@
-
-/*Sets the entire pages background to a very light grey with some transparency*/
+/* Global Styles */
 html {
-    background-color: rgba(236,236,236,0.6);
+    background-color: #f5f5f5;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
 }
 
-
-/*Formats the header to align the items to the center of the header and gives a padding to space them out
-The background color is also set to mediumseagreen and the text color to white*/
-@keyframes animatedBg {
-    0% { background-color: #999999; }    /* Dark Grey */
-    25% { background-color: #888888; }   /* Very Dark Grey */
-    50% { background-color: #777777; }   /* Even Darker Grey */
-    100% { background-color: #666666; }  /* Almost Black Grey */
-}
-
+/* Header Styles */
 header {
-    /*animation: animatedBg 10s linear infinite;*/
+    display: flex;
     align-items: center;
-    padding: 1em;
-    background-color: darkslategrey;
+    justify-content: space-between;
+    padding: 1em 2em;
+    background-color: #222;
     color: white;
 }
 
+header h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
 
-/*Formats the home page hyperlink to have white text*/
-
-header > h1 > a {
+header a {
     color: white;
-}
-
-
-/*Aligns the heading to the center of the header*/
-header > h1 {
-    text-align: left;
-
-}
-
-/* Navbar container */
-.navbar {
-    overflow: hidden;
-    background-color: #333;
-    font-family: Arial;
-}
-
-/* Links inside the navbar */
-.navbar a {
-    float: left;
-    font-size: 16px;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
     text-decoration: none;
 }
 
-/* The dropdown container */
-.dropdown {
-    float: left;
-    overflow: hidden;
+header nav {
+    display: flex;
+    gap: 1em;
 }
 
-/* Dropdown button */
+header nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+header nav a:hover {
+    background-color: #444;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: center;
+    background-color: #333;
+}
+
+.navbar a {
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.navbar a:hover {
+    background-color: #555;
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
 .dropdown .dropbtn {
+    background-color: #333;
+    color: white;
+    padding: 14px 20px;
     font-size: 16px;
     border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
-    font-family: inherit; /* Important for vertical align on mobile phones */
-    margin: 0; /* Important for vertical align on mobile phones */
+    cursor: pointer;
 }
 
-/* Add a red background color to navbar links on hover */
-.navbar a:hover, .dropdown:hover .dropbtn {
-    background-color: seagreen;
-}
-
-/* Dropdown content (hidden by default) */
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: white;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
-/* Links inside the dropdown */
 .dropdown-content a {
-    float: none;
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    text-align: left;
+    transition: background-color 0.3s;
 }
 
-/* Add a grey background color to dropdown links on hover */
 .dropdown-content a:hover {
-    background-color: #ddd;
+    background-color: #f1f1f1;
 }
 
-/* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
 }
 
-/*When the navigation items are clicked or have been visited, they remain the same color*/
-nav > ul > li > a:active, nav > li > a:visited {
-    color: inherit;
+/* Main Content Styles */
+main {
+    padding: 2em;
 }
-
-
-/*Adds the box and shading to all preformatted text blocks
-This is used for the introduction and SQL Queries*/
 
 pre {
-    padding: 2em 0;
-    border: 1px double;
-    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.4);
-    background-color: rgba(60,179,113,0.1)
-}
-
-
-/*Sets the padding of the table header and cells*/
-th, td {
-    padding: 0.5em;
-}
-
-/*Sets every even numbered row to a colored cell*/
-tr:nth-child(even) {
-    background-color: rgba(60,179,113,0.4);
-}
-
-
-/*When the main page link is clicked or active, its color will remain the same*/
-header > h1 > a:active, header > a:visited, header > a:active {
-    color: inherit;
-
-}
-
-/*Sets the spacing and centering of the navigation list items within themselves*/
-li {
-    display: inline;
     padding: 1em;
-
-
-
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    overflow-x: auto;
 }
 
-/*Sets the background color, padding, and alignment of the navigation list*/
-
-nav {
-
-    background-color: MediumSeaGreen;
-    text-align: center;
-    padding-top: 2em;
-
-}
-
-/*Creates the boxes for the navigation items*/
-nav > ul > li {
-    border: 1px double;
-    border-color: white;
-    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.4);
-    background-color: rgba(60,179,113,0.1);
-    margin: 1em 1em;
-    line-height: 4em;
-}
-
-
-/*Removes the underline from all hyperlinks and sets text color to white*/
-a {
-    text-decoration: none;
-    color: white;
-
-}
-
-#bodyText {
-    margin-left: 1%;
-}
-
-/*Creates the spacing for the welcome message form*/
-form {
-    padding-top: 2em;
-}
-
-
-/*Floats the labels so they can be presented horizontally as well as adding spacing and text color*/
-form > label {
-    float: left;
-    text-align: center;
-    padding-bottom: 10px;
-    padding-right: 0.5em;
-    padding-left: 0.2em;
-    color:white;
-}
-
-/*Floats the input boxes to allow for horizontal presenting*/
-form > input {
-    float: left;
-    text-align: center;
-    padding-right: 1em;
-    clear: right;
-}
-
-section > form {
-    clear: right;
-    background-color: rgba(60,179,113,0.6);
-    margin: 1em 1em;
-}
-
-section > form > input {
-    float:right;
-    margin-right: 58em;
-}
-
-section > form > input[name=yes] {
-    float: none;
-    margin: auto auto;
-    margin-left: 40em;
-    text-align: center;
-}
-
-section > form > input[name=no] {
-    float: none;
-    margin: auto auto;
-    text-align: center;
-}
-
-
-section > form > label {
-    color: white;
-
-
-}
-
-/*Centers the welcome message on the screen*/
-header >  p {
-
-    text-align: center;
-}
-
-/*Sets the spacing for the table*/
+/* Table Styles */
 table {
-    margin: 0 auto;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+
+th, td {
+    padding: 0.75em;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Form Styles */
+form {
     padding: 1em;
-    font-size: 0.9em;
-    max-width: 100%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 1em 0;
 }
 
-/*Sets the question text to orange*/
-section > blockquote {
-    color: orange;
-}
-
-section > p {
-
-    text-align: center;
-    margin: auto auto;
-    font-weight: bold;
-
-}
-
-/*Sets the footers background to mediumseagreen, text to white, alignment to center, and spacing*/
-footer {
-    /*animation: animatedBg 10s linear infinite;*/
-    background-color: darkslategrey;
-    padding: 0.5em;
-    color: white;
-    text-align: center;
-}
-
-#footerContainer {
+form label {
     display: block;
-    margin-left: 1%;
-    text-align:left;
+    margin-bottom: 0.5em;
+    color: #333;
 }
 
-#footerLinks {
+form input[type="text"], form input[type="email"], form textarea {
+    width: 100%;
+    padding: 0.75em;
+    margin-bottom: 1em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+form input[type="submit"] {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 0.75em 1.5em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #222;
+    color: white;
+    padding: 1em 2em;
+    text-align: center;
+}
+
+footer a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+footer a:hover {
     text-decoration: underline;
-    color: deepskyblue;
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.mt-1 { margin-top: 1em; }
+.mt-2 { margin-top: 2em; }
+.mt-3 { margin-top: 3em; }
+.mb-1 { margin-bottom: 1em; }
+.mb-2 { margin-bottom: 2em; }
+.mb-3 { margin-bottom: 3em; }
+.p-1 { padding: 1em; }
+.p-2 { padding: 2em; }
+.p-3 { padding: 3em; }
+
+/* Code Box Styles */
+.code-container {
+    margin: 1em 0;
+}
+
+.toggle-button {
+    display: block;
+    width: 100%;
+    padding: 0.5em 1em;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1em;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.toggle-button:hover {
+    background-color: #0056b3;
+}
+
+.code-box {
+    display: none;
+    background-color: #f5f5f5;  /* Light background to contrast black text */
+    color: #000;  /* Black text color */
+    border-radius: 4px;
+    padding: 1em;
+    margin-top: 0.5em;
+    overflow-x: auto;
+}
+
+/* Prism.js theme overrides */
+pre[class*="language-"] {
+    background: none;
+    padding: 0;
+    margin: 0;
+    color: #000;  /* Black text color */
+}
+
+code[class*="language-"] {
+    background: none;
+    padding: 0;
+    color: #000;  /* Black text color */
 }
