@@ -11,6 +11,7 @@
 // Include the dictionary ADT
 #include "dictionary.h"
 #include <string>
+#include <queue>
 
 #ifndef BST_H
 #define BST_H
@@ -35,6 +36,7 @@ private:
     BSTNode<Key, E>* removehelp(BSTNode<Key, E>*, const Key&);
     E* findhelp(BSTNode<Key, E>*, const Key&) const;
     void printhelp(BSTNode<Key, E>*, int) const;
+    void printKeyValuePairs(BSTNode<Key, E>* root) const;
     void vist(BSTNode<Key, E>*) const;
 
 public:
@@ -180,7 +182,7 @@ public:
     // Print the contents of the BST
     void print() const { 
         if (root == NULL) cout << "The BST is empty.\n";
-        else printhelp(root, 0);
+        else printKeyValuePairs(root);
     }
 
 
@@ -216,7 +218,7 @@ public:
                     currentNode->setLeftThreaded(lthreaded);
 
                     //Print confirmation
-                    cout << "The left pointer at key " << currentNode->key() << " was set to point at " << leftPointerToSet->key() << endl;
+//                    cout << "The left pointer at key " << currentNode->key() << " was set to point at " << leftPointerToSet->key() << endl;
                 }
             }
 
@@ -242,7 +244,7 @@ public:
                     currentNode->setRightThreaded(rthreaded);
 
                     //Print confirmation
-                    cout << "The right pointer at key " << currentNode->key() << " was set to point at " << rightPointerToSet->key() << endl;
+//                    cout << "The right pointer at key " << currentNode->key() << " was set to point at " << rightPointerToSet->key() << endl;
                 }
             }
 
@@ -598,26 +600,55 @@ E* BST<Key, E>::findhelp(BSTNode<Key, E>* root,
     }
 }
 
-// Print out a BST
 template <typename Key, typename E>
-void BST<Key, E>::
-printhelp(BSTNode<Key, E>* root, int level) const {
-    if (root == NULL) return;           // Empty tree
+void BST<Key, E>::printhelp(BSTNode<Key, E>* root, int level) const {
+    if (root == NULL) return;  // Empty tree
 
-    //If not left threaded
+    // If not left threaded
     if (root != NULL && root->left() != NULL && !root->getLeftThreaded()) {
-        printhelp(root->left(), level + 1);   // Do left subtree
+        printhelp(root->left(), level + 1);  // Print left subtree first
     }
-    
-    for (int i = 0; i < level; i++)         // Indent to level
-        cout << "  ";
-    cout << root->key() << "\n";        // Print node value
 
-    //If not right threaded
-    if (root->right() != NULL && !root->getRightThreaded()) {
-        printhelp(root->right(), level + 1);  // Do right subtree
+    for (int i = 0; i < level; i++) {  // Indent to level
+        cout << "    ";
     }
-    
+    cout << root->key() << "\n";  // Print node value
+
+    // If not right threaded
+    if (root->right() != NULL && !root->getRightThreaded()) {
+        printhelp(root->right(), level + 1);  // Print right subtree last
+    }
+}
+
+template <typename Key, typename E>
+void BST<Key, E>::printKeyValuePairs(BSTNode<Key, E>* rootNode) const {
+    if (rootNode == NULL) return;  // Empty tree
+
+    std::queue<BSTNode<Key, E>*> currentLevel;
+    currentLevel.push(rootNode);
+
+    while (!currentLevel.empty()) {
+        int levelSize = currentLevel.size();
+
+        while (levelSize > 0) {
+            BSTNode<Key, E>* node = currentLevel.front();
+            currentLevel.pop();
+
+            cout << node->key() << " " << node->element();
+
+            if (node->left() != NULL && !node->getLeftThreaded()) {
+                currentLevel.push(node->left());
+            }
+
+            if (node->right() != NULL && !node->getRightThreaded()) {
+                currentLevel.push(node->right());
+            }
+
+            --levelSize;
+        }
+
+        cout << endl;  // Move to the next level
+    }
 }
 
 #endif
