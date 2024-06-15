@@ -63,11 +63,11 @@ int main() {
 	newTree.setThreaded(newTree.getRoot());
 
 	//Print Size of tree
-	cout << "Binary tree is size: " << newTree.size() << endl << endl;
+//	cout << "Binary tree is size: " << newTree.size() << endl << endl;
 
 
 	//Print tree structure
-	cout << "\nNow Printing Tree Structure \n";
+//	cout << "\nNow Printing Tree Structure \n";
 
 	newTree.print();
 
@@ -75,46 +75,46 @@ int main() {
 
 
 	//Testing the find function
-	cout << "Finding value at key 87: ";
-
-	cout << *newTree.find(87);
-
-	cout << endl << endl;
+//	cout << "Finding value at key 87: ";
+//
+//	cout << *newTree.find(87);
+//
+//	cout << endl << endl;
 
 
 	//Display inorder printing
-	cout << "Now performing an inorder print \n";
-
-	newTree.printInorder();
-
-	cout << endl;
-
-	//Display reverse order printing
-	cout << "Now performing a reverse order print \n";
-
-	newTree.printReverse();
-
-	cout << endl;
-
-	//Remove Value at key
-	cout << "Removing value at key: 90\n";
-
-
-	cout << "Value " << *newTree.remove(90) << " removed" << endl << endl;
+//	cout << "Now performing an inorder print \n";
+//
+//	newTree.printInorder();
+//
+//	cout << endl;
+//
+//	//Display reverse order printing
+//	cout << "Now performing a reverse order print \n";
+//
+//	newTree.printReverse();
+//
+//	cout << endl;
+//
+//	//Remove Value at key
+//	cout << "Removing value at key: 90\n";
+//
+//
+//	cout << "Value " << *newTree.remove(90) << " removed" << endl << endl;
 
 
 	//Remove Root value
-	cout << "Removing root value of: " << *newTree.removeAny() << endl << endl;
-
-	//Reprint Tree without removed values
-	cout << "\nReprinting Tree With Removed Values \n";
-
-	newTree.print();
-
-	cout << endl << endl;
-
-	//Clean up tree
-	cout << "Cleaning up tree with clear" << endl;
+//	cout << "Removing root value of: " << *newTree.removeAny() << endl << endl;
+//
+//	//Reprint Tree without removed values
+//	cout << "\nReprinting Tree With Removed Values \n";
+//
+//	newTree.print();
+//
+//	cout << endl << endl;
+//
+//	//Clean up tree
+//	cout << "Cleaning up tree with clear" << endl;
 
 	newTree.clear();
 
