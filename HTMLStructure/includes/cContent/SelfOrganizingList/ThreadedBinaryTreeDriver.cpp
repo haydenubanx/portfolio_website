@@ -1,13 +1,27 @@
 #include <iostream>
 #include <fstream>
+#include <unistd.h> // For getcwd
+#include <climits> // For PATH_MAX
 #include "BST.h"
 
 using namespace std;
 
 
+// Function to print the current working directory
+void printCurrentWorkingDirectory() {
+    char cwd[PATH_MAX];
+    if (getcwd(cwd, sizeof(cwd)) != nullptr) {
+        cout << "Current working directory: " << cwd << endl;
+    } else {
+        perror("getcwd() error");
+    }
+}
+
 
 //Main Function to print implementation results
 int main() {
+
+    printCurrentWorkingDirectory(); // Print the current working directory
 
 	ifstream infile;
 	BST<int, string> newTree;
@@ -42,7 +56,7 @@ int main() {
 			newTree.insert(integerKey, value);
 
 			//Temporary Print Statement to print list items as added
-//			cout << "Added: " << integerKey << ", " << value << endl;
+			cout << "Added: " << integerKey << ", " << value << endl;
 		}
 
 		//Close the File
