@@ -20,11 +20,15 @@ int main(int argc, char *argv[]) {
 	ifstream infile;
 	BST<int, string> newTree;
 
-	if(doesFileExist("includes/cContent/SelfOrganizingList/OutputData.txt")) {
-            infile.open("includes/cContent/SelfOrganizingList/OutputData.txt");
+	if(doesFileExist("HTMLStructure/includes/cContent/SelfOrganizingList/OutputData.txt")) {
+            infile.open("HTMLStructure/includes/cContent/SelfOrganizingList/OutputData.txt");
+
+        if(infile.peek() == std::ifstream::traits_type::eof()) {
+            infile.open("HTMLStructure/includes/cContent/SelfOrganizingList/InputData.txt");
+        }
 	}
 	else {
-    	infile.open("includes/cContent/SelfOrganizingList/InputData.txt");
+    	infile.open("HTMLStructure/includes/cContent/SelfOrganizingList/InputData.txt");
 	}
 
 
@@ -47,9 +51,11 @@ int main(int argc, char *argv[]) {
 			getline(infile, value, '\n');
 
 			//convert key from string to int for inserting into tree
-			int integerKey = stoi(key);
+            if(key != "") {
+                int integerKey = stoi(key);
+                newTree.insert(integerKey, value);
+            }
 
-			newTree.insert(integerKey, value);
 
 		}
 
@@ -78,7 +84,11 @@ int main(int argc, char *argv[]) {
 
     }
 
-    newTree.print();
+    ofstream myfile;
+    string outputContent = newTree.print();
+    myfile.open ("HTMLStructure/includes/cContent/SelfOrganizingList/OutputData.txt");
+    myfile << outputContent;
+    myfile.close();
     cout << endl << endl;
 
 	newTree.clear();

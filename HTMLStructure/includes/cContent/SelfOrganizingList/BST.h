@@ -2,6 +2,7 @@
 #include "dictionary.h"
 #include <string>
 #include <queue>
+#include <regex>
 
 #ifndef BST_H
 #define BST_H
@@ -36,7 +37,7 @@ private:
 
     void printhelp(BSTNode<Key, E> *, int) const;
 
-    void printKeyValuePairs(BSTNode<Key, E> *root) const;
+    string printKeyValuePairs(BSTNode<Key, E> *root) const;
 
     void vist(BSTNode<Key, E> *) const;
 
@@ -183,9 +184,9 @@ public:
     int size() { return nodecount; }
 
     // Print the contents of the BST
-    void print() const {
+    string print() const {
         if (root == NULL) cout << "The BST is empty.\n";
-        else printKeyValuePairs(root);
+        else return printKeyValuePairs(root);
     }
 
     void setThreaded(BSTNode<Key, E> *currentNode) {
@@ -689,10 +690,11 @@ void BST<Key, E>::printhelp(BSTNode<Key, E> *root, int level) const {
 }
 
 template<typename Key, typename E>
-void BST<Key, E>::printKeyValuePairs(BSTNode<Key, E> *rootNode) const {
-    if (rootNode == NULL) return;  // Empty tree
+string BST<Key, E>::printKeyValuePairs(BSTNode<Key, E> *rootNode) const {
+//    if (rootNode == NULL) return NULL;  // Empty tree
 
     std::queue<BSTNode<Key, E> *> currentLevel;
+    string returnString;
     currentLevel.push(rootNode);
 
     while (!currentLevel.empty()) {
@@ -702,7 +704,9 @@ void BST<Key, E>::printKeyValuePairs(BSTNode<Key, E> *rootNode) const {
             BSTNode<Key, E> *node = currentLevel.front();
             currentLevel.pop();
 
-            cout << node->key() << "," << node->element() << " ";
+//            cout << node->key() << "," << node->element() << "";
+            returnString.append(to_string(node->key()) + "," + node->element() + "\n");
+//            cout << returnString;
 
 //            cout << "Left Child: " << node->left()->key() << endl;
 //            cout << " Right Child: " << node->right()->key() << endl;
@@ -726,8 +730,11 @@ void BST<Key, E>::printKeyValuePairs(BSTNode<Key, E> *rootNode) const {
             --levelSize;
         }
 
-        cout << endl;  // Move to the next level
+//        cout << endl;
+//        returnString.append("\n");
     }
+    returnString = std::regex_replace(returnString, std::regex("^ +| +$|( ) +"), "$1");
+    return returnString;
 }
 
 #endif
