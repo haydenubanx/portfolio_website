@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
-#include <unistd.h> // For getcwd
-#include <climits> // For PATH_MAX
+#include <string>
+#include <sys/stat.h>
 #include "BST.h"
 
 using namespace std;
@@ -22,7 +22,7 @@ int main() {
 //	cout << "Using insert function to build binary tree \n";
 
 	//Read data in from file and create node for each pair
-        if(doesFileExist("includes/cContent/SelfOrganizingList/OutputData.txt") && !std::filesystem::is_empty("includes/cContent/SelfOrganizingList/OutputData.txt")) {
+        if(doesFileExist("includes/cContent/SelfOrganizingList/OutputData.txt")) {
             infile.open("includes/cContent/SelfOrganizingList/OutputData.txt");
         }
         else {
