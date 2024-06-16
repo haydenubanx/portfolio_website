@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
 			getline(infile, value, '\n');
 
 			//convert key from string to int for inserting into tree
-            if(key != "") {
+            if(key != "" && !(key.find("Left Child") != std::string::npos) && !(key.find("Right Child") != std::string::npos)) {
                 int integerKey = stoi(key);
                 newTree.insert(integerKey, value);
             }

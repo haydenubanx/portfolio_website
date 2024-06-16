@@ -712,11 +712,11 @@ string BST<Key, E>::printKeyValuePairs(BSTNode<Key, E> *rootNode) const {
 //            cout << " Right Child: " << node->right()->key() << endl;
             if (node->getLeftThreaded()) {
 //                cout << "Left Child: " << node->left()->key() << endl;
-                returnString.append("Left Child: " + to_string(node->left()->key()) + "\n");
+                returnString.append("Left Child," + to_string(node->left()->key()) + "\n");
             }
             if (node->getRightThreaded()) {
 //                cout << " Right Child: " << node->right()->key() << endl;
-                returnString.append("Right Child: " + to_string(node->right()->key()) + "\n");
+                returnString.append("Right Child," + to_string(node->right()->key()) + "\n");
             }
 
 //            cout << node->key() <<  ",";
