@@ -11,11 +11,13 @@ private:
     Key k;                  // The node's key
     E it;                   // The node's value
     BSTNode* lc;            // Pointer to left child
-    BSTNode* rc;            // Pointer to right child
+    BSTNode* rc;
+    BSTNode* parent;            // Pointer to parent
 
     //Booleans for marking if BST node is threaded
     bool leftThreaded = false;
     bool rightThreaded = false;
+    bool hasParent = false;
 
 public:
     // Two constructors -- with and without initial values
@@ -35,9 +37,22 @@ public:
 
     // Functions to set and return the children
     inline BSTNode* left() const { return lc; }
-    void setLeft(BinNode<E>* b) { lc = (BSTNode*)b; }
+    inline BSTNode* getParent() const { return parent; }
+
+    void setLeft(BinNode<E>* b) {
+        leftThreaded = true;
+        lc = (BSTNode*)b;
+        lc->setParent(this);
+    }
     inline BSTNode* right() const { return rc; }
-    void setRight(BinNode<E>* b) { rc = (BSTNode*)b; }
+    void setRight(BinNode<E>* b) {
+        rightThreaded = true;
+        rc = (BSTNode*)b;
+        rc->setParent(this);
+    }
+
+    void setParent(BinNode<E>* b) {
+        parent = (BSTNode*)b; }
 
     // Return true if it is a leaf, false otherwise
     bool isLeaf() { return (lc == NULL) && (rc == NULL); }
@@ -61,6 +76,14 @@ public:
     //Sets threaded boolean value of right thread
     void setRightThreaded(bool value) {
         rightThreaded = value;
+    }
+
+    bool hasAParent() {
+        return hasParent;
+    }
+
+    void setHasParentValue(bool parentValue) {
+        hasParent = parentValue;
     }
 
 

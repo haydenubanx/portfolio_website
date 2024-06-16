@@ -1,9 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <unistd.h>
-#include <climits>
-#include <unistd.h>
 #include <string>
+#include <sys/stat.h>
 #include "BST.h"
 
 using namespace std;
@@ -21,11 +20,11 @@ int main(int argc, char *argv[]) {
 	ifstream infile;
 	BST<int, string> newTree;
 
-	if(doesFileExist("includes/cContent/SelfOrganizingList/OutputData.txt")) {
-        infile.open("includes/cContent/SelfOrganizingList/OutputData.txt");
+	if(doesFileExist("HTMLStructure/includes/cContent/SelfOrganizingList/OutputData.txt")) {
+        infile.open("HTMLStructure/includes/cContent/SelfOrganizingList/OutputData.txt");
 	}
 	else {
-    	infile.open("includes/cContent/SelfOrganizingList/InputData.txt");
+    	infile.open("HTMLStructure/includes/cContent/SelfOrganizingList/InputData.txt");
 	}
 
 
@@ -70,11 +69,17 @@ int main(int argc, char *argv[]) {
 
 //	//Remove Value at key
     for(int i = 1; i < argc; i++) {
-        *newTree.remove(argv[i]);
+
+        string arg = argv[i];
+
+        size_t pos;
+        int valueToRemove = stoi(arg, &pos);
+        newTree.remove(valueToRemove);
+
     }
 
     newTree.print();
- 	cout << endl << endl;
+    cout << endl << endl;
 
 	newTree.clear();
 

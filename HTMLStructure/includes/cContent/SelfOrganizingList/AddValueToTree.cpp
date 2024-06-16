@@ -1,24 +1,33 @@
 #include <iostream>
 #include <fstream>
-#include <unistd.h> // For getcwd
-#include <climits> // For PATH_MAX
+#include <unistd.h>
+#include <string>
+#include <sys/stat.h>
 #include "BST.h"
 
 using namespace std;
 
+inline bool doesFileExist (const string& name) {
+    struct stat buffer;
+    return (stat (name.c_str(), &buffer) == 0);
+}
+
 
 //Main Function to print implementation results
-int main() {
+int main(int argc, char *argv[]) {
 
 
 	ifstream infile;
 	BST<int, string> newTree;
 
-	//Test insert function with key value pairs
-//	cout << "Using insert function to build binary tree \n";
 
 	//Read data in from file and create node for each pair
-	infile.open("includes/cContent/SelfOrganizingList/InputData.txt");
+    if(doesFileExist("HTMLStructure/includes/cContent/SelfOrganizingList/OutputData.txt")) {
+        infile.open("HTMLStructure/includes/cContent/SelfOrganizingList/OutputData.txt");
+    }
+    else {
+        infile.open("HTMLStructure/includes/cContent/SelfOrganizingList/InputData.txt");
+    }
 
 
 	//If the File opened correctly
@@ -62,59 +71,19 @@ int main() {
 	//Calls functions to add threads to tree
 	newTree.setThreaded(newTree.getRoot());
 
-	//Print Size of tree
-//	cout << "Binary tree is size: " << newTree.size() << endl << endl;
+    for(int i = 1; i < argc; i+=2) {
 
+        string argKey = argv[i];
+        string argValue = argv[i+1];
 
-	//Print tree structure
-//	cout << "\nNow Printing Tree Structure \n";
+        size_t pos;
+        int keyToAdd = stoi(argKey, &pos);
+        string valueToAdd = argValue;
+        newTree.insert(keyToAdd, valueToAdd);
 
+    }
 	newTree.print();
 
-	cout << endl << endl;
-
-
-	//Testing the find function
-//	cout << "Finding value at key 87: ";
-//
-//	cout << *newTree.find(87);
-//
-//	cout << endl << endl;
-
-
-	//Display inorder printing
-//	cout << "Now performing an inorder print \n";
-//
-//	newTree.printInorder();
-//
-//	cout << endl;
-//
-//	//Display reverse order printing
-//	cout << "Now performing a reverse order print \n";
-//
-//	newTree.printReverse();
-//
-//	cout << endl;
-//
-//	//Remove Value at key
-//	cout << "Removing value at key: 90\n";
-//
-//
-//	cout << "Value " << *newTree.remove(90) << " removed" << endl << endl;
-
-
-	//Remove Root value
-//	cout << "Removing root value of: " << *newTree.removeAny() << endl << endl;
-//
-//	//Reprint Tree without removed values
-//	cout << "\nReprinting Tree With Removed Values \n";
-//
-//	newTree.print();
-//
-//	cout << endl << endl;
-//
-//	//Clean up tree
-//	cout << "Cleaning up tree with clear" << endl;
 
 	newTree.clear();
 

@@ -18,7 +18,7 @@ int main() {
 //	cout << "Using insert function to build binary tree \n";
 
 	//Read data in from file and create node for each pair
-	infile.open("includes/cContent/SelfOrganizingList/InputData.txt");
+	infile.open("HTMLStructure/includes/cContent/SelfOrganizingList/InputData.txt");
 
 
 	//If the File opened correctly
@@ -57,10 +57,10 @@ int main() {
 	}
 
 	//Adds threading
-//	cout << "\n\nAdding Threads: \n";
+	cout << "\n\nAdding Threads: \n";
 
 	//Calls functions to add threads to tree
-	newTree.setThreaded(newTree.getRoot());
+//	newTree.setThreaded(newTree.getRoot());
 
 	//Print Size of tree
 //	cout << "Binary tree is size: " << newTree.size() << endl << endl;
