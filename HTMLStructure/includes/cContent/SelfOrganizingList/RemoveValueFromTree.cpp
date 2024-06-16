@@ -12,6 +12,11 @@ inline bool doesFileExist (const string& name) {
   return (stat (name.c_str(), &buffer) == 0);
 }
 
+bool is_empty(std::ifstream& pFile)
+{
+    return pFile.peek() == std::ifstream::traits_type::eof();
+}
+
 
 //Main Function to print implementation results
 int main(int argc, char *argv[]) {
@@ -20,7 +25,7 @@ int main(int argc, char *argv[]) {
 	ifstream infile;
 	BST<int, string> newTree;
 
-	if(doesFileExist("includes/cContent/SelfOrganizingList/OutputData.txt")) {
+	if(doesFileExist("includes/cContent/SelfOrganizingList/OutputData.txt") && !is_empty("includes/cContent/SelfOrganizingList/OutputData.txt")) {
         infile.open("includes/cContent/SelfOrganizingList/OutputData.txt");
 	}
 	else {
@@ -65,7 +70,7 @@ int main(int argc, char *argv[]) {
 
 
 	//Calls functions to add threads to tree
-	newTree.setThreaded(newTree.getRoot());
+//	newTree.setThreaded(newTree.getRoot());
 
 //	//Remove Value at key
     for(int i = 1; i < argc; i++) {

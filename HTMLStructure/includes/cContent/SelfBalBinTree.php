@@ -19,12 +19,13 @@ echo '<p><strong>' . $question . '</strong></p>';
 
 function addValueToTreeForm()
 {
-    if (isset($_POST['addValue'])) {
+    if (isset($_POST['keyToAdd']) && isset($_POST['valueToAdd'])) {
 
-        if (strlen($_POST['addValue']) > 5) {
+        if (strlen($_POST['keyToAdd']) > 5) {
             echo('<br>' . 'The value you entered is too large. Please re-enter a value that is under 5 digits.');
         } else {
-            $_SESSION['addValue'] = $_POST['addValue'];
+            $_SESSION['keyToAdd'] = $_POST['keyToAdd'];
+            $_SESSION['valueToAdd'] = $_POST['valueToAdd'];
         }
     }
 
@@ -32,12 +33,12 @@ function addValueToTreeForm()
 
 function removeValueFromTreeForm()
 {
-    if (isset($_POST['removeValue'])) {
+    if (isset($_POST['keyToRemove'])) {
 
-        if (strlen($_POST['removeValue']) > 5) {
+        if (strlen($_POST['keyToRemove']) > 5) {
             echo('<br>' . 'The value you entered is too large. Please re-enter a value that is under 5 digits.');
         } else {
-            $_SESSION['removeValue'] = $_POST['removeValue'];
+            $_SESSION['keyToRemove'] = $_POST['keyToRemove'];
         }
     }
 
@@ -95,12 +96,34 @@ echo '</script>';
 
 <h2>Output</h2>
 <pre><?php
-    // Define the path to the C++ file
-    $cpp_file = __DIR__ . '/SelfOrganizingList/ThreadedBinaryTreeDriver.cpp';
+
     $output_file = __DIR__ . '/SelfOrganizingList/OutputData.txt';
 
-    // Compile the C++ code
-    $compile_command = "g++ $cpp_file -o output && ./output > $output_file";
+    // Define the path to the C++ file
+    if(isset($_SESSION['keyToAdd'])) {
+        $cpp_file = __DIR__ . '/SelfOrganizingList/AddValueToTree.cpp';
+
+        // Compile the C++ code
+        $argument1 = $_SESSION['keyToAdd'];
+        $argument2 = $_SESSION['valueToAdd'];
+        $compile_command = "g++ $cpp_file $argument1 $argument2 -o output && ./output > $output_file";
+    }
+    elseif ($_SESSION['keyToRemove']) {
+        $cpp_file = __DIR__ . '/SelfOrganizingList/RemoveValueFromTree.cpp';
+
+        // Compile the C++ code
+        $argument = $_SESSION['keyToRemove'];
+        $compile_command = "g++ $cpp_file $argument -o output && ./output > $output_file";
+    }
+    else {
+        $cpp_file = __DIR__ . '/SelfOrganizingList/ThreadedBinaryTreeDriver.cpp';
+
+        // Compile the C++ code
+        $compile_command = "g++ $cpp_file -o output && ./output > $output_file";
+    }
+
+
+
     shell_exec($compile_command);
 
     // Read and display the output
@@ -112,15 +135,77 @@ echo '</script>';
 
 <form method="post" action="index.php?clicked=SelfBalBinTree">
     <label for="addValue">Add a Number To the Tree: </label>
-    <input type="text" id="addToTree" name="addToTree"> <br/><br/>
+    <label for="keyToAdd">Key: </label>
+    <input type="text" id="keyToAdd" name="keyToAdd"> <br/><br/>
+    <label for="valueToAdd">Value: </label>
+    <input type="text" id="valueToAdd" name="valueToAdd"> <br/><br/>
     <input type="submit" value="Submit" name="submit" onclick="addValueToTree()"><br/><br/><br/>
 </form>
 
+<?php if (isset($_SESSION['addValue']) and $_SESSION['addValue'] != "") {
+?>
+<pre id="add-execution" class="add-execution"><code class="language-cpp"><?php
+        // Read the contents of the C++ file and display it
+        $cpp_code = file_get_contents(__DIR__ . '/SelfOrganizingList/AddValueToTree.cpp');
+//        echo htmlspecialchars(trim($cpp_code));
+        ?>
+    </code></pre>
+
+<h2>Output From Add Call</h2>
+<pre><?php
+    // Define the path to the C++ file
+    $cpp_file = __DIR__ . '/SelfOrganizingList/AddValueToTree.cpp';
+    $output_file = __DIR__ . '/SelfOrganizingList/OutputData.txt';
+    $argument = $_SESSION['addValue'];
+
+    // Compile the C++ code
+    $compile_command = "g++ $cpp_file $argument -o output && ./output > $output_file";
+    shell_exec($compile_command);
+
+    // Read and display the output
+    $output = file_get_contents($output_file);
+    echo htmlspecialchars(trim($output));
+    ?>
+    </pre>
+<?php
+}
+?>
+
+
 <form method="post" action="index.php?clicked=SelfBalBinTree">
     <label for="removeValue">Remove a Number From the Tree: </label>
+    <label for="keyToRemove">Key: </label>
     <input type="text" id="removeFromTree" name="removeFromTree"> <br/><br/>
     <input type="submit" value="Submit" name="submit" onclick="removeValueFromTree()"><br/><br/><br/>
 </form>
+
+<?php if (isset($_SESSION['addValue']) and $_SESSION['addValue'] != "") {
+?>
+<pre id="remove-execution" class="remove-execution"><code class="language-cpp"><?php
+        // Read the contents of the C++ file and display it
+        $cpp_code = file_get_contents(__DIR__ . '/SelfOrganizingList/RemoveValueFromTree.cpp');
+//        echo htmlspecialchars(trim($cpp_code));
+        ?>
+    </code></pre>
+
+<pre><?php
+    // Define the path to the C++ file
+    $cpp_file = __DIR__ . '/SelfOrganizingList/RemoveValueFromTree.cpp';
+    $output_file = __DIR__ . '/SelfOrganizingList/OutputData.txt';
+    $argument = $_SESSION['removeValue'];
+
+    // Compile the C++ code
+    $compile_command = "g++ $cpp_file $argument -o output && ./output > $output_file";
+    shell_exec($compile_command);
+
+    // Read and display the output
+    $output = file_get_contents($output_file);
+    echo htmlspecialchars(trim($output));
+    ?>
+    </pre>
+    <?php
+    }
+    ?>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-cpp.min.js"></script>
@@ -135,68 +220,14 @@ echo '</script>';
 addValueToTreeForm();
 removeValueFromTreeForm();
 
-if (isset($_SESSION['addValue']) and $_SESSION['addValue'] != "") {
-    ?>
-
-    <pre id="add-execution" class="add-execution"><code class="language-cpp"><?php
-            // Read the contents of the C++ file and display it
-            $cpp_code = file_get_contents(__DIR__ . '/SelfOrganizingList/AddValueToTree.cpp');
-            echo htmlspecialchars(trim($cpp_code));
-            ?>
-    </code></pre>
-
-    <pre><?php
-        // Define the path to the C++ file
-        $cpp_file = __DIR__ . '/SelfOrganizingList/AddValueToTree.cpp';
-        $output_file = __DIR__ . '/SelfOrganizingList/OutputData.txt';
-        $argument = $_SESSION['addValue'];
-
-        // Compile the C++ code
-        $compile_command = "g++ $cpp_file $argument -o output && ./output > $output_file";
-        shell_exec($compile_command);
-
-        // Read and display the output
-        $output = file_get_contents($output_file);
-        echo htmlspecialchars(trim($output));
-        ?>
-    </pre>
-    <?php
-
-} else if (isset($_SESSION['removeValue']) and $_SESSION['removeValue'] != "") {
-?>
-    <pre id="remove-execution" class="remove-execution"><code class="language-cpp"><?php
-            // Read the contents of the C++ file and display it
-            $cpp_code = file_get_contents(__DIR__ . '/SelfOrganizingList/RemoveValueFromTree.cpp');
-            echo htmlspecialchars(trim($cpp_code));
-            ?>
-    </code></pre>
-
-    <pre><?php
-        // Define the path to the C++ file
-        $cpp_file = __DIR__ . '/SelfOrganizingList/RemoveValueFromTree.cpp';
-        $output_file = __DIR__ . '/SelfOrganizingList/OutputData.txt';
-        $argument = $_SESSION['removeValue'];
-
-        // Compile the C++ code
-        $compile_command = "g++ $cpp_file $argument -o output && ./output > $output_file";
-        shell_exec($compile_command);
-
-        // Read and display the output
-        $output = file_get_contents($output_file);
-        echo htmlspecialchars(trim($output));
-        ?>
-    </pre>
-    <?php
-}
-
 
 if (isset($_SESSION['addValue'])) {
-    $_SESSION['addValue'] = "";
+//    $_SESSION['addValue'] = "";
 }
 
 //If a last name has been added into the field set the session variable to that value
 if (isset($_SESSION['removeValue'])) {
-    $_SESSION['removeValue'] = "";
+//    $_SESSION['removeValue'] = "";
 }
 ?>
 

@@ -706,12 +706,12 @@ void BST<Key, E>::printKeyValuePairs(BSTNode<Key, E> *rootNode) const {
 
 //            cout << "Left Child: " << node->left()->key() << endl;
 //            cout << " Right Child: " << node->right()->key() << endl;
-            if (node->getLeftThreaded()) {
-                cout << "Left Child: " << node->left()->key() << endl;
-            }
-            if (node->getRightThreaded()) {
-                cout << "Right Child: " << node->right()->key() << endl;
-            }
+//            if (node->getLeftThreaded()) {
+//                cout << "Left Child: " << node->left()->key() << endl;
+//            }
+//            if (node->getRightThreaded()) {
+//                cout << " Right Child: " << node->right()->key() << endl;
+//            }
 
 //            cout << node->key() <<  ",";
 
