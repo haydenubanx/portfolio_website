@@ -1,6 +1,3 @@
-// This is the file to include for access to the complete binary node
-// template implementation
-
 #include "book.h"
 #include "BinNode.h"
 

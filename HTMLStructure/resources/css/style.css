@@ -236,6 +236,35 @@ footer a:hover {
     overflow-x: auto;
 }
 
+/* Add this to your existing CSS or ensure it is included in the HTML head */
+.tree {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.node {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 20px;
+    background-color: #f5f5f5;
+    position: relative;  /* Ensure the node is positioned relatively */
+}
+.children {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;  /* Ensure the level container is positioned relatively */
+}
+.line {
+    position: absolute;
+    background-color: #333;
+}
+
 /* Prism.js theme overrides */
 pre[class*="language-"] {
     background: none;

@@ -1,12 +1,3 @@
-// From the software distribution accompanying the textbook
-// "A Practical Introduction to Data Structures and Algorithm Analysis,
-// Third Edition (C++)" by Clifford A. Shaffer.
-// Source code Copyright (C) 2007-2011 by Clifford A. Shaffer.
-
-// A collection of various macros, constants, and small functions
-// used for the software examples.
-
-// First, include all the standard headers that we need
 #ifndef BOOK_H
 #define BOOK_H
 
