@@ -42,13 +42,11 @@ public:
     void setLeft(BinNode<E>* b) {
         leftThreaded = true;
         lc = (BSTNode*)b;
-        lc->setParent(this);
     }
     inline BSTNode* right() const { return rc; }
     void setRight(BinNode<E>* b) {
         rightThreaded = true;
         rc = (BSTNode*)b;
-        rc->setParent(this);
     }
 
     void setParent(BinNode<E>* b) {
