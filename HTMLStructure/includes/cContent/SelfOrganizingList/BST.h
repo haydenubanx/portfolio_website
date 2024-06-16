@@ -715,11 +715,11 @@ void BST<Key, E>::printKeyValuePairs(BSTNode<Key, E> *rootNode) const {
 
 //            cout << node->key() <<  ",";
 
-            if (node->left() != NULL && !node->getLeftThreaded()) {
+            if (node->left() != NULL && node->getLeftThreaded()) {
                 currentLevel.push(node->left());
             }
 
-            if (node->right() != NULL && !node->getRightThreaded()) {
+            if (node->right() != NULL && node->getRightThreaded()) {
                 currentLevel.push(node->right());
             }
 
