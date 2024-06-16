@@ -20,11 +20,11 @@ int main(int argc, char *argv[]) {
 	ifstream infile;
 	BST<int, string> newTree;
 
-	if(doesFileExist("HTMLStructure/includes/cContent/SelfOrganizingList/OutputData.txt")) {
-        infile.open("HTMLStructure/includes/cContent/SelfOrganizingList/OutputData.txt");
+	if(doesFileExist("includes/cContent/SelfOrganizingList/OutputData.txt")) {
+        infile.open("includes/cContent/SelfOrganizingList/OutputData.txt");
 	}
 	else {
-    	infile.open("HTMLStructure/includes/cContent/SelfOrganizingList/InputData.txt");
+    	infile.open("includes/cContent/SelfOrganizingList/InputData.txt");
 	}
 
 
