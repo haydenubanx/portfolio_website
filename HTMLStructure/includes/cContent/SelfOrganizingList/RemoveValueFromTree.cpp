@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
 	ifstream infile;
 	BST<int, string> newTree;
 
-	if(doesFileExist("includes/cContent/SelfOrganizingList/OutputData.txt") ) {
+	if(doesFileExist("includes/cContent/SelfOrganizingList/OutputData.txt") && !std::filesystem::is_empty("includes/cContent/SelfOrganizingList/OutputData.txt")) {
             infile.open("includes/cContent/SelfOrganizingList/OutputData.txt");
 	}
 	else {

@@ -6,6 +6,10 @@
 
 using namespace std;
 
+inline bool doesFileExist (const string& name) {
+  struct stat buffer;
+  return (stat (name.c_str(), &buffer) == 0);
+}
 
 //Main Function to print implementation results
 int main() {
@@ -18,7 +22,7 @@ int main() {
 //	cout << "Using insert function to build binary tree \n";
 
 	//Read data in from file and create node for each pair
-        if(doesFileExist("includes/cContent/SelfOrganizingList/OutputData.txt") && !is_empty("includes/cContent/SelfOrganizingList/OutputData.txt")) {
+        if(doesFileExist("includes/cContent/SelfOrganizingList/OutputData.txt") && !std::filesystem::is_empty("includes/cContent/SelfOrganizingList/OutputData.txt")) {
             infile.open("includes/cContent/SelfOrganizingList/OutputData.txt");
         }
         else {

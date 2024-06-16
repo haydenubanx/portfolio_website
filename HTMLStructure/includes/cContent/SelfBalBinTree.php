@@ -9,25 +9,41 @@
 
 <?php
 
-
-//The print statement for the question as presented in the assignment instructions
+// The print statement for the question as presented in the assignment instructions
 $question = "<blockquote>This form accepts a number and adds it to a binary search tree while updating the tree so that it remains balanced</blockquote>";
 
-
-//The print statement for the question, query, and function call to print statement for the table
+// The print statement for the question, query, and function call to print statement for the table
 echo '<p><strong>' . $question . '</strong></p>';
 
 function addValueToTreeForm()
 {
     if (isset($_POST['keyToAdd']) && isset($_POST['valueToAdd'])) {
-
-        if (strlen($_POST['keyToAdd']) > 5) {
-            echo('<br>' . 'The value you entered is too large. Please re-enter a value that is under 5 digits.');
-        } else {
             $_SESSION['keyToAdd'] = $_POST['keyToAdd'];
             $_SESSION['valueToAdd'] = $_POST['valueToAdd'];
+
+            $cpp_file = __DIR__ . '/SelfOrganizingList/AddValueToTree.cpp';
+            $output_file = __DIR__ . '/SelfOrganizingList/OutputData.txt';
+            $compile_command = "g++ $cpp_file -o addValueToTree";
+            shell_exec($compile_command);
+
+            // Add debug output for compile command
+            echo '<pre>Compile Command: ' . htmlspecialchars($compile_command) . '</pre>';
+
+            $execute_command = "./addValueToTree {$_SESSION['keyToAdd']} {$_SESSION['valueToAdd']} > $output_file";
+            shell_exec($execute_command);
+
+            // Add debug output for execute command
+            echo '<pre>Execute Command: ' . htmlspecialchars($execute_command) . '</pre>';
+
+            // Read and display the output
+            if (file_exists($output_file)) {
+                $output = file_get_contents($output_file);
+                $_SESSION['output'] = $output;
+                $_SESSION['lastAction'] = 'add';
+            } else {
+                echo '<p>Output file not found: ' . htmlspecialchars($output_file) . '</p>';
+            }
         }
-    }
 
 }
 
@@ -35,15 +51,42 @@ function removeValueFromTreeForm()
 {
     if (isset($_POST['keyToRemove'])) {
 
-        if (strlen($_POST['keyToRemove']) > 5) {
-            echo('<br>' . 'The value you entered is too large. Please re-enter a value that is under 5 digits.');
-        } else {
             $_SESSION['keyToRemove'] = $_POST['keyToRemove'];
+
+            $cpp_file = __DIR__ . '/SelfOrganizingList/RemoveValueFromTree.cpp';
+            $output_file = __DIR__ . '/SelfOrganizingList/OutputData.txt';
+            $compile_command = "g++ $cpp_file -o removeValueFromTree";
+            shell_exec($compile_command);
+
+            // Add debug output for compile command
+            echo '<pre>Compile Command: ' . htmlspecialchars($compile_command) . '</pre>';
+
+            $execute_command = "./removeValueFromTree {$_SESSION['keyToRemove']} > $output_file ";
+            shell_exec($execute_command);
+
+            // Add debug output for execute command
+            echo '<pre>Execute Command: ' . htmlspecialchars($execute_command) . '</pre>';
+
+            // Read and display the output
+            if (file_exists($output_file)) {
+                $output = file_get_contents($output_file);
+                $_SESSION['output'] = $output;
+                $_SESSION['lastAction'] = 'remove';
+            } else {
+                echo '<p>Output file not found: ' . htmlspecialchars($output_file) . '</p>';
+            }
         }
-    }
 
 }
 
+// Check if forms are submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['submitAdd'])) {
+        addValueToTreeForm();
+    } elseif (isset($_POST['submitRemove'])) {
+        removeValueFromTreeForm();
+    }
+}
 
 ?>
 
@@ -82,7 +125,6 @@ echo 'var treeLevels = ' . json_encode($treeLevels) . ';';
 echo '</script>';
 ?>
 
-
 <h1>C++ Code For Self Balancing Binary Tree Driver</h1>
 <div class="code-container">
     <button class="toggle-button" onclick="toggleCode()">Show Code</button>
@@ -90,122 +132,38 @@ echo '</script>';
             // Read the contents of the C++ file and display it
             $cpp_code = file_get_contents(__DIR__ . '/SelfOrganizingList/ThreadedBinaryTreeDriver.cpp');
             echo htmlspecialchars(trim($cpp_code));
-            ?>
-        </code></pre>
+            ?></code></pre>
 </div>
 
-<h2>Output</h2>
-<pre><?php
-
-    $output_file = __DIR__ . '/SelfOrganizingList/OutputData.txt';
-
-    // Define the path to the C++ file
-    if(isset($_SESSION['keyToAdd'])) {
-        $cpp_file = __DIR__ . '/SelfOrganizingList/AddValueToTree.cpp';
-
-        // Compile the C++ code
-        $argument1 = $_SESSION['keyToAdd'];
-        $argument2 = $_SESSION['valueToAdd'];
-        $compile_command = "g++ $cpp_file $argument1 $argument2 -o output && ./output > $output_file";
-    }
-    elseif ($_SESSION['keyToRemove']) {
-        $cpp_file = __DIR__ . '/SelfOrganizingList/RemoveValueFromTree.cpp';
-
-        // Compile the C++ code
-        $argument = $_SESSION['keyToRemove'];
-        $compile_command = "g++ $cpp_file $argument -o output && ./output > $output_file";
-    }
-    else {
-        $cpp_file = __DIR__ . '/SelfOrganizingList/ThreadedBinaryTreeDriver.cpp';
-
-        // Compile the C++ code
-        $compile_command = "g++ $cpp_file -o output && ./output > $output_file";
-    }
-
-
-
-    shell_exec($compile_command);
-
-    // Read and display the output
-    $output = file_get_contents($output_file);
-    echo htmlspecialchars(trim($output));
-    ?>
-    </pre>
-
-
-<form method="post" action="index.php?clicked=SelfBalBinTree">
-    <label for="addValue">Add a Number To the Tree: </label>
+<form method="post" action="">
+    <label for="keyToAdd">Add a Number To the Tree: </label>
     <label for="keyToAdd">Key: </label>
     <input type="text" id="keyToAdd" name="keyToAdd"> <br/><br/>
     <label for="valueToAdd">Value: </label>
     <input type="text" id="valueToAdd" name="valueToAdd"> <br/><br/>
-    <input type="submit" value="Submit" name="submit" onclick="addValueToTree()"><br/><br/><br/>
+    <input type="submit" value="Submit" name="submitAdd"><br/><br/><br/>
 </form>
 
-<?php if (isset($_SESSION['addValue']) and $_SESSION['addValue'] != "") {
-?>
-<pre id="add-execution" class="add-execution"><code class="language-cpp"><?php
-        // Read the contents of the C++ file and display it
-        $cpp_code = file_get_contents(__DIR__ . '/SelfOrganizingList/AddValueToTree.cpp');
-//        echo htmlspecialchars(trim($cpp_code));
-        ?>
-    </code></pre>
+<form method="post" action="">
+    <label for="keyToRemove">Remove a Number From the Tree: </label>
+    <label for="keyToRemove">Key: </label>
+    <input type="text" id="keyToRemove" name="keyToRemove"> <br/><br/>
+    <input type="submit" value="Submit" name="submitRemove"><br/><br/><br/>
+</form>
 
-<h2>Output From Add Call</h2>
-<pre><?php
-    // Define the path to the C++ file
-    $cpp_file = __DIR__ . '/SelfOrganizingList/AddValueToTree.cpp';
-    $output_file = __DIR__ . '/SelfOrganizingList/OutputData.txt';
-    $argument = $_SESSION['addValue'];
-
-    // Compile the C++ code
-    $compile_command = "g++ $cpp_file $argument -o output && ./output > $output_file";
-    shell_exec($compile_command);
-
-    // Read and display the output
-    $output = file_get_contents($output_file);
-    echo htmlspecialchars(trim($output));
-    ?>
-    </pre>
+<h2>Output</h2>
+<pre>
 <?php
+if (isset($_SESSION['output']) && isset($_SESSION['lastAction'])) {
+    if ($_SESSION['lastAction'] == 'add') {
+        echo 'Output from Add Call:';
+    } elseif ($_SESSION['lastAction'] == 'remove') {
+        echo 'Output from Remove Call:';
+    }
+    echo '<br>' . htmlspecialchars(trim($_SESSION['output']));
 }
 ?>
-
-
-<form method="post" action="index.php?clicked=SelfBalBinTree">
-    <label for="removeValue">Remove a Number From the Tree: </label>
-    <label for="keyToRemove">Key: </label>
-    <input type="text" id="removeFromTree" name="removeFromTree"> <br/><br/>
-    <input type="submit" value="Submit" name="submit" onclick="removeValueFromTree()"><br/><br/><br/>
-</form>
-
-<?php if (isset($_SESSION['addValue']) and $_SESSION['addValue'] != "") {
-?>
-<pre id="remove-execution" class="remove-execution"><code class="language-cpp"><?php
-        // Read the contents of the C++ file and display it
-        $cpp_code = file_get_contents(__DIR__ . '/SelfOrganizingList/RemoveValueFromTree.cpp');
-//        echo htmlspecialchars(trim($cpp_code));
-        ?>
-    </code></pre>
-
-<pre><?php
-    // Define the path to the C++ file
-    $cpp_file = __DIR__ . '/SelfOrganizingList/RemoveValueFromTree.cpp';
-    $output_file = __DIR__ . '/SelfOrganizingList/OutputData.txt';
-    $argument = $_SESSION['removeValue'];
-
-    // Compile the C++ code
-    $compile_command = "g++ $cpp_file $argument -o output && ./output > $output_file";
-    shell_exec($compile_command);
-
-    // Read and display the output
-    $output = file_get_contents($output_file);
-    echo htmlspecialchars(trim($output));
-    ?>
-    </pre>
-    <?php
-    }
-    ?>
+</pre>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-cpp.min.js"></script>
@@ -214,23 +172,3 @@ echo '</script>';
 
 </body>
 </html>
-
-<?php
-
-addValueToTreeForm();
-removeValueFromTreeForm();
-
-
-if (isset($_SESSION['addValue'])) {
-//    $_SESSION['addValue'] = "";
-}
-
-//If a last name has been added into the field set the session variable to that value
-if (isset($_SESSION['removeValue'])) {
-//    $_SESSION['removeValue'] = "";
-}
-?>
-
-
-<?php
-

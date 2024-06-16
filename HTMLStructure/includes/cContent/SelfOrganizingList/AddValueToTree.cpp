@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
 
 
 	//Read data in from file and create node for each pair
-    if(doesFileExist("includes/cContent/SelfOrganizingList/OutputData.txt")) {
+    if(doesFileExist("includes/cContent/SelfOrganizingList/OutputData.txt") && !std::filesystem::is_empty("includes/cContent/SelfOrganizingList/OutputData.txt")) {
         infile.open("includes/cContent/SelfOrganizingList/OutputData.txt");
     }
     else {
