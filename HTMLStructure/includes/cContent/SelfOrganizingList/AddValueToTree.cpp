@@ -22,16 +22,16 @@ int main(int argc, char *argv[]) {
 
 
 	//Read data in from file and create node for each pair
-    if(doesFileExist("HTMLStructure/includes/cContent/SelfOrganizingList/OutputData.txt") ) {
-        infile.open("HTMLStructure/includes/cContent/SelfOrganizingList/OutputData.txt");
+    if(doesFileExist("includes/cContent/SelfOrganizingList/OutputData.txt")) {
+                infile.open("includes/cContent/SelfOrganizingList/OutputData.txt");
 
-        if(infile.peek() == std::ifstream::traits_type::eof()) {
-            infile.open("HTMLStructure/includes/cContent/SelfOrganizingList/InputData.txt");
-        }
-    }
-    else {
-        infile.open("HTMLStructure/includes/cContent/SelfOrganizingList/InputData.txt");
-    }
+                if(infile.peek() == std::ifstream::traits_type::eof()) {
+                infile.open("includes/cContent/SelfOrganizingList/InputData.txt");
+                }
+    	}
+    	else {
+        	infile.open("includes/cContent/SelfOrganizingList/InputData.txt");
+    	}
 
 
 	//If the File opened correctly
@@ -90,7 +90,7 @@ int main(int argc, char *argv[]) {
 
     ofstream myfile;
     string outputContent = newTree.print();
-    myfile.open ("HTMLStructure/includes/cContent/SelfOrganizingList/OutputData.txt");
+    myfile.open ("includes/cContent/SelfOrganizingList/OutputData.txt");
     myfile << outputContent;
     myfile.close();
 

@@ -22,15 +22,15 @@ int main() {
 //	cout << "Using insert function to build binary tree \n";
 
 	//Read data in from file and create node for each pair
-        if(doesFileExist("HTMLStructure/includes/cContent/SelfOrganizingList/OutputData.txt")) {
-            infile.open("HTMLStructure/includes/cContent/SelfOrganizingList/OutputData.txt");
+        if(doesFileExist("includes/cContent/SelfOrganizingList/OutputData.txt")) {
+            infile.open("includes/cContent/SelfOrganizingList/OutputData.txt");
 
             if(infile.peek() == std::ifstream::traits_type::eof()) {
-                infile.open("HTMLStructure/includes/cContent/SelfOrganizingList/InputData.txt");
+                infile.open("includes/cContent/SelfOrganizingList/InputData.txt");
             }
         }
         else {
-            infile.open("HTMLStructure/includes/cContent/SelfOrganizingList/InputData.txt");
+            infile.open("includes/cContent/SelfOrganizingList/InputData.txt");
         }
 
 
@@ -85,7 +85,7 @@ int main() {
 
     ofstream myfile;
     string outputContent = newTree.print();
-    myfile.open ("HTMLStructure/includes/cContent/SelfOrganizingList/OutputData.txt");
+    myfile.open ("includes/cContent/SelfOrganizingList/OutputData.txt");
     myfile << outputContent;
     myfile.close();
 

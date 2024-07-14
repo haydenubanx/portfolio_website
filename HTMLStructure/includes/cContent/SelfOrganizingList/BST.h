@@ -704,22 +704,18 @@ string BST<Key, E>::printKeyValuePairs(BSTNode<Key, E> *rootNode) const {
             BSTNode<Key, E> *node = currentLevel.front();
             currentLevel.pop();
 
-//            cout << node->key() << "," << node->element() << "";
-            returnString.append(to_string(node->key()) + "," + node->element() + "\n");
-//            cout << returnString;
 
-//            cout << "Left Child: " << node->left()->key() << endl;
-//            cout << " Right Child: " << node->right()->key() << endl;
+            returnString.append(to_string(node->key()) + "," + node->element() + "\n");
+
             if (node->getLeftThreaded()) {
-//                cout << "Left Child: " << node->left()->key() << endl;
-                returnString.append("Left Child," + to_string(node->left()->key()) + "\n");
+
+                returnString.append("LeftChild," + to_string(node->left()->key()) + "\n");
             }
             if (node->getRightThreaded()) {
-//                cout << " Right Child: " << node->right()->key() << endl;
-                returnString.append("Right Child," + to_string(node->right()->key()) + "\n");
+
+                returnString.append("RightChild," + to_string(node->right()->key()) + "\n");
             }
 
-//            cout << node->key() <<  ",";
 
             if (node->left() != NULL && node->getLeftThreaded()) {
                 currentLevel.push(node->left());
@@ -732,8 +728,6 @@ string BST<Key, E>::printKeyValuePairs(BSTNode<Key, E> *rootNode) const {
             --levelSize;
         }
 
-//        cout << endl;
-//        returnString.append("\n");
     }
     returnString = std::regex_replace(returnString, std::regex("^ +| +$|( ) +"), "$1");
     return returnString;
