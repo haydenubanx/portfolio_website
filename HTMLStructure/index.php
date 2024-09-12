@@ -5,7 +5,7 @@
 	//Includes the database connection file for interacting with the database
 	include_once 'includes/DbConnection/db.php';
 
-	//Session variable to track if the sign in form has been shown so that it only shows in the header
+	//Session variable to track if the sign-in form has been shown so that it only shows in the header
 	$_SESSION['ListShown'] = 0;
 
 	//Declare variable to store the cookie value
@@ -98,8 +98,6 @@ else {
 		<?php $_SESSION['ListShown'] = 1; ?>
 
 
-<!--Pre-formatted text containing my introduction.-->
-<p id="bodyText">--Portfolio Information Goes Here-- </p>
 
 		<!--Includes the content file for the dynamically changing content-->
 		<?php include("./includes/PageStructure/content.php"); ?>

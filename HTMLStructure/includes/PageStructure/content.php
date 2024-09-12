@@ -5,6 +5,8 @@
 
     $allowed_pages = ['Home','#'];
 
+    $allowed_main_pages = ['Home','#'];
+
     $allowed_sql_pages = [
         '#',
         'CyberSecurity',
@@ -31,8 +33,11 @@
     $allowed_about_me_pages = ['#'];
 
 
+    if(!isset($_GET['clicked'])) {
+        include 'includes/Home.php';
+    }
 
-    if (isset($_GET['clicked']) && in_array($_GET['clicked'], $allowed_pages)) {
+    else if (isset($_GET['clicked']) && in_array($_GET['clicked'], $allowed_pages)) {
         $page = $_GET['clicked'];
         include 'includes/'.$page.'.php';
     }
