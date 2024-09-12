@@ -173,20 +173,24 @@ form input[type="submit"]:hover {
 }
 
 /* Footer Styles */
-footer {
-    background-color: #222;
+.footer {
+    background-color: #333;
     color: white;
-    padding: 1em 2em;
+    padding: 50px 20px;
     text-align: center;
 }
 
-footer a {
-    color: #007BFF;
+.footer h2 {
+    margin-bottom: 20px;
+}
+
+.footer a {
+    color: #ffa500;
     text-decoration: none;
 }
 
-footer a:hover {
-    text-decoration: underline;
+.footer a:hover {
+    text-decoration: Highlight;
 }
 
 /* Utility Classes */

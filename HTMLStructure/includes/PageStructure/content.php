@@ -30,7 +30,7 @@
 
     $allowed_cybersecurity_pages = ['#'];
 
-    $allowed_about_me_pages = ['#'];
+    $allowed_about_me_pages = ['aboutMe'];
 
 
     if(!isset($_GET['clicked'])) {
