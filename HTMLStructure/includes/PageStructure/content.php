@@ -9,18 +9,7 @@
 
     $allowed_sql_pages = [
         '#',
-        'CyberSecurity',
-        'MinMaxSalaries',
-        'AddEmployee',
-        'DeleteEmployee',
-        'DepartmentName',
-        'FirstThreeCharacters',
-        'MarketingEmployees',
-        'NumEmployees',
-        'NumJobs',
-        'sqlHome',
-        'TableFormatting',
-        'UniqueFirstNames'];
+        'SQLHome'];
 
     $allowed_python_pages = ['NumberToWord'];
 
