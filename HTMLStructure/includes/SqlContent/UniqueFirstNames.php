@@ -8,12 +8,12 @@ include_once __DIR__ . "/../DbConnection/db.php";
 
 //The print statement for the question as presented in the assignment instructions
 $question = "<blockquote>Write a query to get all unique first names that start with the letter P 
-			from the employees table.  Output the names in all upper case. Sort the results 
+			from the employee table. Sort the results 
 			in ascending order.</blockquote>";
 
 //The query to be passed to the database
 $sqlQuery = "
-	SELECT DISTINCT UPPER(first_name) AS 'First Name'
+	SELECT DISTINCT first_name AS 'First Name'
 	FROM employees
 	WHERE first_name LIKE 'P%'
 	ORDER BY first_name ASC;";

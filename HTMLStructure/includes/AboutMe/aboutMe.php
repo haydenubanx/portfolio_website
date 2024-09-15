@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me - Hayden Eubanks</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* General body styling */
         body {
@@ -16,17 +17,46 @@
 
         /* Personal Statement Section */
         .personal-statement {
+            position: relative;
             background: linear-gradient(to right, #f4f4f4, #e0e0e0);
             padding: 80px 20px;
             text-align: center;
+            overflow: hidden; /* Ensure circles don’t overflow the section */
+        }
+
+        .personal-statement::before,
+        .personal-statement::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background-color: #ffa500;
+            opacity: 0.8; /* Adjust for subtlety */
+        }
+
+        .personal-statement::before {
+            width: 300px;
+            height: 300px;
+            top: 3%;
+            left: 13%;
+            z-index: 0; /* Place behind content */
+        }
+
+        .personal-statement::after {
+            width: 200px;
+            height: 200px;
+            bottom: 41%;
+            right: 19%;
+            z-index: 0; /* Place behind content */
         }
 
         .personal-statement img {
             border-radius: 50%;
-            width: 200px;
-            height: 200px;
+            width: 300px;
+            height: 300px;
             object-fit: cover;
             margin-bottom: 20px;
+            position: relative; /* Ensure image is on top */
+            z-index: 1; /* Place on top of the circles */
         }
 
         .personal-statement h1 {
@@ -41,7 +71,7 @@
 
         /* Section Styles */
         section {
-            padding: 60px 20px;
+            padding: 40px 20px;
             text-align: center;
         }
 
@@ -91,7 +121,7 @@
         /* Skills Section */
         .skills-list {
             list-style-type: none;
-            padding-bottom: 100px;
+            /*padding-bottom: 100px;*/
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -107,7 +137,6 @@
             color: #666;
             margin-bottom: 10px;
         }
-
 
         @media (max-width: 768px) {
             .skills-list {
@@ -125,6 +154,7 @@
             }
         }
 
+        /* Timeline Styles */
         .timeline {
             position: relative;
             max-width: 1200px;
@@ -182,6 +212,26 @@
             left: 30px;
         }
 
+        /* Icon Styles */
+        .timeline-item-icon {
+            width: 500px;
+            height: 500px;
+            font-size: 300px;
+            color: #007bff;
+            position: absolute;
+            margin-top: 5%;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-item-icon {
+            right: -140px;
+            transform: translateX(100%);
+        }
+
+        .timeline-item:nth-child(even) .timeline-item-icon {
+            left: -140px;
+            transform: translateX(-100%);
+        }
+
         /* Hide the dot for empty timeline items */
         .timeline-item.empty::before {
             display: none;
@@ -194,20 +244,6 @@
             margin: 0 auto;
         }
     </style>
-    <script src="https://kit.fontawesome.com/d6bcb154dc.js" crossorigin="anonymous"></script>
-    <script>
-        // Function to check if an element is empty
-        function isEmpty(element) {
-            return !element.textContent.trim();
-        }
-
-        // Apply the 'empty' class to timeline items that are empty
-        document.querySelectorAll('.timeline-item').forEach(function(item) {
-            if (isEmpty(item)) {
-                item.classList.add('empty');
-            }
-        });
-    </script>
 </head>
 <body>
 
@@ -346,11 +382,11 @@
                 <strong>JetBrains IDEs</strong>
             </li>
             <li>
-                <i class="fas fa-shield-alt skill-icon"></i> <!-- General security-related icon for BurpSuite -->
+                <i class="fas fa-shield-alt skill-icon"></i>
                 <strong>BurpSuite</strong>
             </li>
             <li>
-                <i class="fas fa-network-wired skill-icon"></i> <!-- Network-related icon for WireShark -->
+                <i class="fas fa-network-wired skill-icon"></i>
                 <strong>Wireshark</strong>
             </li>
         </ul>
@@ -362,8 +398,8 @@
     <h2 class="AboutH2Heading">Job Experience</h2>
     <div class="timeline">
         <div class="timeline-item">
+            <i class="fa-solid fa-building-columns timeline-item-icon"></i>
             <article class="section-item">
-                <i class="fas fa-building company-logo"></i>
                 <h3>Quality Engineer - Lloyds Banking Group</h3>
                 <p><strong>Duration:</strong> October 2023 - Present</p>
                 <p>Responsibilities include ensuring the quality and efficiency of banking software solutions through rigorous testing and quality control processes, using automated and manual testing methods.</p>
@@ -384,12 +420,13 @@
         <div class="timeline-item empty">
         </div>
         <div class="timeline-item">
+            <i class="fas fa-graduation-cap timeline-item-icon"></i>
             <article class="section-item">
                 <h3>Bachelor's Degree in Computer Science: Cybersecurity</h3>
                 <p><strong>University:</strong> Liberty University</p>
                 <p><strong>Graduation Year:</strong> 2023</p>
                 <p><strong>GPA:</strong> 3.79</p>
-                <p>U.S. Equivalent to a First-Class Degree</p>
+                <p>U.S. Equivalent of a First-Class Degree</p>
             </article>
         </div>
     </div>
@@ -400,6 +437,7 @@
     <h2 class="AboutH2Heading">Certifications</h2>
     <div class="timeline">
         <div class="timeline-item">
+            <i class="fas fa-solid fa-copy timeline-item-icon"></i>
             <article class="section-item">
                 <h3>ISTQB Certified Tester</h3>
                 <p>Foundation Level</p>
