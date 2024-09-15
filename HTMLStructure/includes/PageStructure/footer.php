@@ -16,7 +16,6 @@
             <p>Email: <a href="mailto:haydenubanx@gmail.com">haydenubanx@gmail.com</a></p>
             <p>Phone: <a href="tel:+447950447141">+44 7950 447141</p>
             <p><a id = "footerLinks" href="https://www.linkedin.com/in/hayden-eubanks-794265280">LinkedIn</a></p>
-            <p>Updated: <a>12 September 2024</p>
         </section>
     </div>
 

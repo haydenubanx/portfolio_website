@@ -37,13 +37,13 @@
 
         /* Hero Section */
         .about {
-            /*background: url('../../HTMLStructure/resources/images/Portfolio_Background_Image.jpg') no-repeat center center/cover ;*/
             padding: 100px 20px;
             text-align: center;
             color: white;
-            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+            /*text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);*/
             position: relative;
             overflow: hidden; /* Hide overflow to ensure image doesn’t extend outside the section */
+            color: black;
         }
 
         .about::before {
@@ -138,11 +138,14 @@
 
         .project-card h3 {
             margin-bottom: 10px;
+            color: black;
+            text-shadow: none;
         }
 
         .project-card p {
             font-size: 1em;
             color: #777;
+            text-shadow: none;
         }
 
         @media (max-width: 768px) {
@@ -161,15 +164,16 @@
     <h1>Hayden Eubanks</h1>
     <p>Aspiring<br/>Software Engineer | Quality Engineer | Cybersecurity Professional</p>
     <a href="#" class="cta-button" role="button">View My Work</a>
-</section>
+    <a href="https://github.com/haydenubanx/portfolio_website" class="cta-button" role="button">Go To GitHub</a>
 
-<!-- Portfolio Section -->
-<section id="portfolio" class="portfolio" aria-label="Portfolio Section">
+
+
     <h2>My Projects</h2>
     <div class="portfolio-cards">
         <a href="#" class="project-card">
             <h3>Sentiment Analysis Chrome Extension</h3>
-            <p>A Chrome extension that performs sentiment analysis on a YouTube comment section to determine viewer sentiment.</p>
+            <p>A Chrome extension that performs sentiment analysis on a YouTube comment section to determine viewer
+                sentiment.</p>
         </a>
         <a href="#" class="project-card">
             <h3>Generative AI Project</h3>
@@ -180,6 +184,7 @@
             <p>A brief description of your project.</p>
         </a>
     </div>
+
 </section>
 
 </body>
