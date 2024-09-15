@@ -197,7 +197,7 @@
             position: absolute;
             width: 12px;
             height: 12px;
-            background-color: #007bff;
+            background-color: #ffa500;
             border-radius: 50%;
         }
 
