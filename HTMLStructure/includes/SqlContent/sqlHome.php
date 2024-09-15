@@ -38,6 +38,24 @@
             text-decoration: underline;
         }
 
+        /* Button in top-right corner */
+        .database-design-btn {
+            position: absolute;
+            top: 100px;
+            right: 20px;
+            background-color: seagreen;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .database-design-btn:hover {
+            background-color: #0056b3;
+        }
+
         /* SQL Section */
         .sql-section {
             padding: 50px 20px;
@@ -92,6 +110,11 @@
 </head>
 <body>
 
+<!-- Button in top-right corner -->
+<div id="content">
+    <a href="index.php?clicked=SQLHome&query=DatabaseDesign" class="database-design-btn">See Database Tables</a>
+</div>
+
 <!-- SQL Section -->
 <section class="sql-section">
     <h1>SQL Queries Overview</h1>
@@ -124,19 +147,47 @@ $allowed_sql_pages = [
     'NumEmployees',
     'NumJobs',
     'TableFormatting',
-    'UniqueFirstNames'];
+    'UniqueFirstNames',
+    'DatabaseDesign'];
 
 if (isset($_GET['query']) && in_array($_GET['query'], $allowed_sql_pages)) {
     $page = $_GET['query'];
     include 'includes/SqlContent/' . $page . '.php';
 
-?>
+    ?>
 
-<section class="sql-section">
-    <a href="index.php?clicked=SQLHome" class="query-link-close"> Close Query</a>
-</section>
-<?php
+    <section class="sql-section">
+        <a href="index.php?clicked=SQLHome" class="query-link-close"> Close Query</a>
+    </section>
+    <?php
 }
 ?>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const content = document.getElementById('content');
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // Update button based on query parameter
+        function updateButton() {
+            if (urlParams.get('query') === 'DatabaseDesign') {
+                content.innerHTML = '<a href="index.php?clicked=SQLHome" class="database-design-btn">Hide Database Tables</a>';
+            } else {
+                content.innerHTML = '<a href="index.php?clicked=SQLHome&query=DatabaseDesign" class="database-design-btn">See Database Tables</a>';
+            }
+        }
+
+        updateButton(); // Set initial button state
+
+        content.addEventListener('click', function(event) {
+            if (event.target.matches('.database-design-btn')) {
+                event.preventDefault();
+                const newQuery = urlParams.get('query') === 'DatabaseDesign' ? 'SQLHome' : 'DatabaseDesign';
+                window.location.href = `index.php?clicked=SQLHome&query=${newQuery}`;
+            }
+        });
+    });
+</script>
+
 </body>
 </html>

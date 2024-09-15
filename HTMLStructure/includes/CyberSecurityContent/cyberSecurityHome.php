@@ -100,7 +100,7 @@
     <div class="timeline">
         <div class="timeline-item">
             <article class="section-item">
-                <h3>Network Penetration Testing Tool</h3>
+                <h3>MD5 Hash Collisions</h3>
                 <p><strong>Description:</strong> Developed a tool to automate network penetration tests using Python and Scapy, identifying potential vulnerabilities and generating reports.</p>
                 <p><strong>Technologies Used:</strong> Python, Scapy, Nmap</p>
                 <a href="#" class="project-link">View Project</a>
@@ -109,7 +109,7 @@
 
         <div class="timeline-item">
             <article class="section-item">
-                <h3>Secure File Transfer System</h3>
+                <h3>Vulnerability Scan</h3>
                 <p><strong>Description:</strong> Designed and implemented a secure file transfer system using asymmetric encryption and digital signatures to ensure data integrity.</p>
                 <p><strong>Technologies Used:</strong> Python, OpenSSL, RSA Encryption</p>
                 <a href="#" class="project-link">View Project</a>
@@ -119,9 +119,8 @@
         <div class="timeline-item">
             <article class="section-item">
                 <h3>Clean Desk Policy</h3>
-                <p><strong>Description:</strong> Built a real-time dashboard for tracking system vulnerabilities and monitoring security patch deployment.</p>
-                <p><strong>Technologies Used:</strong> React, OWASP ZAP, Node.js</p>
-                <a href="#" class="project-link">View Project</a>
+                <p><strong>Description:</strong> This document outlines a Clean Desk Policy, which establishes guidelines for maintaining an organized and clutter-free workspace.</p>
+                <a href="index.php?clicked=cleanDeskPolicy" class="project-link">View Project</a>
             </article>
         </div>
     </div>
