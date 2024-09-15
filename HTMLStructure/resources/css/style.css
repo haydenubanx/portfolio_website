@@ -34,7 +34,7 @@ header nav {
 }
 
 header nav a {
-    color: white;
+    color: #f5f5f5;
     text-decoration: none;
     padding: 0.5em 1em;
     border-radius: 4px;
@@ -90,7 +90,7 @@ header nav a:hover {
 }
 
 .dropdown-content a {
-    color: black;
+    color: #333;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -103,6 +103,88 @@ header nav a:hover {
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: #ddd;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+}
+
+.timeline-item {
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    width: 45%;
+    margin: 10px 0;
+    /* Adjusting the timeline item position */
+    transform: translateX(-50%);
+}
+
+.timeline-item:nth-child(odd) {
+    left: -1%;
+    transform: translateX(0);
+}
+
+.timeline-item:nth-child(even) {
+    left: 25%;
+    transform: translateX(50%);
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #007bff;
+    border-radius: 50%;
+}
+
+.timeline-item:nth-child(odd)::before {
+    top: 35px;
+    left: auto;
+    right: -6px;
+}
+
+.timeline-item:nth-child(even)::before {
+    top: 35px;
+    left: 30px;
+}
+
+/* Hide the dot for empty timeline items */
+.timeline-item.empty::before {
+    display: none;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffa500;
+    color: #f5f5f5;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.cta-button:focus, .cta-button:hover {
+    background-color: #ff8500;
+    outline: none; /* Remove default outline for custom focus */
+    transform: scale(1.05); /* Slight scale on hover for better interaction */
 }
 
 /* Main Content Styles */
@@ -174,9 +256,9 @@ form input[type="submit"]:hover {
 
 /* Footer Styles */
 .footer {
-    background-color: #333;
-    color: white;
-    padding: 50px 20px;
+    background-color: #222;
+    color: #f5f5f5;
+    padding: 10px 20px;
     text-align: center;
 }
 

@@ -39,11 +39,18 @@
         .about {
             padding: 100px 20px;
             text-align: center;
-            color: white;
-            /*text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);*/
             position: relative;
             overflow: hidden; /* Hide overflow to ensure image doesn’t extend outside the section */
-            color: black;
+        }
+
+        .about h1 {
+            color: #102e4a;
+            /*text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);*/
+        }
+
+        .about p {
+            color: #102e4a;
+            /*text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);*/
         }
 
         .about::before {
@@ -79,24 +86,7 @@
             font-size: 1.5em;
         }
 
-        .cta-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #ffa500;
-            color: #fff;
-            border-radius: 5px;
-            margin-top: 20px;
-            text-decoration: none;
-            font-size: 1.2em;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
-        }
 
-        .cta-button:focus, .cta-button:hover {
-            background-color: #ff8500;
-            outline: none; /* Remove default outline for custom focus */
-            transform: scale(1.05); /* Slight scale on hover for better interaction */
-        }
 
         /* Portfolio Section */
         .portfolio {
@@ -138,7 +128,7 @@
 
         .project-card h3 {
             margin-bottom: 10px;
-            color: black;
+            color: #102e4a;
             text-shadow: none;
         }
 

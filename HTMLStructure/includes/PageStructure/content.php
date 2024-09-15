@@ -17,7 +17,7 @@
 
     $allowed_java_pages = ['#'];
 
-    $allowed_cybersecurity_pages = ['#'];
+    $allowed_cybersecurity_pages = ['cyberSecurityHome', 'cleanDeskPolicy'];
 
     $allowed_about_me_pages = ['aboutMe'];
 
