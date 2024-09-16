@@ -119,7 +119,7 @@
 <section class="sql-section">
     <h1>SQL Queries Overview</h1>
     <p>Welcome to the SQL section of my portfolio. Here, you can explore various SQL queries that interact with the
-        underlying database. Each query is designed to showcase different aspects of SQL, including data retrieval,
+        underlying database for this site. Each query is designed to showcase different aspects of SQL, including data retrieval,
         updates, and analysis.</p>
     <p>Select a query below to view the details and see how it functions:</p>
     <a href="index.php?clicked=SQLHome&query=MinMaxSalaries" class="query-link"> Min & Max Salaries</a>
