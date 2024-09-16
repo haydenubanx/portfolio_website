@@ -3,3 +3,4 @@ workspace.xml
 *.meta
 *.iml
 settings.json
+!/HTMLStructure/includes/DbConnection/db.php
