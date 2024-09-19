@@ -220,11 +220,11 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const navToggle = document.querySelector('.nav-toggle');
-        const navbar = document.querySelector('.navbar');
+        const navLinks = document.querySelector('.dropdown');
 
-        // Toggle the visibility of the main navbar
+        // Toggle the 'show' class on click for the main navbar
         navToggle.addEventListener('click', function() {
-            navbar.classList.toggle('show');
+            navLinks.classList.toggle('show');
         });
 
         // Handle dropdown toggles
@@ -237,7 +237,7 @@
                 // Toggle the 'show' class for the dropdown
                 dropdownContent.classList.toggle('show');
 
-                // Close other dropdowns
+                // Hide other dropdowns
                 dropdowns.forEach(otherDropbtn => {
                     if (otherDropbtn !== this) {
                         otherDropbtn.nextElementSibling.classList.remove('show');
