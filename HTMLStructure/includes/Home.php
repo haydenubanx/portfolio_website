@@ -157,6 +157,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-decoration: none;
             color: inherit;
+            box-sizing: border-box;
         }
 
         .project-card:hover {
@@ -196,7 +197,6 @@
 <section class="about" aria-label="Hero Section">
     <h1>Hayden Eubanks</h1>
     <p>Aspiring<br/>Software Engineer | Quality Engineer | Cybersecurity Professional</p>
-    <img src="../resources/images/profile.jpg" alt="Hayden Eubanks Profile Image" />
     <a href="#" class="cta-button" role="button">View My Work</a>
     <a href="https://github.com/haydenubanx/portfolio_website" class="cta-button" role="button">Go To GitHub</a>
 
