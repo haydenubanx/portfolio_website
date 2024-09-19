@@ -219,7 +219,7 @@
 
 <script>
     const navToggle = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('nav ul');
+    const navLinks = document.querySelector('.dropdown');
 
     navToggle.addEventListener('click', () => {
         navLinks.classList.toggle('show');

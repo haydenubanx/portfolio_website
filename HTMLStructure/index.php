@@ -89,6 +89,17 @@ else {
 	<!--Links the stylesheet I created -->
 	<link rel="stylesheet" href="./resources/css/style.css" />
     <script src="https://kit.fontawesome.com/d6bcb154dc.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const navToggle = document.querySelector('.nav-toggle');
+            const navLinks = document.querySelector('.navbar');
+
+            // Toggle the 'show' class on click
+            navToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
+            });
+        });
+    </script>
 
 </head>
 	<body>

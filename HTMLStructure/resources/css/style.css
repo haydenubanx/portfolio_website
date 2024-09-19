@@ -45,6 +45,53 @@ header nav a:hover {
     background-color: #444;
 }
 
+/* Mobile toggle button */
+.nav-toggle {
+    display: none;
+    font-size: 1.5em;
+    color: white;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    z-index: 1;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .navbar {
+        display: none; /* Hidden by default */
+        flex-direction: column;
+    }
+
+    .navbar.show {
+        display: flex; /* Show when toggled */
+    }
+
+    .nav-toggle {
+        display: block;
+        margin: 1em;
+    }
+    .nav-toggle:hover {
+        background-color: #444;
+    }
+
+    .dropdown-content {
+        position: relative; /* Change to relative for mobile */
+        width: 100%; /* Full width */
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: none; /* Disable hover display on mobile */
+    }
+
+    .dropdown-content.show {
+        display: block; /* Show when toggled */
+    }
+}
+
 /* Navbar Styles */
 .navbar {
     display: flex;
