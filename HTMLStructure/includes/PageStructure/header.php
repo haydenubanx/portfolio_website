@@ -1,5 +1,8 @@
 <header>
-    <!-- header link for index page -->
+    <link rel="icon" href="../../resources/images/Hayden_Polaroid.jpeg">
+
+
+
     <h1 id="Title Name" class="title-name"> <a href="index.php">Hayden Eubanks</a> </h1>
     <h1 id="Title Job" class="hide-on-mobile"><a href="index.php">Computer Science: Cybersecurity</a></h1>
     <div class="nav-toggle-container"><button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button></div>
