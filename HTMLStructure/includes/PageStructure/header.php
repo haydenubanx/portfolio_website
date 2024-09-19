@@ -1,5 +1,5 @@
 <header>
-    <link rel="icon" href="../../resources/images/Hayden_Polaroid.jpeg">
+    <link rel="icon" href="../../resources/images/favicon.png">
 
 
 
