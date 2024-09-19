@@ -137,7 +137,6 @@
 
 $allowed_sql_pages = [
     '#',
-    'CyberSecurity',
     'MinMaxSalaries',
     'AddEmployee',
     'DeleteEmployee',
