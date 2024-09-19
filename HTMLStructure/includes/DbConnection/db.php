@@ -20,3 +20,7 @@ $dbConnection->set_charset('utf8mb4');
 
 $_SESSION['dbConnection'] = $dbConnection;
 
+if ($dbConnection->connect_error) {
+    die('<p>Failed to connect to MySQL: '. $dbConnection->connect_error .'</p>');
+}
+
