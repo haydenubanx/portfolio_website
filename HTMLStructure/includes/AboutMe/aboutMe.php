@@ -19,7 +19,7 @@
         .personal-statement {
             position: relative;
             background: linear-gradient(to right, #f4f4f4, #e0e0e0);
-            padding: 80px 20px;
+            padding: 60px 20px; /* Reduced padding for mobile */
             text-align: center;
             overflow: hidden; /* Ensure circles don’t overflow the section */
         }
@@ -51,8 +51,8 @@
 
         .personal-statement img {
             border-radius: 50%;
-            width: 300px;
-            height: 300px;
+            width: 200px;
+            height: 200px;
             object-fit: cover;
             margin-bottom: 20px;
             position: relative; /* Ensure image is on top */
@@ -60,34 +60,35 @@
         }
 
         .personal-statement h1 {
-            font-size: 3.5em;
+            font-size: 2.5em; /* Adjust font-size for better scaling */
             margin: 0;
         }
 
         .personal-statement p {
-            font-size: 1.4em;
+            font-size: 1.2em; /* Slightly smaller font for mobile */
             color: #666;
+            padding: 0 15px; /* Added padding for better text alignment */
         }
 
         /* Section Styles */
         section {
-            padding: 40px 20px;
+            padding: 30px 15px; /* Adjusted padding for smaller screens */
             text-align: center;
         }
 
         .AboutH2Heading {
-            margin-bottom: 40px;
-            font-size: 2.5em;
+            margin-bottom: 30px;
+            font-size: 2em; /* Adjusted heading size for mobile */
             color: #222;
         }
 
         .skills-section, .section-item {
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
 
         .skills-section-break {
-            font-size: 2em;
-            margin-bottom: 20px;
+            font-size: 1.8em;
+            margin-bottom: 15px;
             color: #222;
         }
 
@@ -95,7 +96,7 @@
             display: block;
             width: 100%;
             max-width: 800px;
-            margin: 0 auto 40px;
+            margin: 0 auto 30px;
             padding: 20px;
             border-radius: 8px;
             background-color: #fff;
@@ -104,17 +105,17 @@
         }
 
         .section-item:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
         .section-item h3 {
             margin-bottom: 10px;
-            font-size: 2em;
+            font-size: 1.8em;
         }
 
         .section-item p {
-            font-size: 1.1em;
+            font-size: 1em;
             color: #555;
         }
 
@@ -133,7 +134,7 @@
         }
 
         .skill-icon {
-            font-size: 2em;
+            font-size: 1.8em;
             color: #666;
             margin-bottom: 5px;
         }
@@ -141,12 +142,12 @@
         /* Media Query for Mobile Devices */
         @media (max-width: 768px) {
             .personal-statement img {
-                width: 100px;
-                height: 100px;
+                width: 120px;
+                height: 120px;
             }
 
             .personal-statement h1 {
-                font-size: 2em;
+                font-size: 1.8em;
             }
 
             .personal-statement p {
@@ -169,12 +170,16 @@
             .timeline-item-icon {
                 font-size: 2em;
             }
+
+            .personal-statement::before, .personal-statement::after {
+                display: none; /* Hide the decorative circles for better spacing */
+            }
         }
 
         /* Timeline Styles */
         .timeline {
             position: relative;
-            max-width: 1200px;
+            max-width: 120em;
             margin: 0 auto;
         }
 
@@ -195,7 +200,6 @@
             position: relative;
             width: 45%;
             margin: 10px 0;
-            /* Adjusting the timeline item position */
             transform: translateX(-50%);
         }
 
@@ -205,7 +209,7 @@
         }
 
         .timeline-item:nth-child(even) {
-            left: 25%;
+            left: 27%;
             transform: translateX(50%);
         }
 
@@ -231,22 +235,22 @@
 
         /* Icon Styles */
         .timeline-item-icon {
-            width: 500px;
-            height: 500px;
-            font-size: 300px;
+            width: 15em;
+            height: 15em;
+            font-size: 14em;
             color: #007bff;
             position: absolute;
             margin-top: 5%;
         }
 
         .timeline-item:nth-child(odd) .timeline-item-icon {
-            right: -140px;
-            transform: translateX(100%);
+            right: -1em;
+            transform: translateX(50%);
         }
 
         .timeline-item:nth-child(even) .timeline-item-icon {
-            left: -140px;
-            transform: translateX(-100%);
+            left: -1em;
+            transform: translateX(-50%);
         }
 
         /* Hide the dot for empty timeline items */
@@ -254,11 +258,64 @@
             display: none;
         }
 
-        .company-logo {
-            width: 150px; /* Adjust as needed */
-            height: auto;
-            display: block;
-            margin: 0 auto;
+        /* Media Query for Mobile Devices */
+        @media (max-width: 768px) {
+            .personal-statement img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .personal-statement h1 {
+                font-size: 1.8em;
+            }
+
+            .personal-statement p {
+                font-size: 1em;
+                padding: 0 10px;
+            }
+
+            .AboutH2Heading {
+                font-size: 1.5em;
+            }
+
+            .section-item {
+                padding: 15px;
+            }
+
+            .skills-list {
+                flex-direction: column;
+            }
+
+            .timeline {
+                padding: 0;
+            }
+
+            .timeline::before {
+                display: none; /* Remove the vertical line on mobile */
+            }
+
+            .timeline-item {
+                width: 90%; /* Make timeline items span most of the width */
+                margin: 20px auto; /* Center the items horizontally */
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Center content within each item */
+            }
+
+            .timeline-item:nth-child(even) {
+                left: auto;
+                transform: translateX(0%);
+            }
+
+            .timeline-item::before {
+                display: none; /* Hide the dot for each timeline item on mobile */
+            }
+
+            .timeline-item-icon {
+                font-size: 3em; /* Reduce icon size for mobile */
+                margin: 10px 0; /* Center the icons */
+                display: block; /* Ensure the icons are visible */
+            }
         }
     </style>
 </head>
@@ -415,7 +472,7 @@
     <h2 class="AboutH2Heading">Job Experience</h2>
     <div class="timeline">
         <div class="timeline-item">
-            <i class="fa-solid fa-building-columns timeline-item-icon"></i>
+<!--            <i class="fa-solid fa-building-columns timeline-item-icon"></i>-->
             <article class="section-item">
                 <h3>Quality Engineer - Lloyds Banking Group</h3>
                 <p><strong>Duration:</strong> October 2023 - Present</p>
@@ -437,7 +494,7 @@
         <div class="timeline-item empty">
         </div>
         <div class="timeline-item">
-            <i class="fas fa-graduation-cap timeline-item-icon"></i>
+<!--            <i class="fas fa-graduation-cap timeline-item-icon"></i>-->
             <article class="section-item">
                 <h3>Bachelor's Degree in Computer Science: Cybersecurity</h3>
                 <p><strong>University:</strong> Liberty University</p>
@@ -454,7 +511,7 @@
     <h2 class="AboutH2Heading">Certifications</h2>
     <div class="timeline">
         <div class="timeline-item">
-            <i class="fas fa-solid fa-copy timeline-item-icon"></i>
+<!--            <i class="fas fa-solid fa-copy timeline-item-icon"></i>-->
             <article class="section-item">
                 <h3>ISTQB Certified Tester</h3>
                 <p>Foundation Level</p>
