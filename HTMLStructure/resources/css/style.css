@@ -59,42 +59,50 @@ header nav a:hover {
     z-index: 1001;
 }
 
-/* Mobile styles */
+/* Mobile-specific styles */
 @media (max-width: 768px) {
     .navbar {
-        display: none; /* Hidden by default */
-        flex-direction: column;
+        display: none; /* Hide by default */
+        flex-direction: column; /* Stack links vertically */
+        align-items: flex-start;
+        background-color: #333;
+        padding: 20px;
+        position: absolute;
+        top: 50px; /* Adjust as needed to float out of header */
+        left: 0;
+        width: 100%;
+        height: auto;
+        z-index: 1000;
     }
 
     .navbar.show {
-        display: flex; /* Show when toggled */
+        display: flex; /* Show navbar when toggled */
     }
 
+    /* Mobile toggle button (hamburger menu) */
     .nav-toggle {
         display: block;
-        margin: 1em;
-        padding-bottom: 5em;
-
+        font-size: 1.5em;
+        color: white;
+        background: none;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        right: 1em;
+        top: 1em;
+        z-index: 1001; /* Above the navbar */
     }
 
-    .nav-toggle-container {
-        display: block;
-        margin: 1em;
-        padding-bottom: 5em;
-
-    }
-
+    /* Dropdown styling for mobile */
     .dropdown-content {
-        position: relative; /* Change to relative for mobile */
-        width: 100%; /* Full width */
+        position: relative; /* Relative positioning inside mobile navbar */
+        width: 100%; /* Full width for mobile */
+        background-color: #444; /* Dropdown background color for mobile */
     }
 
-    .dropdown:hover .dropdown-content {
-        display: none; /* Disable hover display on mobile */
-    }
-
-    .dropdown-content.show {
-        display: block; /* Show when toggled */
+    .dropdown-content a {
+        padding: 15px;
+        border-bottom: 1px solid #333; /* Add border between items */
     }
 }
 
