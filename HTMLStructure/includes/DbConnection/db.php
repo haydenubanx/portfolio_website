@@ -19,4 +19,3 @@ $dbConnection = mysqli_connect($serverName, $userName, $password, $dbName, $port
 
 $_SESSION['dbConnection'] = $dbConnection;
 
-?>

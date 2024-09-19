@@ -62,7 +62,7 @@
             height: 100%;
             /*background: inherit; !* Inherit background image from parent *!*/
             background-size: cover;
-            background: url('HTMLStructure/resources/images/Portfolio_Background_Image.jpg') no-repeat center;
+            background: url('../resources/images/Portfolio_Background_Image.jpg') no-repeat center;
             animation: zoom 20s infinite alternate; /* Apply animation */
             z-index: -1; /* Place behind text */
         }
