@@ -17,22 +17,66 @@
         nav {
             background-color: #333;
             padding: 1em;
-            text-align: center;
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        nav a {
-            color: white;
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
             margin: 0 1em;
+        }
+
+        nav ul li a {
+            color: white;
             text-decoration: none;
             font-size: 1.1em;
             font-weight: 700;
         }
 
-        nav a:hover {
+        nav ul li a:hover {
             text-decoration: underline;
+        }
+
+        /* Mobile navigation dropdown */
+        .nav-toggle {
+            display: none;
+            font-size: 1.5em;
+            color: white;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 1em;
+            top: 1em;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                background-color: #333;
+                position: absolute;
+                width: 100%;
+                left: 0;
+                top: 50px;
+                padding-bottom: 10px;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
         }
 
         /* Hero Section */
@@ -40,17 +84,18 @@
             padding: 100px 20px;
             text-align: center;
             position: relative;
-            overflow: hidden; /* Hide overflow to ensure image doesn’t extend outside the section */
+            overflow: hidden;
         }
 
         .about h1 {
             color: #102e4a;
-            /*text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);*/
+            font-size: 4em;
+            margin-bottom: 0.5em;
         }
 
         .about p {
             color: #102e4a;
-            /*text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);*/
+            font-size: 1.5em;
         }
 
         .about::before {
@@ -60,55 +105,49 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /*background: inherit; !* Inherit background image from parent *!*/
-            background-size: cover;
             background: url('../resources/images/Portfolio_Background_Image.jpg') no-repeat center;
-            animation: zoom 20s infinite alternate; /* Apply animation */
-            z-index: -1; /* Place behind text */
+            background-size: cover;
+            animation: zoom 20s infinite alternate;
+            z-index: -1;
         }
 
         @keyframes zoom {
             0% {
-                transform: scale(1); /* Initial scale */
+                transform: scale(1);
             }
             100% {
-                transform: scale(1.25); /* Scale up to 105% */
+                transform: scale(1.25);
             }
         }
 
-        .about h1 {
-            font-size: 4em;
-            margin-bottom: 0.5em;
+        /* Image styling for responsiveness */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 50%;
         }
-
-        .about p {
-            font-size: 1.5em;
-        }
-
-
 
         /* Portfolio Section */
         .portfolio {
             padding: 50px 20px;
             background-color: #f9f9f9;
-            text-align: center; /* Center text for the heading */
+            text-align: center;
         }
 
         .portfolio h2 {
             margin-bottom: 30px;
-            font-size: 2em; /* Adjust font size if needed */
+            font-size: 2em;
         }
 
-        /* Flex container for the project cards */
         .portfolio-cards {
             display: flex;
-            flex-wrap: wrap; /* Allows wrapping to new lines if needed */
-            justify-content: center; /* Center the cards horizontally */
-            gap: 1%; /* Add space between cards */
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1%;
         }
 
         .project-card {
-            display: block; /* Ensure the whole card is clickable */
+            display: block;
             width: 30%;
             padding: 20px;
             border: 1px solid #ddd;
@@ -116,9 +155,8 @@
             transition: transform 0.3s;
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-decoration: none; /* Remove underline from link */
-            color: inherit; /* Inherit text color */
-            box-sizing: border-box; /* Ensure padding is included in the width */
+            text-decoration: none;
+            color: inherit;
         }
 
         .project-card:hover {
@@ -128,19 +166,25 @@
         .project-card h3 {
             margin-bottom: 10px;
             color: #102e4a;
-            text-shadow: none;
         }
 
         .project-card p {
             font-size: 1em;
             color: #777;
-            text-shadow: none;
         }
 
         @media (max-width: 768px) {
             .project-card {
-                width: calc(100% - 2em); /* Full width minus margin */
-                margin: 1em 0; /* Adjust margin for mobile */
+                width: calc(100% - 2em);
+                margin: 1em 0;
+            }
+
+            .about h1 {
+                font-size: 2.5em;
+            }
+
+            .about p {
+                font-size: 1.2em;
             }
         }
     </style>
@@ -152,17 +196,15 @@
 <section class="about" aria-label="Hero Section">
     <h1>Hayden Eubanks</h1>
     <p>Aspiring<br/>Software Engineer | Quality Engineer | Cybersecurity Professional</p>
+    <img src="../resources/images/profile.jpg" alt="Hayden Eubanks Profile Image" />
     <a href="#" class="cta-button" role="button">View My Work</a>
     <a href="https://github.com/haydenubanx/portfolio_website" class="cta-button" role="button">Go To GitHub</a>
-
-
 
     <h2>My Projects</h2>
     <div class="portfolio-cards">
         <a href="#" class="project-card">
             <h3>Sentiment Analysis Chrome Extension</h3>
-            <p>A Chrome extension that performs sentiment analysis on a YouTube comment section to determine viewer
-                sentiment.</p>
+            <p>A Chrome extension that performs sentiment analysis on a YouTube comment section to determine viewer sentiment.</p>
         </a>
         <a href="#" class="project-card">
             <h3>Generative AI Project</h3>
@@ -173,7 +215,15 @@
             <p>A brief description of your project.</p>
         </a>
     </div>
-
 </section>
+
+<script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('nav ul');
+
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+    });
+</script>
 
 </body>

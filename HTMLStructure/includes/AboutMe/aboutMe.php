@@ -249,7 +249,7 @@
 
 <div class="personal-statement">
     <!-- Image Section -->
-    <img src="../../HTMLStructure/resources/images/Hayden_Polaroid.jpeg" alt="Hayden Eubanks">
+    <img src="../resources/images/Hayden_Polaroid.jpeg" alt="Hayden Eubanks">
     <h1>About Me</h1>
     <p>Hello! I'm Hayden, an aspiring software developer passionate about building efficient, user-friendly
         applications. With a background in computer science and professional experience as a quality engineer, I am
