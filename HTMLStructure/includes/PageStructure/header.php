@@ -2,7 +2,7 @@
     <!-- header link for index page -->
     <h1 id="Title Name"> <a href="index.php">Hayden Eubanks</a> </h1>
     <h1 id="Title Job" class="hide-on-mobile"><a href="index.php">Computer Science: Cybersecurity</a></h1>
-
+    <div class="nav-toggle-container"><button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button></div>
 
 
     <!-- Includes the navigation bar -->
@@ -19,12 +19,3 @@
     ?>
 
 </header>
-
-<style>
-    /* CSS to hide the "Title Job" on mobile screens */
-    @media (max-width: 768px) {
-        .hide-on-mobile {
-            display: none;
-        }
-    }
-</style>

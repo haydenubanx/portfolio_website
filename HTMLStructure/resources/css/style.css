@@ -53,10 +53,10 @@ header nav a:hover {
     background-color: transparent;
     border: none;
     cursor: pointer;
-    position: absolute;
-    right: 1em;
+    position: fixed;
     top: 1em;
-    z-index: 1;
+    right: 1em;
+    z-index: 1001;
 }
 
 /* Mobile styles */
@@ -73,9 +73,15 @@ header nav a:hover {
     .nav-toggle {
         display: block;
         margin: 1em;
+        padding-bottom: 5em;
+
     }
-    .nav-toggle:hover {
-        background-color: #444;
+
+    .nav-toggle-container {
+        display: block;
+        margin: 1em;
+        padding-bottom: 5em;
+
     }
 
     .dropdown-content {
@@ -471,4 +477,11 @@ code[class*="language-"] {
     background: none;
     padding: 0;
     color: #000; /* Black text color */
+}
+
+/* CSS to hide certain sections on mobile screens */
+@media (max-width: 768px) {
+    .hide-on-mobile {
+        display: none;
+    }
 }
