@@ -1,19 +1,23 @@
 <?php
 
-$serverName = "YXg0LmguZmlsZXNzLmlv";
+$serverName = "db5016368926.hosting-data.io";
 
-$userName = "SGF5ZGVuUG9ydGZvbGlvV2Vic2l0ZV9lYWdlcmRlZXA=";
+$userName = "dbu5334433=";
 
-$password = "ZmRlMGNmODkzNzE1ZmQxMjBmMTBjNmUwZjRiYWQ3ODI5ODQ5ZDU4Zg==";
+$password = "ExampleDatabasePassword123!&";
 
-$dbName = "SGF5ZGVuUG9ydGZvbGlvV2Vic2l0ZV9lYWdlcmRlZXA=";
+$dbName = "dbs13307710";
 
-$port="3307";
+$port="3306";
 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 //All of the above variables are passed as parameters to the connect function to create the database connection
-$dbConnection = mysqli_connect(base64_decode($serverName), base64_decode($userName), base64_decode($password), base64_decode($dbName), $port);
+$dbConnection = mysqli_connect($serverName, $userName, $password, $dbName, $port);
+
+if ($dbConnection->connect_error) {
+    die('<p>Failed to connect to MySQL: '. $dbConnection->connect_error .'</p>');
+}
 
 /* Set the desired charset after establishing a connection */
 $dbConnection->set_charset('utf8mb4');
