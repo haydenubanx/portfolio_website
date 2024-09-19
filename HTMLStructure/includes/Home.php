@@ -174,6 +174,10 @@
             color: #777;
         }
 
+        .coming-soon {
+            color: indianred;
+        }
+
         @media (max-width: 768px) {
             .project-card {
                 width: calc(100% - 2em);
@@ -205,6 +209,7 @@
         <a href="#" class="project-card">
             <h3>Sentiment Analysis Chrome Extension</h3>
             <p>A Chrome extension that performs sentiment analysis on a YouTube comment section to determine viewer sentiment.</p>
+            <h4 class="coming-soon">**Coming Soon**</h4>
         </a>
         <a href="#" class="project-card">
             <h3>Generative AI Project</h3>

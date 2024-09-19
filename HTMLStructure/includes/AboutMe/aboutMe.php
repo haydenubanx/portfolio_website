@@ -121,36 +121,53 @@
         /* Skills Section */
         .skills-list {
             list-style-type: none;
-            /*padding-bottom: 100px;*/
+            padding: 0;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
         }
 
         .skills-list li {
-            margin: 20px;
+            margin: 10px;
             text-align: center;
         }
 
         .skill-icon {
-            font-size: 3em;
+            font-size: 2em;
             color: #666;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
+        /* Media Query for Mobile Devices */
         @media (max-width: 768px) {
-            .skills-list {
-                flex-direction: column;
-                align-items: center;
+            .personal-statement img {
+                width: 100px;
+                height: 100px;
             }
 
-            .skills-list li {
-                margin-bottom: 30px;
+            .personal-statement h1 {
+                font-size: 2em;
+            }
+
+            .personal-statement p {
+                font-size: 1em;
+                padding: 0 10px;
+            }
+
+            .AboutH2Heading {
+                font-size: 1.5em;
             }
 
             .section-item {
-                width: 100%;
-                margin-bottom: 20px;
+                padding: 15px;
+            }
+
+            .skills-list {
+                flex-direction: column;
+            }
+
+            .timeline-item-icon {
+                font-size: 2em;
             }
         }
 

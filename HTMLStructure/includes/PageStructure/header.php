@@ -1,5 +1,4 @@
 <header>
-    <link rel="icon" href="../../resources/images/favicon.png">
 
 
 

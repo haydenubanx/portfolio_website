@@ -88,6 +88,7 @@ else {
 
 	<!--Links the stylesheet I created -->
 	<link rel="stylesheet" href="./resources/css/style.css" />
+    <link rel="icon" href="../../resources/images/favicon.png">
     <script src="https://kit.fontawesome.com/d6bcb154dc.js" crossorigin="anonymous"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
