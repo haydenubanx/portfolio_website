@@ -218,11 +218,47 @@
 </section>
 
 <script>
-    const navToggle = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('.dropdown');
+    document.addEventListener("DOMContentLoaded", function() {
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.dropdown');
 
-    navToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('show');
+        // Toggle the 'show' class on click for the main navbar
+        navToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('show');
+        });
+
+        // Handle dropdown toggles
+        const dropdowns = document.querySelectorAll('.dropdown .dropbtn');
+        dropdowns.forEach(dropbtn => {
+            dropbtn.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent click event from bubbling up
+                const dropdownContent = this.nextElementSibling;
+
+                // Toggle the 'show' class for the dropdown
+                dropdownContent.classList.toggle('show');
+
+                // Hide other dropdowns
+                dropdowns.forEach(otherDropbtn => {
+                    if (otherDropbtn !== this) {
+                        otherDropbtn.nextElementSibling.classList.remove('show');
+                    }
+                });
+            });
+        });
+
+        // Close dropdowns if clicking outside
+        document.addEventListener('click', () => {
+            dropdowns.forEach(dropbtn => {
+                dropbtn.nextElementSibling.classList.remove('show'); // Close all dropdowns
+            });
+        });
+
+        // Prevent dropdown content from closing when clicking inside
+        document.querySelectorAll('.dropdown-content').forEach(content => {
+            content.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent click event from bubbling up
+            });
+        });
     });
 </script>
 
