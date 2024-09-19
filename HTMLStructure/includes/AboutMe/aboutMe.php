@@ -296,7 +296,7 @@
 
             .timeline-item {
                 width: 90%; /* Make timeline items span most of the width */
-                margin: 20px auto; /* Center the items horizontally */
+                margin: auto auto; /* Center the items horizontally */
                 display: flex;
                 flex-direction: column;
                 align-items: center; /* Center content within each item */

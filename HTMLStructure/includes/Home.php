@@ -211,9 +211,9 @@
             <p>A Chrome extension that performs sentiment analysis on a YouTube comment section to determine viewer sentiment.</p>
             <h4 class="coming-soon">**Coming Soon**</h4>
         </a>
-        <a href="#" class="project-card">
-            <h3>Generative AI Project</h3>
-            <p>A brief description of your project.</p>
+        <a href="index.php?clicked=SelfBalBinTree" class="project-card">
+            <h3>Self Balancing Binary Tree</h3>
+            <p>A binary search tree that automatically maintains its balance during insertions and deletions, ensuring optimal time complexity for operations like search, insert, and delete.</p>
         </a>
         <a href="#" class="project-card">
             <h3>Cybersecurity Project</h3>

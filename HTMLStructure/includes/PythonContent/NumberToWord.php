@@ -6,13 +6,14 @@ $question = "<blockquote>This form accepts an integer number between 10 Billion 
 
 
 //The print statement for the question, query, and function call to print statement for the table
-echo '<p><strong>' . $question . '</strong></p>';
+echo '<p class="question"><strong>' . $question . '</strong></p>';
 
-function submitNumberToWordForm() {
+function submitNumberToWordForm()
+{
     if (isset($_POST['NumberToWord'])) {
 
         if (strlen($_POST['NumberToWord']) > 50) {
-            echo('<br>' . 'The value you entered is too long. Please re-enter a value that is under 50 characters.');
+            echo('<p class="error">The value you entered is too long. Please re-enter a value that is under 50 characters.</p>');
         } else {
             $_SESSION['NumberToWord'] = $_POST['NumberToWord'];
         }
@@ -20,28 +21,30 @@ function submitNumberToWordForm() {
     }
 
 
-?>
+    ?>
 
-<!-- linking to PyScript assets -->
-<link rel="stylesheet" href="https://pyscript.net/releases/2022.12.1/pyscript.css" />
-<script defer src="https://pyscript.net/releases/2022.12.1/pyscript.js"></script>
+    <!-- linking to PyScript assets -->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2022.12.1/pyscript.css"/>
+    <script defer src="https://pyscript.net/releases/2022.12.1/pyscript.js"></script>
 
-<form method="post" action="index.php?clicked=NumberToWord">
-    <label for="NumberToWord">Input a Number: </label>
-    <input type="text" id="NumberToWord" name="NumberToWord"> <br /><br />
-    <input type="submit" value="Submit" name="submit" onclick="submitNumberToWordForm()" ><br /><br /><br />
-</form>
+    <div class="container">
+        <form method="post" action="index.php?clicked=NumberToWord"  class="number-form">
+            <label for="NumberToWord">Input a Number: </label>
+            <input type="text" id="NumberToWord" name="NumberToWord"> <br/><br/>
+            <input type="submit" value="Submit" name="submit" onclick="submitNumberToWordForm()"><br/><br/><br/>
+        </form>
+    </div>
 
-<?php
+    <?php
 }
 
 submitNumberToWordForm();
 
 if (isset($_SESSION['NumberToWord']) and $_SESSION['NumberToWord'] != "") {
 
-?>
-
-    <py-script>
+    ?>
+    <div class="output">
+        <py-script>
 
 
         import math
@@ -302,5 +305,84 @@ if (isset($_SESSION['NumberToWord']) and $_SESSION['NumberToWord'] != "") {
         output_number = int_to_string(input_number)
         display("Output String: " + str(output_number))
 
-    </py-script>
+        </py-script>
+    </div>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .question {
+            font-size: 1.5em;  /* Increased size for better visibility */
+            margin-bottom: 20px;
+            color: #555;
+            border-bottom: 2px solid #ffa500;  /* Added a bottom border */
+            padding-bottom: 10px;  /* Spacing below the heading */
+            text-align: center;  /* Center the question text */
+        }
+
+        .number-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            width: 100%;  /* Ensure the input box fills the container */
+            box-sizing: border-box;  /* Include padding and border in the element's total width */
+        }
+
+        input[type="submit"] {
+            background-color: #ffa500;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;  /* Make the submit button fill the container */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #e59400;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .output {
+            margin-top: 20px;
+            font-size: 1.2em;  /* Increased size for better readability */
+            color: #333;
+            background-color: #f0f8ff;  /* Light background for better contrast */
+            border: 1px solid #ccc;  /* Border around output */
+            border-radius: 4px;  /* Rounded corners */
+            padding: 15px;  /* Spacing inside the output box */
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
+        }
+    </style>
 <?php }
