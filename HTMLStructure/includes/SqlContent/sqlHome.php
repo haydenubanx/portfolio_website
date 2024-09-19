@@ -152,7 +152,7 @@ $allowed_sql_pages = [
 
 if (isset($_GET['query']) && in_array($_GET['query'], $allowed_sql_pages)) {
     $page = $_GET['query'];
-    include 'includes/SqlContent/' . $page . '.php';
+    include  $page . '.php';
 
     ?>
 
