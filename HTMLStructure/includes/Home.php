@@ -58,6 +58,39 @@
             top: 1em;
         }
 
+        .skill-icon-home {
+            font-size: 4em;
+            color: #102e4a;
+            margin-bottom: 10px;
+            display: block;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ffa500;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Centering container for GitHub icon and button */
+        .github-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+        }
+
+        .cta-button:hover {
+            background-color: #ff8c00;
+        }
+
         @media (max-width: 768px) {
             nav ul {
                 display: none;
@@ -201,8 +234,12 @@
 <section class="about" aria-label="Hero Section">
     <h1>Hayden Eubanks</h1>
     <p>Aspiring<br/>Software Engineer | Quality Engineer | Cybersecurity Professional</p>
-    <a href="#" class="cta-button" role="button">View My Work</a>
-    <a href="https://github.com/haydenubanx/portfolio_website" class="cta-button" role="button">Go To GitHub</a>
+
+    <!-- Centered GitHub icon and button -->
+    <div class="github-container">
+        <i class="fa-brands fa-github skill-icon-home"></i>
+        <a href="https://github.com/haydenubanx" class="cta-button" role="button">Go To GitHub</a>
+    </div>
 
     <h2>My Projects</h2>
     <div class="portfolio-cards">
@@ -223,50 +260,5 @@
         </a>
     </div>
 </section>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const navToggle = document.querySelector('.nav-toggle');
-        const navLinks = document.querySelector('.dropdown');
-
-        // Toggle the 'show' class on click for the main navbar
-        navToggle.addEventListener('click', function() {
-            navLinks.classList.toggle('show');
-        });
-
-        // Handle dropdown toggles
-        const dropdowns = document.querySelectorAll('.dropdown .dropbtn');
-        dropdowns.forEach(dropbtn => {
-            dropbtn.addEventListener('click', function(event) {
-                event.stopPropagation(); // Prevent click event from bubbling up
-                const dropdownContent = this.nextElementSibling;
-
-                // Toggle the 'show' class for the dropdown
-                dropdownContent.classList.toggle('show');
-
-                // Hide other dropdowns
-                dropdowns.forEach(otherDropbtn => {
-                    if (otherDropbtn !== this) {
-                        otherDropbtn.nextElementSibling.classList.remove('show');
-                    }
-                });
-            });
-        });
-
-        // Close dropdowns if clicking outside
-        document.addEventListener('click', () => {
-            dropdowns.forEach(dropbtn => {
-                dropbtn.nextElementSibling.classList.remove('show'); // Close all dropdowns
-            });
-        });
-
-        // Prevent dropdown content from closing when clicking inside
-        document.querySelectorAll('.dropdown-content').forEach(content => {
-            content.addEventListener('click', function(event) {
-                event.stopPropagation(); // Prevent click event from bubbling up
-            });
-        });
-    });
-</script>
 
 </body>
