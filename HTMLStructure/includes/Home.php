@@ -242,18 +242,18 @@
 
     <h2>My Projects</h2>
     <div class="portfolio-cards">
+        <a href="index.php?clicked=battleship" class="project-card">
+            <h3>Battleship</h3>
+            <p>Interactive JavaScript page where you can play battleship and try to sink all the ships!</p>
+        </a>
         <a href="#" class="project-card">
             <h3>Sentiment Analysis Chrome Extension</h3>
             <p>A Chrome extension that performs sentiment analysis on a YouTube comment section to determine viewer sentiment.</p>
             <h4 class="coming-soon">**Coming Soon**</h4>
         </a>
-        <a href="index.php?clicked=battleship" class="project-card">
-            <h3>Battleship</h3>
-            <p>Interactive JavaScript page where you can play battleship and try to sink the ships!</p>
-        </a>
         <a href="#" class="project-card">
-            <h3>Cybersecurity Project</h3>
-            <p>A brief description of your project.</p>
+            <h3>BDD Test Repo</h3>
+            <p>A BDD test repo for this site written in Java using Cucumber and Selenium.</p>
             <h4 class="coming-soon">**Coming Soon**</h4>
         </a>
     </div>

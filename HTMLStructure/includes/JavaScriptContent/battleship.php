@@ -99,16 +99,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
 
         .board {
             display: grid;
-            grid-template-columns: repeat(25, 30px);
-            grid-template-rows: repeat(25, 30px);
+            grid-template-columns: repeat(25, 20px); /* Reduced from 30px */
+            grid-template-rows: repeat(25, 20px); /* Reduced from 30px */
             gap: 2px;
             justify-content: center;
             margin-bottom: 20px;
         }
 
         .cell {
-            width: 30px;
-            height: 30px;
+            width: 20px;  /* Reduced from 30px */
+            height: 20px; /* Reduced from 30px */
             background-color: #ccc;
             display: flex;
             align-items: center;
@@ -119,7 +119,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
         .cell:hover {
             background-color: #eee;
         }
-
 
         .cell.hit {
             background-color: #ff0000; /* Red for hit */
@@ -133,52 +132,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
             pointer-events: none; /* Disable re-selection */
         }
 
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        label {
+        .ships-left {
+            position: relative;
+            left: 7em;
+            font-size: 18px;
             font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        input[type="text"], input[type="submit"] {
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        input[type="text"] {
-            width: 100%;
-        }
-
-        input[type="submit"] {
-            background-color: #ffa500;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #cc8400;
-        }
-
-        .reset-button {
-            background-color: #ff0000;
-            color: white;
-            border: none;
-            padding: 10px;
-            margin-top: 20px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .reset-button:hover {
-            background-color: #cc0000;
+            color: darkorange;
         }
 
         .error {
@@ -193,19 +152,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
             color: #333;
         }
 
-        .ships-left {
-            position: relative;
-            font-size: 18px;
-            font-weight: bold;
-            color: darkorange;
+        .reset-button {
+            background-color: #ff0000;
+            width: 100%;
+            color: white;
+            border: none;
+            padding: 1em;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .reset-button:hover {
+            background-color: #cc0000;
+        }
+
+        .battleForm {
+            display: none;
         }
     </style>
 
     <script>
-        // JavaScript to handle cell click and autofill the coordinates in the form
+        // JavaScript to handle cell click and auto-submit the form
         function handleCellClick(x, y) {
             document.getElementById('xCoordinate').value = x;
             document.getElementById('yCoordinate').value = y;
+            document.battleForm.submit(); // Submit the form automatically
         }
     </script>
 </head>
@@ -216,7 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
 
     <!-- Display ships left -->
     <div class="ships-left">
-        Ships Left: <?php echo $_SESSION['shipsLeft']; ?>
+<!--        Ships Left: --><?php //echo $_SESSION['shipsLeft']; ?>
     </div>
 
     <div id="board" class="board">
@@ -240,23 +213,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
     <!-- Fire result displayed below the board -->
     <?php echo $fireResult; ?>
 
-    <!-- Form to submit coordinates -->
-    <form name="battleForm" method="POST">
-        <label for="xCoordinate">X Coordinate (1-25):</label>
-        <input type="text" name="xCoordinate" id="xCoordinate" placeholder="Enter X Coordinate">
-
-        <label for="yCoordinate">Y Coordinate (1-25):</label>
-        <input type="text" name="yCoordinate" id="yCoordinate" placeholder="Enter Y Coordinate">
-
-        <input type="submit" value="Fire!">
-
-        <p id="error" class="error"></p>
+    <!-- Form to submit coordinates (now auto-filled and auto-submitted) -->
+    <form name="battleForm" method="POST" class="battleForm">
+        <input type="hidden" name="xCoordinate" id="xCoordinate">
+        <input type="hidden" name="yCoordinate" id="yCoordinate">
     </form>
 
-    <form method="POST">
+    <form method="POST" >
         <button class="reset-button" name="reset">New Board</button>
     </form>
-
 
 </div>
 
