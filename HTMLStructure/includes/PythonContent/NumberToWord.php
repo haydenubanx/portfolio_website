@@ -2,7 +2,7 @@
 
 
 //The print statement for the question as presented in the assignment instructions
-$question = "<blockquote>This form accepts an integer number between 10 Billion and -10 Billion (non-inclusive) and converts it to text as it would be spoken</blockquote>";
+$question = "<blockquote>Takes a number between 10 Billion and -10 Billion (non-inclusive) and converts it to text as it would be spoken</blockquote><br/><blockquote>Technology: Python Running in Browser</blockquote>";
 
 
 //The print statement for the question, query, and function call to print statement for the table

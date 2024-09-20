@@ -235,7 +235,6 @@
     <h1>Hayden Eubanks</h1>
     <p>Aspiring<br/>Software Engineer | Quality Engineer | Cybersecurity Professional</p>
 
-    <!-- Centered GitHub icon and button -->
     <div class="github-container">
         <i class="fa-brands fa-github skill-icon-home"></i>
         <a href="https://github.com/haydenubanx" class="cta-button" role="button">Go To GitHub</a>
@@ -248,10 +247,9 @@
             <p>A Chrome extension that performs sentiment analysis on a YouTube comment section to determine viewer sentiment.</p>
             <h4 class="coming-soon">**Coming Soon**</h4>
         </a>
-        <a href="#" class="project-card">
-            <h3>Self Balancing Binary Tree</h3>
-            <p>A binary search tree that automatically maintains its balance during insertions and deletions, ensuring optimal time complexity for operations like search, insert, and delete.</p>
-            <h4 class="coming-soon">**Coming Soon**</h4>
+        <a href="index.php?clicked=battleship" class="project-card">
+            <h3>Battleship</h3>
+            <p>Interactive JavaScript page where you can play battleship and try to sink the ships!</p>
         </a>
         <a href="#" class="project-card">
             <h3>Cybersecurity Project</h3>

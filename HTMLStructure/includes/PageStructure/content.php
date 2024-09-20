@@ -17,6 +17,8 @@
 
     $allowed_java_pages = ['#'];
 
+    $allowed_javascript_pages = ['battleship'];
+
     $allowed_cybersecurity_pages = ['cyberSecurityHome', 'cleanDeskPolicy'];
 
     $allowed_about_me_pages = ['aboutMe'];
@@ -59,6 +61,11 @@
     else if (isset($_GET['clicked']) && in_array($_GET['clicked'], $allowed_python_pages)) {
         $page = $_GET['clicked'];
         include 'includes/PythonContent/'.$page.'.php';
+    }
+
+    else if (isset($_GET['clicked']) && in_array($_GET['clicked'], $allowed_javascript_pages)) {
+        $page = $_GET['clicked'];
+        include 'includes/JavaScriptContent/'.$page.'.php';
     }
     ?>
 </section>
