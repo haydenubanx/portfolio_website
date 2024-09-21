@@ -449,7 +449,7 @@
             <h4><strong>Accomplishments:</strong></h4>
             <ul>
                 <li>Refactored automation repo to reduce runtime by 70%, reducing test execution time from 50 minutes to 15 minutes.</li>
-                <li>Developed a new BDD test automation repo for regression testing across three microservices.</li>
+                <li>Created and maintained a new BDD test automation service for regression testing across three microservices.</li>
             </ul>
         </div>
         <div class="project-card">
