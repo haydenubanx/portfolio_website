@@ -225,6 +225,29 @@
                 font-size: 1.2em;
             }
         }
+
+        .text-to-type {
+            color: #ff8c00;
+        }
+
+        .cursor {
+            font-size: 1em;
+            color: #ff8c00;
+            animation: blink 1s linear infinite;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 100%;
+            }
+            50% {
+                opacity: 0%;
+            }
+        }
+
+        .job-titles {
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -233,7 +256,7 @@
 <!-- Hero Section -->
 <section class="about" aria-label="Hero Section">
     <h1>Hayden Eubanks</h1>
-    <p>Aspiring<br/>Software Engineer | Quality Engineer | Cybersecurity Professional</p>
+    <p class="job-titles">Aspiring<br><span class="text-to-type"></span><span class="cursor">|</span></p>
 
     <div class="github-container">
         <i class="fa-brands fa-github skill-icon-home"></i>
@@ -258,5 +281,54 @@
         </a>
     </div>
 </section>
+
+<script>
+
+    function sleep(ms) {
+        return new Promise((resolve)  => setTimeout(resolve, ms));
+    }
+
+
+    const textElement = document.querySelector(".text-to-type");
+    const jobTitles = ["Software Engineer", "Quality Engineer", "Cyber Security Professional"];
+    let sleepTime = 50;
+
+    const iterateJobTitles = async (element, textArray, textArrayIndex = 0) => {
+        while(true) {
+            let currentTitle = textArray[textArrayIndex];
+
+            for(let i = 0; i < currentTitle.length; i++) {
+
+                if(i === 0) {
+                    element.textContent = "";
+
+                }
+
+                element.textContent += currentTitle[i];
+                await sleep(sleepTime);
+
+                if(i === currentTitle.length - 1) {
+                    await sleep(2000);
+
+                    for(let j = currentTitle.length - 1; j >= 0; j--) {
+                        element.textContent = currentTitle.substring(0,j);
+                        await sleep(sleepTime);
+                    }
+                    if(textArrayIndex === textArray.length - 1) {
+                        textArrayIndex = 0;
+                    }
+                    else {
+                        textArrayIndex++;
+                    }
+                }
+            }
+
+        }
+
+    };
+
+    iterateJobTitles(textElement, jobTitles);
+
+</script>
 
 </body>
