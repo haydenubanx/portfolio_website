@@ -421,7 +421,7 @@
 
 
     .about-top-section {
-        height:60vh;
+        height:65vh;
     }
 
     </style>
