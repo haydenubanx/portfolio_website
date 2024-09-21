@@ -13,12 +13,24 @@
             padding: 0;
             box-sizing: border-box;
             color: #333;
+            background: url('../../../HTMLStructure/resources/images/wallpaper.jpg') no-repeat center;
+            background-size: cover;
+            animation: zoom 20s infinite alternate;
+            z-index: -1;
         }
+        /*@keyframes zoom {*/
+        /*    0% {*/
+        /*        transform: scale(1);*/
+        /*    }*/
+        /*    100% {*/
+        /*        transform: scale(1.25);*/
+        /*    }*/
+        /*}*/
 
         /* Personal Statement Section */
         .personal-statement {
             position: relative;
-            background: linear-gradient(to right, #f4f4f4, #e0e0e0);
+            /*background: linear-gradient(to right, #f4f4f4, #e0e0e0);*/
             padding: 60px 20px; /* Reduced padding for mobile */
             text-align: center;
             overflow: hidden; /* Ensure circles don’t overflow the section */
@@ -62,12 +74,14 @@
         .personal-statement h1 {
             font-size: 2.5em; /* Adjust font-size for better scaling */
             margin: 0;
+            color: white;
         }
 
         .personal-statement p {
             font-size: 1.2em; /* Slightly smaller font for mobile */
             color: #666;
             padding: 0 15px; /* Added padding for better text alignment */
+            color: white;
         }
 
         /* Section Styles */
@@ -79,7 +93,7 @@
         .AboutH2Heading {
             margin-bottom: 30px;
             font-size: 2em; /* Adjusted heading size for mobile */
-            color: #222;
+            color: white;;
         }
 
         .skills-section, .section-item {
@@ -89,7 +103,7 @@
         .skills-section-break {
             font-size: 1.8em;
             margin-bottom: 15px;
-            color: #222;
+            color: white;
         }
 
         .section-item {
@@ -126,6 +140,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            color: white;
         }
 
         .skills-list li {
@@ -135,7 +150,7 @@
 
         .skill-icon {
             font-size: 1.8em;
-            color: #666;
+            color: white;
             margin-bottom: 5px;
         }
 
@@ -317,14 +332,18 @@
                 display: block; /* Ensure the icons are visible */
             }
         }
+
+        .heading {
+            color: white;
+        }
     </style>
 </head>
 <body>
 
 <div class="personal-statement">
     <!-- Image Section -->
-    <img src="../../resources/images/Hayden_Polaroid.jpeg" alt="Hayden Eubanks">
-    <h1>About Me</h1>
+    <img src="../../../HTMLStructure/resources/images/Hayden_Polaroid.jpeg" alt="Hayden Eubanks">
+    <h1 class="heading">About Me</h1>
     <p>Hello! I'm Hayden, an aspiring software developer passionate about building efficient, user-friendly
         applications. With a background in computer science and professional experience as a quality engineer, I am
         dedicated to crafting clean, scalable code and continuously improving my skills. I'm eager to contribute to
