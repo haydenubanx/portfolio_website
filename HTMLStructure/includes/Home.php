@@ -409,7 +409,7 @@
 
 
     .about-top-section {
-        height:100vh;
+        height:60vh;
     }
 
     </style>
@@ -419,11 +419,11 @@
 
 <!-- Hero Section -->
 <section class="about" aria-label="Hero Section">
-    <section class="about-top-section">
+    <div class="about-top-section">
     <h1>Hayden Eubanks</h1>
     <p class="job-titles">Aspiring<br><span class="text-to-type"></span><span class="cursor">|</span></p>
         <a class="arrow-link" href="#portfolio-section"><i class="fa-solid fa-angle-down skill-icon-home"></i></a>
-    </section>
+    </div>
 
     <a id="portfolio-section"></a>
     <h2 id="portfolio-section" class="myProjects">About Me</h2>
