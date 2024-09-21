@@ -60,7 +60,7 @@
 
         .skill-icon-home {
             font-size: 4em;
-            color: #102e4a;
+            color: white;
             margin-bottom: 10px;
             display: block;
             text-align: center;
@@ -121,13 +121,13 @@
         }
 
         .about h1 {
-            color: #102e4a;
+            color: white;
             font-size: 4em;
             margin-bottom: 0.5em;
         }
 
         .about p {
-            color: #102e4a;
+            color: white;
             font-size: 1.5em;
         }
 
@@ -138,7 +138,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('../resources/images/Portfolio_Background_Image.jpg') no-repeat center;
+            background: url('../resources/images/wallpaper.jpg') no-repeat center;
             background-size: cover;
             animation: zoom 20s infinite alternate;
             z-index: -1;
@@ -227,12 +227,12 @@
         }
 
         .text-to-type {
-            color: #102e4a;
+            color: #ffa500;
         }
 
         .cursor {
             font-size: 1em;
-            color: #102e4a;
+            color: #ffa500;
             animation: blink 1s linear infinite;
         }
 
@@ -247,6 +247,10 @@
 
         .job-titles {
             font-weight: bold;
+        }
+
+        .myProjects {
+            color: white;
         }
     </style>
 </head>
@@ -263,7 +267,7 @@
         <a href="https://github.com/haydenubanx" class="cta-button" role="button">Go To GitHub</a>
     </div>
 
-    <h2>My Projects</h2>
+    <h2 class="myProjects">My Projects</h2>
     <div class="portfolio-cards">
         <a href="index.php?clicked=battleship" class="project-card">
             <h3>Battleship</h3>
