@@ -295,7 +295,7 @@
 
     const textElement = document.querySelector(".text-to-type");
     const jobTitles = ["Software Engineer", "Quality Engineer", "Cyber Security Professional"];
-    let sleepTime = 50;
+    let sleepTime = 35;
 
     const iterateJobTitles = async (element, textArray, textArrayIndex = 0) => {
         while(true) {

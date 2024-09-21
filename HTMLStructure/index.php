@@ -1,4 +1,5 @@
 <?php
+require __DIR__.'/includes/JavaScriptContent/Ship.php';
 	//Starts a session so variables such as the user input for the welcome message can be remembered
 	session_start();
 
