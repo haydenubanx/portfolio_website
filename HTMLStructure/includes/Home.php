@@ -138,7 +138,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('../../HTMLStructure/resources/images/wallpaper.jpg') no-repeat center;
+            background: url('../resources/images/wallpaper.jpg') no-repeat center;
             background-size: cover;
             animation: zoom 20s infinite alternate;
             z-index: -1;
