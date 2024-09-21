@@ -227,12 +227,12 @@
         }
 
         .text-to-type {
-            color: #ff8c00;
+            color: #102e4a;
         }
 
         .cursor {
             font-size: 1em;
-            color: #ff8c00;
+            color: #102e4a;
             animation: blink 1s linear infinite;
         }
 
