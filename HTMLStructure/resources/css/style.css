@@ -332,12 +332,6 @@ main {
     padding: 2em;
 }
 
-.location {
-    color: white;
-    margin-bottom: 1em;
-    margin-top:0;
-}
-
 pre {
     padding: 1em;
     border: 1px solid #ddd;

@@ -253,6 +253,12 @@
             color: white;
         }
 
+        .location {
+            color: white;
+            margin-bottom: 1em;
+            margin-top:0;
+        }
+
 
     </style>
 </head>
