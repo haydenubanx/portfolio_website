@@ -423,12 +423,11 @@
     <div class="portfolio-cards">
         <a href="index.php?clicked=battleship" class="project-card">
             <h3>Battleship</h3>
-            <p>Interactive JavaScript page where you can play battleship and try to sink all the ships!</p>
+            <p>Interactive JavaScript page where you can play battleship.</p>
         </a>
         <a href="#" class="project-card">
             <h3>Sentiment Analysis Chrome Extension</h3>
-            <p>A Chrome extension that performs sentiment analysis on a YouTube comment section to determine viewer
-                sentiment.</p>
+            <p>A Chrome extension that performs sentiment analysis on a YouTube comment section to determine viewer sentiment.</p>
             <h4 class="coming-soon">**Coming Soon**</h4>
         </a>
         <a href="#" class="project-card">
