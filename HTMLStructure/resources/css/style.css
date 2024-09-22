@@ -30,6 +30,8 @@ header a {
 
 header nav {
     display: flex;
+    flex-direction: column;
+    align-items: end;
     gap: 1em;
 }
 
@@ -47,15 +49,13 @@ header nav a:hover {
 
 /* Mobile toggle button */
 .nav-toggle {
-    display: none;
+    flex:auto;
+    margin: auto auto;
     font-size: 1.5em;
     color: white;
     background-color: transparent;
     border: none;
     cursor: pointer;
-    position: fixed;
-    top: 1em;
-    right: 1em;
     z-index: 1001;
 }
 
@@ -68,7 +68,7 @@ header nav a:hover {
         background-color: #333;
         padding: 20px;
         position: absolute;
-        top: 50px; /* Adjust as needed to float out of header */
+        top: 70px; /* Adjust as needed to float out of header */
         left: 0;
         width: 100%;
         height: auto;
@@ -81,6 +81,7 @@ header nav a:hover {
 
     /* Mobile toggle button (hamburger menu) */
     .nav-toggle {
+        margin: auto auto;
         display: block;
         font-size: 1.5em;
         color: white;
@@ -257,6 +258,47 @@ header nav a:hover {
 /* Hide the dot for empty timeline items */
 .timeline-item.empty::before {
     display: none;
+}
+
+@media (max-width: 786px) {
+
+    .timeline {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center all items */
+    }
+
+    .timeline::before {
+        display: none; /* Remove the vertical line on mobile */
+    }
+
+    .timeline-item {
+        width: 90%;
+        margin: auto auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center content within each item */
+    }
+
+    .timeline-item:nth-child(even) {
+        margin: auto auto;
+        left: auto;
+    }
+
+    .timeline-item::before {
+        display: none; /* Hide the dot for each timeline item on mobile */
+    }
+
+    .timeline-item-icon {
+        font-size: 2.5em; /* Reduce icon size for mobile */
+        display: block; /* Ensure the icons are visible */
+    }
+
+    .section-item {
+        text-align: center; /* Ensure the text is centered */
+    }
+
 }
 
 .cta-button {
@@ -522,6 +564,28 @@ code[class*="language-"] {
     .hide-on-mobile {
         display: none;
     }
+
+
+    .logo-slider {
+        height: 4em;
+        z-index: 1;
+        display: inline-block;
+        scroll-behavior: smooth;
+        animation: 35s slide infinite linear;
+    }
+
+}
+
+@keyframes slide  {
+    from {
+        transform: translateX(0);
+    }
+    to {
+
+        transform: translateX(-100%);
+
+    }
+
 }
 
 @keyframes zoom {

@@ -41,10 +41,12 @@
 
         /* Personal Statement Section */
         .personal-statement {
-            position: relative;
-            padding: 60px 20px; /* Reduced padding for mobile */
-            text-align: center;
-            overflow: hidden; /* Ensure circles don’t overflow the section */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
 
@@ -75,16 +77,42 @@
         }
 
         .personal-statement h1 {
-            font-size: 2.5em; /* Adjust font-size for better scaling */
-            margin: 0;
+            /*font-size: 2.5em; !* Adjust font-size for better scaling *!*/
+            /*margin: 0;*/
+            /*color: white;*/
+
+            font-size: 2.5em;
+            margin-bottom: 20px;
             color: white;
         }
 
         .personal-statement p {
             font-size: 1.2em; /* Slightly smaller font for mobile */
-            color: #666;
-            padding: 0 15px; /* Added padding for better text alignment */
             color: white;
+            line-height: 1.6;
+            /*padding: 0 15px; !* Added padding for better text alignment *!*/
+            /*color: white;*/
+        }
+
+        .text-context {
+            flex: 0 0 65%; /* Text takes up 65% of the width */
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .personal-statement .image-wrapper {
+            flex: 0 0 30%; /* Image takes up 30% of the width */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .personal-statement img {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
         }
 
         /* Section Styles */
@@ -219,36 +247,6 @@
                 flex-direction: column;
             }
 
-            .timeline {
-                padding: 0;
-            }
-
-            .timeline::before {
-                display: none; /* Remove the vertical line on mobile */
-            }
-
-            .timeline-item {
-                width: 90%; /* Make timeline items span most of the width */
-                margin: auto auto; /* Center the items horizontally */
-                display: flex;
-                flex-direction: column;
-                align-items: center; /* Center content within each item */
-            }
-
-            .timeline-item:nth-child(even) {
-                left: auto;
-                transform: translateX(0%);
-            }
-
-            .timeline-item::before {
-                display: none; /* Hide the dot for each timeline item on mobile */
-            }
-
-            .timeline-item-icon {
-                font-size: 3em; /* Reduce icon size for mobile */
-                margin: 10px 0; /* Center the icons */
-                display: block; /* Ensure the icons are visible */
-            }
         }
 
         .heading {
@@ -282,12 +280,16 @@
     <section class="personal-section">
     <div class="personal-statement">
         <!-- Image Section -->
+        <div class="image-wrapper">
         <img src="../../resources/images/Hayden_Polaroid.jpeg" alt="Hayden Eubanks">
+        </div>
+        <div class="text-context">
         <h1 class="heading">About Me</h1>
         <p>Hello! I'm Hayden, an aspiring software developer passionate about building efficient, user-friendly
             applications. With a background in computer science and professional experience as a quality engineer, I am
             dedicated to crafting clean, scalable code and continuously improving my skills. I'm eager to contribute to
             innovative teams and develop cutting-edge technology solutions.</p>
+        </div>
     </div>
     </section>
 

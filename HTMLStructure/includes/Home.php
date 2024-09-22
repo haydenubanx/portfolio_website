@@ -100,7 +100,8 @@
                 position: absolute;
                 width: 100%;
                 left: 0;
-                top: 50px;
+                top: 10rem;
+                margin-top: 2em;
                 padding-bottom: 10px;
             }
 
@@ -287,14 +288,10 @@
             height: 60px;
         }
 
-
-
         .logo-slider  svg:hover{
             /*width: 4.5em;*/
             /*height: 3.5em;*/
         }
-
-
 
 
         .icon:first-child {
@@ -335,11 +332,6 @@
         }
 
 
-
-
-
-
-
         .kafka {
             color: white;
         }
@@ -366,17 +358,6 @@
             fill:  purple;
         }
 
-        @keyframes slide  {
-            from {
-                transform: translateX(0);
-            }
-            to {
-
-                transform: translateX(-100%);
-
-            }
-
-        }
 
         .fa-angle-down {
             animation: blink-less 5s linear infinite;
