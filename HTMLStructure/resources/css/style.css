@@ -47,17 +47,22 @@ header nav a:hover {
     background-color: #444;
 }
 
-/* Mobile toggle button */
+/* Mobile toggle button (hamburger menu) */
 .nav-toggle {
-    flex:auto;
     margin: auto auto;
+    display: none;
     font-size: 1.5em;
     color: white;
-    background-color: transparent;
+    background: none;
     border: none;
     cursor: pointer;
-    z-index: 1001;
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    z-index: 1001; /* Above the navbar */
 }
+
+
 
 /* Mobile-specific styles */
 @media (max-width: 768px) {
@@ -79,19 +84,17 @@ header nav a:hover {
         display: flex; /* Show navbar when toggled */
     }
 
-    /* Mobile toggle button (hamburger menu) */
+    /* Mobile toggle button */
     .nav-toggle {
+        display: flex;
+        flex:auto;
         margin: auto auto;
-        display: block;
         font-size: 1.5em;
         color: white;
-        background: none;
+        background-color: transparent;
         border: none;
         cursor: pointer;
-        position: absolute;
-        right: 1em;
-        top: 1em;
-        z-index: 1001; /* Above the navbar */
+        z-index: 1001;
     }
 
     /* Dropdown styling for mobile */
