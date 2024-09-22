@@ -333,7 +333,7 @@
         <section class="timeline-item hidden">
             <div class="">
                 <article class="section-item">
-                    <h3>Select Test Cases</h3>
+                    <h3>Selecting Security Test Cases</h3>
                     <p><strong>Description:</strong> Outlines the process of generating security test cases for the
                         Hackazon application based on system requirements. It includes a STRIDE threat model to identify
                         key security threats and proposes test cases to mitigate these risks across various layers of
