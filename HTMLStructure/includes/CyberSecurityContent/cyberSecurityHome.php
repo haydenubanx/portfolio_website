@@ -11,7 +11,7 @@
             margin: 0;
             height: 100%;
             box-sizing: border-box;
-            background-color: #f5f5f5; /* Soft white background */
+            background-color: #102e4a; /* Soft white background */
             color: #333;
             overflow-x: hidden;
         }
@@ -20,8 +20,8 @@
         .cyber-header {
             position: relative;
             height: 60vh;
-            background-color: #102e4a; /* Almost black light blue */
-            color: #f5f5f5; /* Soft white text */
+            background-color: #f5f5f5; /* Almost black light blue */
+            color: #102e4a; /* Soft white text */
             text-align: center;
             padding-top: 60px;
             display: flex;
@@ -43,7 +43,7 @@
         .cyber-header p {
             font-size: 1.4em;
             margin-top: 10px;
-            color: #cbd7e7; /* Lighter blue for subtext */
+            color: #102e4a; /* Lighter blue for subtext */
         }
 
         /* Section Styling */
@@ -58,7 +58,7 @@
             z-index: 2;
             margin-bottom: 40px;
             font-size: 2.5em;
-            color: #102e4a;
+            color: white;
         }
 
         .section-item {
@@ -117,7 +117,7 @@
         }
 
         .wave .shape-fill {
-            fill: #102E4A;
+            fill: #F5F5F5;
         }
 
         /* Buttons Container styling */
