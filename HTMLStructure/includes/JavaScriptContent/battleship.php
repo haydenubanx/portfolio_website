@@ -260,7 +260,7 @@ function processShot($shipTra1, $shipTra2, $shipTra3, $shipTra4, $shipTra5, $shi
                     } //Print hit message if this is the first time this ship has been hit
                     else {
                         //Updates both the endgame grid and the current guesses grid
-                        if($shipTrackers[$index][$x][$y]) {
+                        if ($shipTrackers[$index][$x][$y]) {
                             $status = 'hit';
                             $ship->setHitBefore(true);
                             $ship->setHitCount($ship->getHitCount() + 1);
@@ -359,8 +359,7 @@ initializeSessionBoard();
 updateShipDetails($_SESSION['board'], $_SESSION['positionChecked'], $_SESSION['shipTracker1'], $_SESSION['shipTracker2'], $_SESSION['shipTracker3'], $_SESSION['shipTracker4'], $_SESSION['shipTracker5'], $_SESSION['shipTracker6'], $_SESSION['shipTracker7'], $ship1, $ship2, $ship3, $ship4, $ship5, $ship6, $ship7);
 
 
-
-if(isset($_SESSION['ship1'])) {
+if (isset($_SESSION['ship1'])) {
     $ship1 = $_SESSION['ship1'];
     $ship2 = $_SESSION['ship2'];
     $ship3 = $_SESSION['ship3'];
@@ -369,7 +368,6 @@ if(isset($_SESSION['ship1'])) {
     $ship6 = $_SESSION['ship6'];
     $ship7 = $_SESSION['ship7'];
 }
-
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
@@ -497,29 +495,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
         }
 
         body {
-
-        }
-
-        .image-container {
             height: 100%;
+            margin: 0;
+            padding: 0;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .image-container::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
             background: url('../../resources/images/wallpaper.jpg') no-repeat center;
-            background-size: cover;
-            animation: zoom 20s infinite alternate;
-            z-index: -1;
-
+            box-sizing: border-box;
+            color: #333;
         }
+
 
         .hiddenForm {
             display: none;
@@ -544,46 +528,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
 
 <div class="image-container">
 
-<div class="container">
-    <h1 class="title">Fire Your Shot!</h1>
+    <div class="container">
+        <h1 class="title">Fire Your Shot!</h1>
 
-    <!-- Display ships left -->
-    <div class="ships-left">
-        Ships Left: <?php echo $_SESSION['shipsLeft']; ?>
-    </div>
+        <!-- Display ships left -->
+        <div class="ships-left">
+            Ships Left: <?php echo $_SESSION['shipsLeft']; ?>
+        </div>
 
-    <div id="board" class="board">
-        <!-- PHP to generate the BOARD_SIZExBOARD_SIZE board -->
-        <?php
-        for ($i = 1; $i <= BOARD_SIZE; $i++) {
-            for ($j = 1; $j <= BOARD_SIZE; $j++) {
-                $cellStatus = $_SESSION['displayBoard'][$i][$j];
-                $cellClass = '';
-                if (stringContains($cellStatus, strtolower('hit'))) {
-                    $cellClass = 'hit selected';
-                } elseif (stringContains($cellStatus, strtolower('miss'))) {
-                    $cellClass = 'miss selected';
+        <div id="board" class="board">
+            <!-- PHP to generate the BOARD_SIZExBOARD_SIZE board -->
+            <?php
+            for ($i = 1; $i <= BOARD_SIZE; $i++) {
+                for ($j = 1; $j <= BOARD_SIZE; $j++) {
+                    $cellStatus = $_SESSION['displayBoard'][$i][$j];
+                    $cellClass = '';
+                    if (stringContains($cellStatus, strtolower('hit'))) {
+                        $cellClass = 'hit selected';
+                    } elseif (stringContains($cellStatus, strtolower('miss'))) {
+                        $cellClass = 'miss selected';
+                    }
+                    echo "<div class='cell $cellClass' data-x='$i' data-y='$j' onclick='handleCellClick($i, $j)'></div>";
                 }
-                echo "<div class='cell $cellClass' data-x='$i' data-y='$j' onclick='handleCellClick($i, $j)'></div>";
             }
-        }
-        ?>
+            ?>
+        </div>
+
+        <!-- Fire result displayed below the board -->
+        <?php echo $fireResult; ?>
+
+        <!-- Form to submit coordinates (now auto-filled and auto-submitted) -->
+        <form name="battleForm" method="POST" class="hiddenForm">
+            <input type="hidden" name="xCoordinate" id="xCoordinate">
+            <input type="hidden" name="yCoordinate" id="yCoordinate">
+        </form>
+
+        <form method="POST" class="battleForm">
+            <button class="reset-button" name="reset">New Board</button>
+        </form>
+
     </div>
-
-    <!-- Fire result displayed below the board -->
-    <?php echo $fireResult; ?>
-
-    <!-- Form to submit coordinates (now auto-filled and auto-submitted) -->
-    <form name="battleForm" method="POST" class="hiddenForm">
-        <input type="hidden" name="xCoordinate" id="xCoordinate">
-        <input type="hidden" name="yCoordinate" id="yCoordinate">
-    </form>
-
-    <form method="POST" class="battleForm">
-        <button class="reset-button" name="reset">New Board</button>
-    </form>
-
-</div>
 </div>
 
 </body>
