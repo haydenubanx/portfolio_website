@@ -206,7 +206,7 @@
                         verification mechanisms.</p>
                     <p><strong>Uses:</strong> MD5 hashing algorithm, md5collgen function for generating collisions,
                         Python, C, Unix commands</p>
-                    <a href="includes/CyberSecurityContent/SupportingFiles/MD5 Hashing Algorithm Collision Attack Lab Report.pdf"
+                    <a href="../../includes/CyberSecurityContent/SupportingFiles/MD5 Hashing Algorithm Collision Attack Lab Report.pdf"
                        download class="cta-button" role="button">Download</a>
                 </article>
             </div>
@@ -222,7 +222,7 @@
                         the OWASP Application Security Verification Standard (ASVS).</p>
                     <p><strong>Uses:</strong> OWASP ASVS, Automated and manual source code review, Dynamic system
                         testing (automated and manual), Tools like Nmap and Python</p>
-                    <a href="includes/CyberSecurityContent/SupportingFiles/Security Testing Plan.pdf" download
+                    <a href="../../includes/CyberSecurityContent/SupportingFiles/Security Testing Plan.pdf" download
                        class="cta-button" role="button">Download</a>
                 </article>
             </div>
@@ -236,7 +236,7 @@
                         application, focusing on various input fields. Multiple security flaws were identified, which
                         could enable attackers to access or modify data, with suggestions for mitigation strategies.</p>
                     <p><strong>Uses:</strong> Burp Suite (Intruder tool), Fuzz testing, HTTP proxying</p>
-                    <a href="includes/CyberSecurityContent/SupportingFiles/Identify Vulnerability in Mobile App.pdf"
+                    <a href="../../includes/CyberSecurityContent/SupportingFiles/Identify Vulnerability in Mobile App.pdf"
                        download class="cta-button" role="button">Download</a>
                 </article>
             </div>
@@ -250,7 +250,7 @@
                         in the Hackazon web application, emphasizing the importance of using prepared statements and
                         input filtering to enhance security.</p>
                     <p><strong>Uses:</strong> SQL/Databases, Prepared Statements, PHP, Fuzz Testing</p>
-                    <a href="includes/CyberSecurityContent/SupportingFiles/MD5 Hashing Algorithm Collision Attack Lab Report.pdf"
+                    <a href="../../includes/CyberSecurityContent/SupportingFiles/MD5 Hashing Algorithm Collision Attack Lab Report.pdf"
                        download class="cta-button" role="button">Download</a>
                 </article>
             </div>
@@ -266,7 +266,7 @@
                         input/output encoding, context-aware sanitization, and secure coding practices.</p>
                     <p><strong>Uses:</strong> PHP, HTML/JavaScript, RIPS Scanner, DOMPurify, Content Security Policy
                         (CSP)</p>
-                    <a href="includes/CyberSecurityContent/SupportingFiles/Fix Security Vulnerabilities.pdf" download
+                    <a href="../../includes/CyberSecurityContent/SupportingFiles/Fix Security Vulnerabilities.pdf" download
                        class="cta-button" role="button">Download</a>
                 </article>
             </div>
@@ -281,7 +281,7 @@
                         message without knowing the original contents and explores mitigating these risks through HMAC
                         implementations.</p>
                     <p><strong>Uses:</strong> SHA256, HMAC, Python, MACs (Message Authentication Codes)</p>
-                    <a href="includes/CyberSecurityContent/SupportingFiles/Hash Length Extension Attack Lab.pdf"
+                    <a href="../../includes/CyberSecurityContent/SupportingFiles/Hash Length Extension Attack Lab.pdf"
                        download class="cta-button" role="button">Download</a>
                 </article>
             </div>
@@ -294,7 +294,7 @@
                     <p><strong>Description:</strong> Designed and implemented a secure file transfer system using
                         asymmetric encryption and digital signatures to ensure data integrity.</p>
                     <p><strong>Technologies Used:</strong> Python, OpenSSL, RSA Encryption</p>
-                    <a href="includes/CyberSecurityContent/SupportingFiles/Initial Dynamic Security Scan.pdf" download
+                    <a href="../../includes/CyberSecurityContent/SupportingFiles/Initial Dynamic Security Scan.pdf" download
                        class="cta-button" role="button">Download</a>
                 </article>
             </div>
@@ -309,7 +309,7 @@
                         version, examines Burp Suite’s ability to detect a variety of web vulnerabilities, and outlines
                         best practices for ethically reporting vulnerabilities to stakeholders.</p>
                     <p><strong>Uses:</strong> Burp Suite, HTTP/Proxy, OWASP</p>
-                    <a href="includes/CyberSecurityContent/SupportingFiles/Initial Static Security Scan.pdf" download
+                    <a href="../../includes/CyberSecurityContent/SupportingFiles/Initial Static Security Scan.pdf" download
                        class="cta-button" role="button">Download</a>
                 </article>
             </div>
@@ -324,7 +324,7 @@
                         the use of secure communication protocols (like HTTPS), and simulates attack scenarios like
                         man-in-the-middle attacks to demonstrate the importance of secure PKI practices.</p>
                     <p><strong>Uses:</strong> OpenSSL, RSA Encryption, X.509 Certificates, HTTPS </p>
-                    <a href="includes/CyberSecurityContent/SupportingFiles/Public Key Infrastructure Lab.pdf" download
+                    <a href="../../includes/CyberSecurityContent/SupportingFiles/Public Key Infrastructure Lab.pdf" download
                        class="cta-button" role="button">Download</a>
                 </article>
             </div>
@@ -341,7 +341,7 @@
                         control, and other security features.</p>
                     <p><strong>Uses:</strong> STRIDE Threat Model, Penetration Testing, Source Code Reviews, OWASP
                         Guidelines</p>
-                    <a href="includes/CyberSecurityContent/SupportingFiles/Select Test Cases.pdf" download
+                    <a href="../../includes/CyberSecurityContent/SupportingFiles/Select Test Cases.pdf" download
                        class="cta-button" role="button">Download</a></article>
             </div>
         </section>
@@ -357,7 +357,7 @@
                         adding randomness to secure encryption processes.</p>
                     <p><strong>Uses:</strong> AES (Advanced Encryption Standard), Python, OpenSSL, Initialization
                         Vectors (IVs)</p>
-                    <a href="includes/CyberSecurityContent/SupportingFiles/Secret Key Encryption Lab.pdf" download
+                    <a href="../../includes/CyberSecurityContent/SupportingFiles/Secret Key Encryption Lab.pdf" download
                        class="cta-button" role="button">Download</a>
                 </article>
             </div>
@@ -373,7 +373,7 @@
                         includes sections on internet usage, employee monitoring, password policies, data handling, and
                         awareness training, all aimed at protecting the company’s resources and data.</p>
                     <p><strong>Uses:</strong> ISO/IEC 27002 </p>
-                    <a href="includes/CyberSecurityContent/SupportingFiles/Acceptable Use Policy for H.E. Games LLC.pdf"
+                    <a href="../../includes/CyberSecurityContent/SupportingFiles/Acceptable Use Policy for H.E. Games LLC.pdf"
                        download class="cta-button" role="button">Download</a>
                 </article>
             </div>
@@ -386,7 +386,7 @@
                     <p><strong>Description:</strong> This document outlines a Clean Desk Policy, which establishes
                         guidelines for maintaining an organized and clutter-free workspace.</p>
                     <p><strong>Uses:</strong> ISO/IEC 27002 </p>
-                    <a href="includes/CyberSecurityContent/SupportingFiles/CleanDeskPolicyExample.pdf" download
+                    <a href="../../includes/CyberSecurityContent/SupportingFiles/CleanDeskPolicyExample.pdf" download
                        class="cta-button" role="button">Download</a>
                 </article>
             </div>
@@ -396,5 +396,5 @@
 
 </body>
 
-<script defer src="../../../HTMLStructure/resources/Scripts/scroll-animations.js"></script>
+<script defer src="../../resources/Scripts/scroll-animations.js"></script>
 </html>
