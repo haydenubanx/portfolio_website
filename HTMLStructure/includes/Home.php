@@ -387,7 +387,7 @@
 
 <!--    <a id="portfolio-section"></a>-->
     <h2 id="portfolio-section" class="myProjects">About Me</h2>
-    <div class="location"><i class="fa-solid fa-location-dot"></i> London, England</div>
+    <div class="location"><i class="fa-solid fa-location-dot location"></i><p class="location"> London, England</p></div>
     <div class="portfolio-cards">
         <div class="project-card">
             <h3>Work Experience</h3>

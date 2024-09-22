@@ -274,7 +274,7 @@
         </div>
         <div class="text-context">
         <h1 class="heading">About Me</h1>
-            <div class="location"><i class="fa-solid fa-location-dot"></i> London, England</div>
+            <div class="location"><i class="fa-solid fa-location-dot location"></i><p class="location"> London, England</p></div>
         <p>Hello! I'm Hayden, an aspiring software developer passionate about building efficient, user-friendly
             applications. With a background in computer science and professional experience as a quality engineer, I am
             dedicated to crafting clean, scalable code and continuously improving my skills. I'm eager to contribute to
