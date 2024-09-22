@@ -167,9 +167,10 @@ header nav a:hover {
 }
 
 
+/* Timeline Styles */
 .timeline {
     position: relative;
-    max-width: 1200px;
+    max-width: 120em;
     margin: 0 auto;
 }
 
@@ -186,22 +187,21 @@ header nav a:hover {
 
 .timeline-item {
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 1rem;
     position: relative;
     width: 45%;
     margin: 10px 0;
-    /* Adjusting the timeline item position */
-    transform: translateX(-50%);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .timeline-item:nth-child(odd) {
-    left: -1%;
-    transform: translateX(0);
+    flex: auto;
+    margin-right: 55%;
 }
 
 .timeline-item:nth-child(even) {
-    left: 25%;
-    transform: translateX(50%);
+    flex: auto;
+    margin-left: 50%;
 }
 
 .timeline-item::before {
@@ -209,8 +209,9 @@ header nav a:hover {
     position: absolute;
     width: 12px;
     height: 12px;
-    background-color: #007bff;
+    background-color: #ffa500;
     border-radius: 50%;
+    z-index: 10;
 }
 
 .timeline-item:nth-child(odd)::before {
@@ -222,6 +223,35 @@ header nav a:hover {
 .timeline-item:nth-child(even)::before {
     top: 35px;
     left: 30px;
+}
+
+.timeline-item:hover {
+    transform: scale(1.03);
+}
+
+/* Icon Styles */
+.timeline-item-icon {
+    width: 15em;
+    height: 15em;
+    font-size: 14em;
+    color: #007bff;
+    position: absolute;
+    margin-top: 5%;
+}
+
+.timeline-item:nth-child(odd) .timeline-item-icon {
+    right: -1em;
+    transform: translateX(50%);
+}
+
+.timeline-item:nth-child(even) .timeline-item-icon {
+    left: -1em;
+    transform: translateX(-50%);
+}
+
+/* Hide the dot for empty timeline items */
+.timeline-item.empty::before {
+    display: none;
 }
 
 /* Hide the dot for empty timeline items */
@@ -491,5 +521,32 @@ code[class*="language-"] {
 @media (max-width: 768px) {
     .hide-on-mobile {
         display: none;
+    }
+}
+
+@keyframes zoom {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.25);
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 100%;
+    }
+    50% {
+        opacity: 0%;
+    }
+}
+
+@keyframes blink-less {
+    0% {
+        opacity: 100%;
+    }
+    50% {
+        opacity: 30%;
     }
 }

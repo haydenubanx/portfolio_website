@@ -145,14 +145,7 @@
             z-index: -1;
         }
 
-        @keyframes zoom {
-            0% {
-                transform: scale(1);
-            }
-            100% {
-                transform: scale(1.25);
-            }
-        }
+
 
         /* Image styling for responsiveness */
         .github-container img {
@@ -238,23 +231,7 @@
             animation: blink 1s linear infinite;
         }
 
-        @keyframes blink {
-            0% {
-                opacity: 100%;
-            }
-            50% {
-                opacity: 0%;
-            }
-        }
 
-        @keyframes blink-less {
-            0% {
-                opacity: 100%;
-            }
-            50% {
-                opacity: 30%;
-            }
-        }
 
         .job-titles {
             font-weight: bold;
@@ -280,7 +257,6 @@
             left:0;
             width:1.5em;
             height:100%;
-            /*background: linear-gradient(to left,rgba(250,250,250, 0), black);*/
             content:"";
             z-index: 1001;
         }
@@ -292,14 +268,10 @@
             right:0;
             width: 1.5em;
             height:100%;
-            /*background: linear-gradient(to right,rgba(250,250,250, 0), black);*/
             content:"";
             z-index: 1001;
         }
 
-        .logos:hover .logo-slider {
-            /*animation-play-state: paused;*/
-        }
 
         .logo-slider {
             height: 4em;
