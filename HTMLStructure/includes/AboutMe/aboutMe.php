@@ -311,10 +311,6 @@
                     <i class="fas fa-database skill-icon"></i>
                     <strong>SQL</strong>
                 </li>
-                <li>
-                    <i class="fas fa-magic skill-icon"></i>
-                    <strong>Groovy</strong>
-                </li>
             </ul>
         </div>
 
