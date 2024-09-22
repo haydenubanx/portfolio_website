@@ -16,6 +16,7 @@ header {
     padding: 1em 2em;
     background-color: #222;
     color: white;
+    z-index: 1000;
 }
 
 header h1 {
@@ -41,6 +42,7 @@ header nav a {
     padding: 0.5em 1em;
     border-radius: 4px;
     transition: background-color 0.3s;
+    z-index: 1000;
 }
 
 header nav a:hover {
@@ -102,11 +104,13 @@ header nav a:hover {
         position: relative; /* Relative positioning inside mobile navbar */
         width: 100%; /* Full width for mobile */
         background-color: #444; /* Dropdown background color for mobile */
+        z-index: 1000;
     }
 
     .dropdown-content a {
         padding: 15px;
         border-bottom: 1px solid #333; /* Add border between items */
+        z-index: 1000;
     }
 }
 
@@ -151,7 +155,7 @@ header nav a:hover {
     background-color: white;
     min-width: 160px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    z-index: 1000;
 }
 
 .dropdown-content a {
@@ -326,6 +330,12 @@ header nav a:hover {
 /* Main Content Styles */
 main {
     padding: 2em;
+}
+
+.location {
+    color: white;
+    margin-bottom: 1em;
+    margin-top:0;
 }
 
 pre {
@@ -615,5 +625,24 @@ code[class*="language-"] {
     }
     50% {
         opacity: 30%;
+    }
+}
+
+.hidden {
+    opacity: 0;
+    filter: blur(0.2rem);
+    transform: translateX(-2%);
+    transition: all 0.5s;
+}
+
+.show {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0%);
+}
+
+@media(prefers-reduced-motion) {
+    .hidden {
+        transition: none;
     }
 }

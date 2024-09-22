@@ -19,7 +19,9 @@
 
     $allowed_javascript_pages = ['battleship'];
 
-    $allowed_cybersecurity_pages = ['cyberSecurityHome', 'cleanDeskPolicy'];
+    $allowed_cybersecurity_pages = ['cyberSecurityHome', 'cleanDeskPolicy', 'acceptableUsePolicy'];
+
+    $allowed_engineering_pages = ['capabilityMaturityModel'];
 
     $allowed_about_me_pages = ['aboutMe'];
 
@@ -66,6 +68,11 @@
     else if (isset($_GET['clicked']) && in_array($_GET['clicked'], $allowed_javascript_pages)) {
         $page = $_GET['clicked'];
         include 'includes/JavaScriptContent/'.$page.'.php';
+    }
+
+    else if (isset($_GET['clicked']) && in_array($_GET['clicked'], $allowed_engineering_pages)) {
+        $page = $_GET['clicked'];
+        include 'includes/DevelopmentContent/'.$page.'.php';
     }
     ?>
 </section>

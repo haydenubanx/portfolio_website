@@ -106,6 +106,10 @@
             background-color: #0056b3;
         }
 
+        .erd {
+            width: 80%;
+        }
+
     </style>
 </head>
 <body>

@@ -45,18 +45,6 @@
             text-decoration: underline;
         }
 
-        /* Mobile navigation dropdown */
-        .nav-toggle {
-            display: none;
-            font-size: 1.5em;
-            color: white;
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            position: absolute;
-            right: 1em;
-            top: 1em;
-        }
 
         .skill-icon-home {
             font-size: 4em;
@@ -393,6 +381,7 @@
 
 <!--    <a id="portfolio-section"></a>-->
     <h2 id="portfolio-section" class="myProjects">About Me</h2>
+    <div class="location"><i class="fa-solid fa-location-dot"></i> London, England</div>
     <div class="portfolio-cards">
         <div class="project-card">
             <h3>Work Experience</h3>

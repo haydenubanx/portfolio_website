@@ -497,10 +497,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
         }
 
         body {
+
+        }
+
+        .image-container {
+            height: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: url('../../resources/images/wallpaper.jpg') no-repeat center;
             background-size: cover;
             animation: zoom 20s infinite alternate;
             z-index: -1;
+
         }
 
         .hiddenForm {
@@ -523,6 +541,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
     </script>
 </head>
 <body>
+
+<div class="image-container">
 
 <div class="container">
     <h1 class="title">Fire Your Shot!</h1>
@@ -563,6 +583,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
         <button class="reset-button" name="reset">New Board</button>
     </form>
 
+</div>
 </div>
 
 </body>
