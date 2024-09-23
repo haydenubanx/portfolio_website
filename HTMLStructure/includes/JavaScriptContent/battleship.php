@@ -350,22 +350,24 @@ if (isset($_POST['submitScore']) && $_SESSION['shotsUsed'] != 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battleship Game - Shoot Your Shot</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: darkorange;
+            font-family: 'Inter', sans-serif;
+            background-color: #1b1f23;
+            color: #e3e4e6;
             margin: 0;
             padding: 0;
         }
 
         .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #333;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 40px;
+            background-color: #2c3136;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
         }
 
         .battleForm {
@@ -377,39 +379,42 @@ if (isset($_POST['submitScore']) && $_SESSION['shotsUsed'] != 0) {
 
         h1 {
             text-align: center;
-            color: darkorange;
-            font-weight: bold;
+            color: #ffa500;
+            font-weight: 700;
+            margin-bottom: 30px;
         }
 
         .board {
             display: grid;
-            grid-template-columns: repeat(25, 20px); /* Reduced from 30px */
-            grid-template-rows: repeat(25, 20px); /* Reduced from 30px */
-            gap: 2px;
+            grid-template-columns: repeat(25, 0.5fr);
+            grid-template-rows: repeat(25, 0.5fr);
+            gap: 0.5rem;
             justify-content: center;
             margin-bottom: 20px;
         }
 
         .cell {
-            width: 20px; /* Reduced from 30px */
-            height: 20px; /* Reduced from 30px */
-            background-color: #aaa;
+            width: 24px;
+            height: 24px;
+            background-color: #454c54;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
         }
 
         .cell:hover {
-            background-color: #eee;
+            background-color: #616871;
         }
 
         .cell.hit {
-            background-color: #ff0000; /* Red for hit */
+            background-color: #ff453a;
         }
 
         .cell.miss {
-            background-color: #eee; /* White for miss */
+            background-color: #9da5ad;
         }
 
         .cell.selected {
@@ -417,62 +422,51 @@ if (isset($_POST['submitScore']) && $_SESSION['shotsUsed'] != 0) {
         }
 
         .ships-left {
-            /*display: flex;*/
-            position: relative;
-            justify-content: left;
             font-size: 18px;
-            font-weight: bold;
-            color: darkorange;
+            font-weight: 600;
+            color: #ffa500;
+            text-align: left;
+            margin: 15px 0;
         }
 
         .error {
-            color: red;
+            color: #ff6b6b;
             font-size: 14px;
+            margin-top: 20px;
+            text-align: center;
         }
 
         .fire-result {
             text-align: center;
             font-weight: bold;
             margin-top: 20px;
-            color: darkorange;
+            color: #ffa500;
         }
 
         .reset-button {
-            background-color: #ff0000;
-            width: 100%;
+            background-color: #ff4500;
             color: white;
             border: none;
             font-weight: bold;
-            padding: 1em;
-            margin-top: 20px;
-            margin-bottom: 20px;
+            padding: 14px 20px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            border-radius: 10px;
+            border-radius: 8px;
+            margin-top: 20px;
+            width: 100%;
         }
 
         .reset-button:hover {
-            background-color: #cc0000;
+            background-color: #e63e00;
         }
 
         body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
             text-align: center;
-            background: url('../../resources/images/wallpaper.jpg') no-repeat center;
-            box-sizing: border-box;
-            color: #333;
+            background: linear-gradient(180deg, #1b1f23, #121417);
         }
-
 
         .hiddenForm {
             display: none;
-        }
-
-        .title {
-            font-weight: bold;
-            color: darkorange;
         }
 
         .cell.hovered {
@@ -487,43 +481,89 @@ if (isset($_POST['submitScore']) && $_SESSION['shotsUsed'] != 0) {
         }
 
         .powerups-container {
-            margin-top: 20px;
+            margin-top: 30px;
             padding: 20px;
-            background-color: #444; /* Dark background */
-            border-radius: 12px;
-            box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+            background-color: #33383e;
+            border-radius: 10px;
+            box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
             display: flex;
             justify-content: space-around;
             align-items: center;
-            max-width: 500px;
-            margin: 0 auto; /* Centered on the page */
         }
 
-        /* Power-up buttons */
         .power-button {
-            background-color: #ffa500; /* Orange background */
-            color: white;
+            background-color: #ffa500;
+            color: #2c3136;
             border: none;
-            padding: 15px 20px; /* Larger padding for a modern button */
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+            border-radius: 6px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
-        /* Hover effect */
         .power-button:hover {
-            background-color: #ff7f00; /* Darker orange on hover */
-            transform: translateY(-3px); /* Lift the button slightly */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add a shadow on hover */
+            background-color: #ff8c00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* Active/selected button */
         .power-button.active {
-            background-color: #ff4500; /* Dark red/orange for active state */
-            transform: scale(1.05); /* Slightly bigger when selected */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow for active */
+            background-color: #ff4500;
+            transform: scale(1.05);
+            color: white;
+        }
+
+        /* Leaderboard Container */
+        .leaderboard-container {
+            position: fixed;
+            left: 30px;
+            top: 100px;
+            width: 180px; /* Reduced width */
+            padding: 15px; /* Adjust padding */
+            background-color: #33383e;
+            color: #e3e4e6;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .leaderboard {
+            text-align: center;
+            font-size: 18px; /* Reduced font size */
+            font-weight: 700;
+            margin-bottom: 15px; /* Less margin */
+            color: #ffa500;
+        }
+
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px; /* Reduced font size */
+        }
+
+        .leaderboard-table th, .leaderboard-table td {
+            padding: 6px; /* Smaller padding */
+            text-align: left;
+            border-bottom: 1px solid #454c54;
+        }
+
+        .leaderboard-table th {
+            background-color: #454c54;
+            color: #ffa500;
+            font-weight: 600;
+        }
+
+        .leaderboard-table td {
+            background-color: #2c3136;
+        }
+
+        .leaderboard-table tr:hover {
+            background-color: #3a4148;
+        }
+
+        .leaderboard-table td:first-child {
+            font-weight: 600;
         }
 
         #winModal {
@@ -533,18 +573,48 @@ if (isset($_POST['submitScore']) && $_SESSION['shotsUsed'] != 0) {
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
         }
 
         #winModal div {
             position: relative;
             margin: auto;
             top: 20%;
-            width: 300px;
+            width: 320px;
             background-color: white;
             padding: 20px;
             text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #winModal h2 {
+            color: #ff4500;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        #winModal form input[type="text"] {
+            padding: 10px;
+            width: 80%;
+            border: 2px solid #ffa500;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        #winModal form button {
+            background-color: #ff4500;
+            color: #102e4a;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 6px;
+        }
+
+        #winModal form button:hover {
+            background-color: #e63e00;
         }
 
         .fa-times {
@@ -552,54 +622,7 @@ if (isset($_POST['submitScore']) && $_SESSION['shotsUsed'] != 0) {
             top: 10px;
             right: 10px;
             cursor: pointer;
-        }
-
-        .leaderboard-container {
-            position: absolute; /* Position it on the left */
-            top: 10em; /* Adjust as needed */
-            left: 2em;
-            width: 250px; /* Set width for the leaderboard */
-            padding: 10px;
-            background-color: #333; /* Dark background for contrast */
-            color: white; /* White text for contrast */
-            border-radius: 10px;
-            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Add subtle shadow */
-        }
-
-        .leaderboard {
-            text-align: center;
             font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #ffa500; /* Use dark orange color for the heading */
-        }
-
-        .leaderboard-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .leaderboard-table th, .leaderboard-table td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #555; /* Darker border for rows */
-        }
-
-        .leaderboard-table th {
-            background-color: #444; /* Darker background for headers */
-            color: #ffa500; /* Dark orange for headers */
-        }
-
-        .leaderboard-table td {
-            background-color: #555; /* Lighter background for data rows */
-        }
-
-        .leaderboard-table tr:hover {
-            background-color: #666; /* Hover effect on rows */
-        }
-
-        .leaderboard-table td:first-child {
-            font-weight: bold;
         }
     </style>
 
@@ -634,8 +657,6 @@ if (isset($_POST['submitScore']) && $_SESSION['shotsUsed'] != 0) {
         </tbody>
     </table>
 </div>
-
-<div class="image-container">
 
     <div class="container">
         <h1 class="title">Fire Your Shot!</h1>
