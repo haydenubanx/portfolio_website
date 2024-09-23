@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . "/../DbConnection/db.php";
+include_once __DIR__ . '/../DbConnection/db.php';
 include __DIR__ . '/../SqlContent/TableFormatting.php';
 
 
@@ -207,6 +207,7 @@ if (isset($_POST['reset']) || ($_SESSION['shipsLeft'] == 0 && isset($_SESSION['s
     $_SESSION['areAllSunk'] = false;
 
     unset($_POST['submitScore']);
+    unset($_SESSION['scoreSubmitted']); // Ensure this is reset for the next game
     unset($_SESSION['ship1']);
     unset($_SESSION['reset']);
 }
@@ -301,11 +302,11 @@ if ($_SESSION['shipsLeft'] == 0 && !isset($_SESSION['scoreSubmitted'])) {
             document.getElementById('winModal').style.display = 'block';
         };
     </script>";
-    $_SESSION['scoreSubmitted'] = true;
+    $_SESSION['scoreSubmitted'] = true;  // Set this once the modal has been shown
 }
 
 // Handle form submission to the leaderboard
-if (isset($_POST['submitScore']) && $_SESSION['shipsLeft'] == 0) {
+if (isset($_POST['submitScore']) && $_SESSION['shotsUsed'] != 0) {
     $name = $_POST['playerName'];
     $shotsUsed = $_SESSION['shotsUsed'];
 
@@ -336,7 +337,6 @@ if (isset($_POST['submitScore']) && $_SESSION['shipsLeft'] == 0) {
         <script>
             closeModal();
             resetBoard();
-//            alert('Score submitted successfully!');
         </script>";
     } else {
         echo "<p class='error'>Error submitting score. Please try again.</p>";
