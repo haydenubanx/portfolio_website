@@ -210,9 +210,9 @@ if (isset($_POST['reset']) || ($_SESSION['shipsLeft'] == 0 && isset($_SESSION['s
     unset($_SESSION['scoreSubmitted']); // Ensure this is reset for the next game
     unset($_SESSION['ship1']);
     unset($_SESSION['reset']);
+    unset($_SESSION['modalShown']);
 }
 
-// Handle form submission
 
 $fireResult = '';
 
@@ -295,14 +295,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
 
 
 // Check if the player has won and has not submitted the score yet
-if ($_SESSION['shipsLeft'] == 0 && !isset($_SESSION['scoreSubmitted'])) {
+if ($_SESSION['shipsLeft'] == 0 && !isset($_SESSION['modalShown']) && !isset($_SESSION['scoreSubmitted'])) {
     echo "
     <script>
         window.onload = function() {
             document.getElementById('winModal').style.display = 'block';
         };
     </script>";
-    $_SESSION['scoreSubmitted'] = true;  // Set this once the modal has been shown
+
+    $_SESSION['modalShown'] = true;
+
 }
 
 // Handle form submission to the leaderboard
@@ -575,6 +577,10 @@ if (isset($_POST['submitScore']) && $_SESSION['shotsUsed'] != 0) {
             height: 100%;
             background-color: rgba(0, 0, 0, 0.7);
             z-index: 1000;
+        }
+
+        #winModal p {
+            color: #102e4a;
         }
 
         #winModal div {
