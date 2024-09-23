@@ -1,4 +1,5 @@
 <?php
+include_once __DIR__ . "/../DbConnection/db.php";
 
 const BOARD_SIZE = 25;
 
@@ -67,6 +68,7 @@ function updateShipDetails($shipMap, $positionChecked, &$shipTracker1, &$shipTra
     $_SESSION['shipTracker6'] = $shipTracker6;
     $_SESSION['shipTracker7'] = $shipTracker7;
 }
+
 // Load the battleship board from a text file
 function loadBoardFromFile()
 {
@@ -210,7 +212,7 @@ if (!isset($_SESSION['areAllSunk'])) {
     $_SESSION['areAllSunk'] = false;
 }
 
-if(!isset($_SESSION['shotsUsed'])) {
+if (!isset($_SESSION['shotsUsed'])) {
     $_SESSION['shotsUsed'] = 0;
 }
 
@@ -281,6 +283,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
     $ship5 = $_SESSION['ship5'];
     $ship6 = $_SESSION['ship6'];
     $ship7 = $_SESSION['ship7'];
+}
+
+
+// Check if the player has won
+if ($_SESSION['shipsLeft'] == 0) {
+    echo "
+    <script>
+        window.onload = function() {
+            document.getElementById('winModal').style.display = 'block';
+        };
+    </script>";
+}
+
+// Handle form submission to the leaderboard
+if (isset($_POST['submitScore'])) {
+    $name = $_POST['playerName'];
+    $shotsUsed = $_SESSION['shotsUsed'];
+
+    //Query to retrieve the highest number so far in the Primary Key
+    $sqlIncrementValueQuery = "SELECT MAX(id) FROM leaderboard;";
+
+    //Variable to store the number of highest primary key
+    $valueToIncrement = mysqli_query($_SESSION['dbConnection'], $sqlIncrementValueQuery);
+
+    //An array to store the contents of the employ that is to be added to the database
+    $incrementValueArray = mysqli_fetch_row($valueToIncrement);
+    $incrementValue = $incrementValueArray[0] + 1;
+    $sqlQuery = "INSERT INTO leaderboard VALUES('".$incrementValue."' , '".$name."', '".$shotsUsed."');";
+
+    if (mysqli_query($_SESSION['dbConnection'], $sqlQuery)) {
+        echo "<p class='success'>Score submitted successfully!</p>";
+    } else {
+        echo "<p class='error'>Error submitting score. Please try again.</p>";
+    }
 }
 ?>
 <!DOCTYPE HTML>
@@ -423,6 +459,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
             background-color: darkorange;
             color: white;
         }
+
+        #winModal {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+
+        }
+
+        #winModal div {
+            position: relative;
+            margin: auto;
+            top: 20%;
+            width: 300px;
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .fa-times {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
     </style>
 
     <script>
@@ -471,6 +535,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
         <!-- Fire result displayed below the board -->
         <?php echo $fireResult; ?>
 
+        <!-- Modal for submitting score -->
+        <div id="winModal">
+            <div>
+                <span onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </span>
+                <h2>You've Won!</h2>
+                <p>Enter your name to submit your score:</p>
+                <form method="POST">
+                    <input type="text" name="playerName" placeholder="Your Name" required>
+                    <input type="hidden" name="shotsUsed" value="<?php echo $_SESSION['shotsUsed']; ?>">
+                    <button type="submit" name="submitScore">Submit</button>
+                </form>
+            </div>
+        </div>
+
         <!-- Form to submit coordinates (now auto-filled and auto-submitted) -->
         <form name="battleForm" method="POST" class="hiddenForm">
             <input type="hidden" name="xCoordinate" id="xCoordinate">
@@ -497,7 +577,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
 
     // Add event listeners for the powerup buttons
     document.querySelectorAll('.power-button').forEach(button => {
-        button.addEventListener('click', function(event) {
+        button.addEventListener('click', function (event) {
             event.preventDefault();  // Prevent form submission
             selectedPowerUp = this.name;  // Store the selected powerup
             highlightSelectedPowerupButton(this); // Optionally highlight the selected button
@@ -593,5 +673,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
 
     // Call the function to attach hover events once the board is rendered
     attachHoverEvents();
+</script>
+<script>
+    function closeModal() {
+        document.getElementById('winModal').style.display = 'none';
+    }
 </script>
 </html>
