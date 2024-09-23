@@ -1,7 +1,9 @@
 <?php
 include_once __DIR__ . "/../DbConnection/db.php";
 
+
 const BOARD_SIZE = 25;
+
 
 function updateShipDetails($shipMap, $positionChecked, &$shipTracker1, &$shipTracker2, &$shipTracker3, &$shipTracker4, &$shipTracker5, &$shipTracker6, &$shipTracker7, &$ship1, &$ship2, &$ship3, &$ship4, &$ship5, &$ship6, &$ship7)
 {
@@ -194,14 +196,16 @@ function processShot($shipTra1, $shipTra2, $shipTra3, $shipTra4, $shipTra5, $shi
 }
 
 // Reset the game board
-if (isset($_POST['reset'])) {
+if (isset($_POST['reset']) || ($_SESSION['shipsLeft'] == 0 && isset($_SESSION['scoreSubmitted']))) {
     $_SESSION['board'] = loadBoardFromFile();
     $_SESSION['shipsLeft'] = 7;
     $_SESSION['shotsUsed'] = 0;
     $_SESSION['displayBoard'] = array_fill(1, BOARD_SIZE, array_fill(1, BOARD_SIZE, ''));
     $_SESSION['areAllSunk'] = false;
 
+    unset($_POST['submitScore']);
     unset($_SESSION['ship1']);
+    unset($_SESSION['reset']);
 }
 
 // Handle form submission
@@ -286,14 +290,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
 }
 
 
-// Check if the player has won
-if ($_SESSION['shipsLeft'] == 0) {
+
+// Check if the player has won and has not submitted the score yet
+if ($_SESSION['shipsLeft'] == 0 && !isset($_SESSION['scoreSubmitted'])) {
     echo "
     <script>
         window.onload = function() {
             document.getElementById('winModal').style.display = 'block';
         };
     </script>";
+    $_SESSION['scoreSubmitted'] = true;
 }
 
 // Handle form submission to the leaderboard
@@ -301,19 +307,35 @@ if (isset($_POST['submitScore'])) {
     $name = $_POST['playerName'];
     $shotsUsed = $_SESSION['shotsUsed'];
 
-    //Query to retrieve the highest number so far in the Primary Key
+    // Query to retrieve the highest number so far in the Primary Key
     $sqlIncrementValueQuery = "SELECT MAX(id) FROM leaderboard;";
-
-    //Variable to store the number of highest primary key
     $valueToIncrement = mysqli_query($_SESSION['dbConnection'], $sqlIncrementValueQuery);
-
-    //An array to store the contents of the employ that is to be added to the database
     $incrementValueArray = mysqli_fetch_row($valueToIncrement);
     $incrementValue = $incrementValueArray[0] + 1;
-    $sqlQuery = "INSERT INTO leaderboard VALUES('".$incrementValue."' , '".$name."', '".$shotsUsed."');";
+
+    $sqlQuery = "INSERT INTO leaderboard VALUES('".$incrementValue."', '".$name."', '".$shotsUsed."');";
 
     if (mysqli_query($_SESSION['dbConnection'], $sqlQuery)) {
-        echo "<p class='success'>Score submitted successfully!</p>";
+
+        $_SESSION['scoreSubmitted'] = true;
+        $_SESSION['reset'] = true;
+        unset($_POST['submitScore']);
+
+        $_SESSION['board'] = loadBoardFromFile();
+        $_SESSION['shipsLeft'] = 7;
+        $_SESSION['shotsUsed'] = 0;
+        $_SESSION['displayBoard'] = array_fill(1, BOARD_SIZE, array_fill(1, BOARD_SIZE, ''));
+        $_SESSION['areAllSunk'] = false;
+
+        unset($_SESSION['scoreSubmitted']); // Reset the flag to allow modal to show again
+        unset($_SESSION['ship1']);
+
+        echo "
+        <script>
+            closeModal();
+            resetBoard();
+//            alert('Score submitted successfully!');
+        </script>";
     } else {
         echo "<p class='error'>Error submitting score. Please try again.</p>";
     }
@@ -536,14 +558,15 @@ if (isset($_POST['submitScore'])) {
         <?php echo $fireResult; ?>
 
         <!-- Modal for submitting score -->
-        <div id="winModal">
+        <div id="winModal" style="display: none;">
             <div>
-                <span onclick="closeModal()">
-                    <i class="fas fa-times"></i>
-                </span>
+        <span onclick="closeModal()">
+            <i class="fas fa-times"></i>
+        </span>
                 <h2>You've Won!</h2>
+                <p>Your Score: <?php echo $_SESSION['shotsUsed']; ?></p>
                 <p>Enter your name to submit your score:</p>
-                <form method="POST">
+                <form method="POST" onsubmit="hideModalOnSubmit()">
                     <input type="text" name="playerName" placeholder="Your Name" required>
                     <input type="hidden" name="shotsUsed" value="<?php echo $_SESSION['shotsUsed']; ?>">
                     <button type="submit" name="submitScore">Submit</button>
@@ -579,22 +602,39 @@ if (isset($_POST['submitScore'])) {
     document.querySelectorAll('.power-button').forEach(button => {
         button.addEventListener('click', function (event) {
             event.preventDefault();  // Prevent form submission
-            selectedPowerUp = this.name;  // Store the selected powerup
-            highlightSelectedPowerupButton(this); // Optionally highlight the selected button
+
+            // Toggle power-up selection
+            if (selectedPowerUp === this.name) {
+                // Deselect the current power-up if it's already selected
+                selectedPowerUp = null;
+                deselectAllPowerupButtons();
+            } else {
+                // Select the new power-up
+                selectedPowerUp = this.name;
+                highlightSelectedPowerupButton(this);
+            }
         });
     });
 
-    function highlightSelectedPowerupButton(button) {
-        // Optionally, add a visual highlight to the selected button
+    // Deselect all power-up buttons
+    function deselectAllPowerupButtons() {
         document.querySelectorAll('.power-button').forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
+    }
+
+    // Highlight the selected power-up button
+    function highlightSelectedPowerupButton(button) {
+        deselectAllPowerupButtons();  // First, remove highlight from all buttons
+        button.classList.add('active');  // Then highlight the selected button
     }
 
     // Handle cell click and submit the form with the powerup
     function handleCellClick(x, y) {
         document.getElementById('xCoordinate').value = x;
         document.getElementById('yCoordinate').value = y;
-        document.getElementById('powerUpType').value = selectedPowerUp; // Pass selected powerup
+
+        // If no power-up is selected, this will pass null (single shot)
+        document.getElementById('powerUpType').value = selectedPowerUp;
+
         document.battleForm.submit(); // Submit the form only on cell click
     }
 
@@ -675,8 +715,19 @@ if (isset($_POST['submitScore'])) {
     attachHoverEvents();
 </script>
 <script>
+    // Function to hide the modal after the form is submitted
+    function hideModalOnSubmit() {
+        document.getElementById('winModal').style.display = 'none';
+    }
+
     function closeModal() {
         document.getElementById('winModal').style.display = 'none';
+    }
+
+    // Function to reset the board after score submission
+    function resetBoard() {
+        // Reload the page to start a new game with the reset board
+        window.location.reload();
     }
 </script>
 </html>
