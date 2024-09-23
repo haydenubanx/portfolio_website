@@ -1,8 +1,11 @@
 <?php
 include_once __DIR__ . "/../DbConnection/db.php";
+include __DIR__ . '/../SqlContent/TableFormatting.php';
 
 
 const BOARD_SIZE = 25;
+$leaderboardQuery = "Select ROW_NUMBER() OVER(ORDER BY shots) AS Ranking, name AS Name, shots As 'Shots Taken' from leaderboard order by shots limit 10;";
+$leaderBoardResults = mysqli_query($_SESSION['dbConnection'], $leaderboardQuery);
 
 
 function updateShipDetails($shipMap, $positionChecked, &$shipTracker1, &$shipTracker2, &$shipTracker3, &$shipTracker4, &$shipTracker5, &$shipTracker6, &$shipTracker7, &$ship1, &$ship2, &$ship3, &$ship4, &$ship5, &$ship6, &$ship7)
@@ -290,7 +293,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
 }
 
 
-
 // Check if the player has won and has not submitted the score yet
 if ($_SESSION['shipsLeft'] == 0 && !isset($_SESSION['scoreSubmitted'])) {
     echo "
@@ -303,7 +305,7 @@ if ($_SESSION['shipsLeft'] == 0 && !isset($_SESSION['scoreSubmitted'])) {
 }
 
 // Handle form submission to the leaderboard
-if (isset($_POST['submitScore'])) {
+if (isset($_POST['submitScore']) && $_SESSION['shipsLeft'] == 0) {
     $name = $_POST['playerName'];
     $shotsUsed = $_SESSION['shotsUsed'];
 
@@ -313,7 +315,7 @@ if (isset($_POST['submitScore'])) {
     $incrementValueArray = mysqli_fetch_row($valueToIncrement);
     $incrementValue = $incrementValueArray[0] + 1;
 
-    $sqlQuery = "INSERT INTO leaderboard VALUES('".$incrementValue."', '".$name."', '".$shotsUsed."');";
+    $sqlQuery = "INSERT INTO leaderboard VALUES('" . $incrementValue . "', '" . $name . "', '" . $shotsUsed . "');";
 
     if (mysqli_query($_SESSION['dbConnection'], $sqlQuery)) {
 
@@ -361,7 +363,7 @@ if (isset($_POST['submitScore'])) {
             max-width: 800px;
             margin: 50px auto;
             padding: 20px;
-            background-color: rgba(100, 100, 100, 0.6);
+            background-color: #333;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
         }
@@ -477,9 +479,51 @@ if (isset($_POST['submitScore'])) {
             background-color: lightblue;
         }
 
-        .power-button.active {
-            background-color: darkorange;
+        .powerUps {
+            background-color: rgba(100, 100, 100, 0);
+            border: none;
+            box-shadow: none;
+            outline: none;
+        }
+
+        .powerups-container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #444; /* Dark background */
+            border-radius: 12px;
+            box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            max-width: 500px;
+            margin: 0 auto; /* Centered on the page */
+        }
+
+        /* Power-up buttons */
+        .power-button {
+            background-color: #ffa500; /* Orange background */
             color: white;
+            border: none;
+            padding: 15px 20px; /* Larger padding for a modern button */
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+        }
+
+        /* Hover effect */
+        .power-button:hover {
+            background-color: #ff7f00; /* Darker orange on hover */
+            transform: translateY(-3px); /* Lift the button slightly */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add a shadow on hover */
+        }
+
+        /* Active/selected button */
+        .power-button.active {
+            background-color: #ff4500; /* Dark red/orange for active state */
+            transform: scale(1.05); /* Slightly bigger when selected */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow for active */
         }
 
         #winModal {
@@ -509,6 +553,54 @@ if (isset($_POST['submitScore'])) {
             right: 10px;
             cursor: pointer;
         }
+
+        .leaderboard-container {
+            position: absolute; /* Position it on the left */
+            top: 10em; /* Adjust as needed */
+            left: 2em;
+            width: 250px; /* Set width for the leaderboard */
+            padding: 10px;
+            background-color: #333; /* Dark background for contrast */
+            color: white; /* White text for contrast */
+            border-radius: 10px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Add subtle shadow */
+        }
+
+        .leaderboard {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffa500; /* Use dark orange color for the heading */
+        }
+
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .leaderboard-table th, .leaderboard-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #555; /* Darker border for rows */
+        }
+
+        .leaderboard-table th {
+            background-color: #444; /* Darker background for headers */
+            color: #ffa500; /* Dark orange for headers */
+        }
+
+        .leaderboard-table td {
+            background-color: #555; /* Lighter background for data rows */
+        }
+
+        .leaderboard-table tr:hover {
+            background-color: #666; /* Hover effect on rows */
+        }
+
+        .leaderboard-table td:first-child {
+            font-weight: bold;
+        }
     </style>
 
     <script>
@@ -521,6 +613,27 @@ if (isset($_POST['submitScore'])) {
     </script>
 </head>
 <body>
+<div class="leaderboard-container">
+    <h3 class="leaderboard">Leaderboard</h3>
+    <table class="leaderboard-table">
+        <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Shots Taken</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php while($row = mysqli_fetch_assoc($leaderBoardResults)): ?>
+            <tr>
+                <td><?php echo $row['Ranking']; ?></td>
+                <td><?php echo $row['Name']; ?></td>
+                <td><?php echo $row['Shots Taken']; ?></td>
+            </tr>
+        <?php endwhile; ?>
+        </tbody>
+    </table>
+</div>
 
 <div class="image-container">
 
@@ -581,9 +694,11 @@ if (isset($_POST['submitScore'])) {
             <input type="hidden" name="powerUpType" id="powerUpType">
         </form>
         <form method="POST" name="powerUpsForm" class="powerUps">
-            <button type="button" class="power-button" name="cannon">Cannon</button>
-            <button type="button" class="power-button" name="airRaid">Air Raid</button>
-            <button type="button" class="power-button" name="torpedo">Torpedo</button>
+            <div class="powerups-container">
+                <button type="button" class="power-button" name="cannon">Cannon</button>
+                <button type="button" class="power-button" name="airRaid">Air Raid</button>
+                <button type="button" class="power-button" name="torpedo">Torpedo</button>
+            </div>
         </form>
 
         <form method="POST" class="battleForm">
@@ -603,13 +718,13 @@ if (isset($_POST['submitScore'])) {
         button.addEventListener('click', function (event) {
             event.preventDefault();  // Prevent form submission
 
-            // Toggle power-up selection
+            // Toggle active state on the buttons
             if (selectedPowerUp === this.name) {
-                // Deselect the current power-up if it's already selected
+                // Deselect if the same button is clicked
                 selectedPowerUp = null;
                 deselectAllPowerupButtons();
             } else {
-                // Select the new power-up
+                // Select a new powerup and highlight
                 selectedPowerUp = this.name;
                 highlightSelectedPowerupButton(this);
             }
@@ -623,8 +738,8 @@ if (isset($_POST['submitScore'])) {
 
     // Highlight the selected power-up button
     function highlightSelectedPowerupButton(button) {
-        deselectAllPowerupButtons();  // First, remove highlight from all buttons
-        button.classList.add('active');  // Then highlight the selected button
+        deselectAllPowerupButtons();  // Remove active state from all buttons
+        button.classList.add('active');  // Add active state to the clicked button
     }
 
     // Handle cell click and submit the form with the powerup
