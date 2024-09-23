@@ -380,7 +380,7 @@
 <section class="about" aria-label="Hero Section">
     <div class="about-top-section">
     <h1>Hayden Eubanks</h1>
-    <p class="job-titles">Aspiring<br><span class="text-to-type"></span><span class="cursor">|</span></p>
+    <p class="job-titles"><br><span class="text-to-type"></span><span class="cursor">|</span></p>
 <!--        <a class="arrow-link" href="#portfolio-section"><i class="fa-solid fa-angle-down skill-icon-home"></i></a>-->
         <a class="arrow-link"><i class="fa-solid fa-angle-down skill-icon-home"></i></a>
     </div>
@@ -511,7 +511,7 @@
 
 
     const textElement = document.querySelector(".text-to-type");
-    const jobTitles = ["Software Developer", "Quality Engineer", "Cyber Security Professional"];
+    const jobTitles = ["Software Development", "Cyber Security", "Quality Engineering"];
     let sleepTime = 35;
 
     const iterateJobTitles = async (element, textArray, textArrayIndex = 0) => {

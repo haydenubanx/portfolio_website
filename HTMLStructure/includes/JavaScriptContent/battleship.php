@@ -227,72 +227,81 @@ function processShot($shipTra1, $shipTra2, $shipTra3, $shipTra4, $shipTra5, $shi
     $shipTrackers = [$shipTra1, $shipTra2, $shipTra3, $shipTra4, $shipTra5, $shipTra6, $shipTra7];
     $status = '';
 
-
     if (isset($_POST['xCoordinate']) && isset($_POST['yCoordinate'])) {
         $x = intval($_POST['xCoordinate']);
         $y = intval($_POST['yCoordinate']);
+        $powerUp = isset($_POST['powerUpType']) ? $_POST['powerUpType'] : '';
 
         // Validate the coordinates
         if ($x < 1 || $x > BOARD_SIZE || $y < 1 || $y > BOARD_SIZE) {
             $fireResult = '<p class="error">Coordinates out of bounds. Please try again.</p>';
+            return;
+        }
+
+        // Determine the affected cells based on powerup type
+        $affectedCells = [];
+        if ($powerUp == 'cannon') {
+            for ($i = $x - 1; $i <= $x + 1; $i++) {
+                for ($j = $y - 1; $j <= $y + 1; $j++) {
+                    if ($i >= 1 && $i <= BOARD_SIZE && $j >= 1 && $j <= BOARD_SIZE) {
+                        $affectedCells[] = [$i, $j];
+                    }
+                }
+            }
+        } elseif ($powerUp == 'airRaid') {
+            for ($i = -2; $i <= 2; $i++) {
+                if ($x + $i >= 1 && $x + $i <= BOARD_SIZE && $y + $i >= 1 && $y + $i <= BOARD_SIZE) {
+                    $affectedCells[] = [$x + $i, $y + $i]; // Diagonal 1
+                }
+                if ($x + $i >= 1 && $x + $i <= BOARD_SIZE && $y - $i >= 1 && $y - $i <= BOARD_SIZE) {
+                    $affectedCells[] = [$x + $i, $y - $i]; // Diagonal 2
+                }
+            }
+        } elseif ($powerUp == 'torpedo') {
+            for ($j = 1; $j <= BOARD_SIZE; $j++) {
+                $affectedCells[] = [$x, $j]; // Entire row
+            }
         } else {
-            // Check if the shot hits a ship or misses
-            $actualValue = $_SESSION['board'][$x][$y];
+            // Single shot if no powerup is selected
+            $affectedCells[] = [$x, $y];
+        }
+
+        // Process all affected cells
+        foreach ($affectedCells as $coords) {
+            [$i, $j] = $coords;
+            $actualValue = $_SESSION['board'][$i][$j];
+
             if ($actualValue == '#') {
-
                 foreach ($ships as $index => $ship) {
-
-                    //Checks if ship has been hit before and if so prints hit again message
-                    if ($ship->hitBefore && $shipTrackers[$index][$x][$y]) {
-                        //Updates both the final map and the current guesses map
-                        $status = "hit again ";
-
-                        //Updates the number of times this ship has been hit
+                    if ($shipTrackers[$index][$i][$j]) {
+                        $ship->setHitBefore(true);
                         $ship->setHitCount($ship->getHitCount() + 1);
+                        $_SESSION['displayBoard'][$i][$j] = 'hit';
 
-                        //If the ship has been hit as many times as it is long, the ship is sunk and the sunk message is printed
                         if ($ship->hitCount == $ship->length) {
-                            $status .= "and sunk!";
+                            $status = "hit and sunk!";
                             $ship->setSunk(true);
                             $_SESSION['shipsLeft']--;
-                        }
-
-                    } //Print hit message if this is the first time this ship has been hit
-                    else {
-                        //Updates both the endgame grid and the current guesses grid
-                        if ($shipTrackers[$index][$x][$y]) {
+                        } else {
                             $status = 'hit';
-                            $ship->setHitBefore(true);
-                            $ship->setHitCount($ship->getHitCount() + 1);
                         }
                     }
                 }
             } else {
-                $status = 'miss';
+                $_SESSION['displayBoard'][$i][$j] = 'miss';
             }
-
-            // Update the display board with the result
-            $_SESSION['displayBoard'][$x][$y] = $status;
-
-            $_SESSION['ship1'] = $ship1;
-            $_SESSION['ship2'] = $ship2;
-            $_SESSION['ship3'] = $ship3;
-            $_SESSION['ship4'] = $ship4;
-            $_SESSION['ship5'] = $ship5;
-            $_SESSION['ship6'] = $ship6;
-            $_SESSION['ship7'] = $ship7;
-
-            $_SESSION['shipTracker1'] = $shipTra1;
-            $_SESSION['shipTracker2'] = $shipTra2;
-            $_SESSION['shipTracker3'] = $shipTra3;
-            $_SESSION['shipTracker4'] = $shipTra4;
-            $_SESSION['shipTracker5'] = $shipTra5;
-            $_SESSION['shipTracker6'] = $shipTra6;
-            $_SESSION['shipTracker7'] = $shipTra7;
-
-            // Prepare the result message
-            $fireResult = "<p class='fire-result'>Fired at coordinates ($x, $y): " . ucfirst($status) . "</p>";
         }
+
+        $_SESSION['ship1'] = $ship1;
+        $_SESSION['ship2'] = $ship2;
+        $_SESSION['ship3'] = $ship3;
+        $_SESSION['ship4'] = $ship4;
+        $_SESSION['ship5'] = $ship5;
+        $_SESSION['ship6'] = $ship6;
+        $_SESSION['ship7'] = $ship7;
+
+        // Prepare the result message
+        $fireResult = "<p class='fire-result'>Fired at coordinates ($x, $y): " . ucfirst($status) . "</p>";
     }
 }
 
@@ -457,8 +466,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
         }
 
         .ships-left {
+            /*display: flex;*/
             position: relative;
-            left: 7em;
+            justify-content: left;
             font-size: 18px;
             font-weight: bold;
             color: darkorange;
@@ -513,6 +523,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
             font-weight: bold;
             color: darkorange;
         }
+
+        .cell.hovered {
+            background-color: lightblue;
+        }
+
+        .power-button.active {
+            background-color: darkorange;
+            color: white;
+        }
     </style>
 
     <script>
@@ -561,6 +580,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
         <form name="battleForm" method="POST" class="hiddenForm">
             <input type="hidden" name="xCoordinate" id="xCoordinate">
             <input type="hidden" name="yCoordinate" id="yCoordinate">
+            <input type="hidden" name="powerUpType" id="powerUpType">
+        </form>
+        <form method="POST" name="powerUpsForm" class="powerUps">
+            <button type="button" class="power-button" name="cannon">Cannon</button>
+            <button type="button" class="power-button" name="airRaid">Air Raid</button>
+            <button type="button" class="power-button" name="torpedo">Torpedo</button>
         </form>
 
         <form method="POST" class="battleForm">
@@ -571,4 +596,73 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
 </div>
 
 </body>
+
+<script>
+    let selectedPowerUp = null;
+
+    // Add event listeners for the powerup buttons
+    document.querySelectorAll('.power-button').forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();  // Prevent form submission
+            selectedPowerUp = this.name;  // Store the selected powerup
+            highlightSelectedPowerupButton(this); // Optionally highlight the selected button
+        });
+    });
+
+    function highlightSelectedPowerupButton(button) {
+        // Optionally, add a visual highlight to the selected button
+        document.querySelectorAll('.power-button').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+    }
+
+    // Handle cell click and submit the form with the powerup
+    function handleCellClick(x, y) {
+        document.getElementById('xCoordinate').value = x;
+        document.getElementById('yCoordinate').value = y;
+        document.getElementById('powerUpType').value = selectedPowerUp; // Pass selected powerup
+        document.battleForm.submit(); // Submit the form only on cell click
+    }
+
+    // Display hover effect for selected powerup
+    function handleCellHover(x, y) {
+        let cells = document.querySelectorAll('.cell');
+        cells.forEach(cell => cell.classList.remove('hovered')); // Reset hover effect
+
+        if (selectedPowerUp === 'cannon') {
+            highlightCannon(x, y);
+        } else if (selectedPowerUp === 'airRaid') {
+            highlightAirRaid(x, y);
+        } else if (selectedPowerUp === 'torpedo') {
+            highlightTorpedo(x, y);
+        }
+    }
+
+    function highlightCannon(x, y) {
+        for (let i = x - 1; i <= x + 1; i++) {
+            for (let j = y - 1; j <= y + 1; j++) {
+                highlightCell(i, j);
+            }
+        }
+    }
+
+    function highlightAirRaid(x, y) {
+        for (let i = -2; i <= 2; i++) {
+            highlightCell(x + i, y + i); // Diagonal 1
+            highlightCell(x + i, y - i); // Diagonal 2
+        }
+    }
+
+    function highlightTorpedo(x, y) {
+        for (let j = 1; j <= <?php echo BOARD_SIZE; ?>; j++) {
+            highlightCell(x, j); // Highlight the entire row
+        }
+    }
+
+    function highlightCell(x, y) {
+        let cell = document.querySelector(`[data-x='${x}'][data-y='${y}']`);
+        if (cell) {
+            cell.classList.add('hovered');
+        }
+    }
+</script>
 </html>
