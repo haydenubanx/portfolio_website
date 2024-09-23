@@ -2,169 +2,55 @@
 
 const BOARD_SIZE = 25;
 
-function updateShipDetails($shipMap, $positionChecked, $shipTracker1, $shipTracker2, $shipTracker3, $shipTracker4, $shipTracker5, $shipTracker6, $shipTracker7, $ship1, $ship2, $ship3, $ship4, $ship5, $ship6, $ship7)
+function updateShipDetails($shipMap, $positionChecked, &$shipTracker1, &$shipTracker2, &$shipTracker3, &$shipTracker4, &$shipTracker5, &$shipTracker6, &$shipTracker7, &$ship1, &$ship2, &$ship3, &$ship4, &$ship5, &$ship6, &$ship7)
 {
+    $ships = [&$ship1, &$ship2, &$ship3, &$ship4, &$ship5, &$ship6, &$ship7];
+    $shipTrackers = [&$shipTracker1, &$shipTracker2, &$shipTracker3, &$shipTracker4, &$shipTracker5, &$shipTracker6, &$shipTracker7];
 
-    //Loops through the grid and for each position assigns corresponding ship, ship length, and position
     for ($i = 1; $i <= BOARD_SIZE; $i++) {
         for ($j = 1; $j <= BOARD_SIZE; $j++) {
 
-            //Updates ship struct to gather info of ship
+            // If the current position is part of a ship and has not been checked
             if ($shipMap[$i][$j] == '#' && !$positionChecked[$i][$j]) {
 
-                //If no info for ship 1, start gathering data for ship 1
-                if ($ship1->length == 0) {
-                    $ship1->length++;
-                    $shipTracker1[$i][$j] = true;
-                    $positionChecked[$i][$j] = true;
+                // Find the first available ship
+                foreach ($ships as $index => $ship) {
+                    if ($ship->length == 0) {
+                        // Mark the position as checked and assign it to the current ship
+                        $ship->length++;
+                        $shipTrackers[$index][$i][$j] = true;
+                        $positionChecked[$i][$j] = true;
 
-                    //Check spaces around this one to continue assigning to the same ship
-                    for ($p = 1; $p <= 5; $p++) {
-                        //Check spaces directly below this location up to 5 spaces below
-                        if ($i + $p <= BOARD_SIZE && $shipMap[$i + $p][$j] == '#' && !$positionChecked[$i + $p][$j]) {
-                            $ship1->length++;
-                            $shipTracker1[$i + $p][$j] = true;
-                            $positionChecked[$i + $p][$j] = true;
-                        }
-                        //Check spaces to the right of this position up to 5 spaces away
-                        if ($j + $p <= BOARD_SIZE && $shipMap[$i][$j + $p] == '#' && !$positionChecked[$i][$j + $p]) {
-                            $ship1->length++;
-                            $shipTracker1[$i][$j + $p] = true;
-                            $positionChecked[$i][$j + $p] = true;
-                        }
-                    }
-                } //If no info for ship 2, start gathering data for ship 2
-                else if ($ship2->length == 0) {
-                    $ship2->length++;
-                    $shipTracker2[$i][$j] = true;
-                    $positionChecked[$i][$j] = true;
+                        // Determine if the ship is horizontal or vertical
+                        $isVertical = ($i + 1 <= BOARD_SIZE && $shipMap[$i + 1][$j] == '#');
+                        $isHorizontal = ($j + 1 <= BOARD_SIZE && $shipMap[$i][$j + 1] == '#');
 
-                    //Check spaces around this one
-                    for ($p = 1; $p <= 5; $p++) {
-                        //Check spaces directly below this location up to 5 spaces below
-                        if ($i + $p <= BOARD_SIZE && $shipMap[$i + $p][$j] == '#' && !$positionChecked[$i + $p][$j]) {
-                            $ship2->length++;
-                            $shipTracker2[$i + $p][$j] = true;
-                            $positionChecked[$i + $p][$j] = true;
-                        }
-                        //Check spaces to right of this position up to 5 spaces away
-                        if ($j + $p <= BOARD_SIZE && $shipMap[$i][$j + $p] == '#' && !$positionChecked[$i][$j + $p]) {
-                            $ship2->length++;
-                            $shipTracker2[$i][$j + $p] = true;
-                            $positionChecked[$i][$j + $p] = true;
-                        }
-                    }
-                } //If no info for ship 3, start gathering data for ship 3
-                else if ($ship3->length == 0) {
-                    $ship3->length++;
-                    $shipTracker3[$i][$j] = true;
-                    $positionChecked[$i][$j] = true;
-
-                    //Check spaces around this one
-                    for ($p = 1; $p <= 5; $p++) {
-                        //Check spaces directly below this location up to 5 spaces below
-                        if ($i + $p <= BOARD_SIZE && $shipMap[$i + $p][$j] == '#' && !$positionChecked[$i + $p][$j]) {
-                            $ship3->length++;
-                            $shipTracker3[$i + $p][$j] = true;
-                            $positionChecked[$i + $p][$j] = true;
-                        }
-                        //Check spaces to the right of this position up to 5 spaces away
-                        if ($j + $p <= BOARD_SIZE && $shipMap[$i][$j + $p] == '#' && !$positionChecked[$i][$j + $p]) {
-                            $ship3->length++;
-                            $shipTracker3[$i][$j + $p] = true;
-                            $positionChecked[$i][$j + $p] = true;
-                        }
-                    }
-                } //If no info for ship 4, start gathering data for ship 4
-                else if ($ship4->length == 0) {
-                    $ship4->length++;
-                    $shipTracker4[$i][$j] = true;
-                    $positionChecked[$i][$j] = true;
-
-                    //Check spaces around this one
-                    for ($p = 1; $p <= 5; $p++) {
-                        //Check spaces directly below this location up to 5 spaces below
-                        if ($i + $p <= BOARD_SIZE && $shipMap[$i + $p][$j] == '#' && !$positionChecked[$i + $p][$j]) {
-                            $ship4->length++;
-                            $shipTracker4[$i + $p][$j] = true;
-                            $positionChecked[$i + $p][$j] = true;
-                        }
-                        //Check spaces to right of this position up to 5 spaces away
-                        if ($j + $p <= BOARD_SIZE && $shipMap[$i][$j + $p] == '#' && !$positionChecked[$i][$j + $p]) {
-                            $ship4->length++;
-                            $shipTracker4[$i][$j + $p] = true;
-                            $positionChecked[$i][$j + $p] = true;
-                        }
-                    }
-                } //If no info for ship 5, start gathering data for ship 5
-                else if ($ship5->length == 0) {
-                    $ship5->length++;
-                    $shipTracker5[$i][$j] = true;
-                    $positionChecked[$i][$j] = true;
-
-                    //Check spaces around this one
-                    for ($p = 1; $p <= 5; $p++) {
-                        //Check spaces directly below this location up to 5 spaces below
-                        if ($i + $p <= BOARD_SIZE && $shipMap[$i + $p][$j] == '#' && !$positionChecked[$i + $p][$j]) {
-                            $ship5->length++;
-                            $shipTracker5[$i + $p][$j] = true;
-                            $positionChecked[$i + $p][$j] = true;
-                        }
-                        //Check spaces to right of this position up to 5 spaces away
-                        if ($j + $p <= BOARD_SIZE && $shipMap[$i][$j + $p] == '#' && !$positionChecked[$i][$j + $p]) {
-                            $ship5->length++;
-                            $shipTracker5[$i][$j + $p] = true;
-                            $positionChecked[$i][$j + $p] = true;
-                        }
-                    }
-                } //If no info for ship 6, start gathering data for ship 6
-                else if ($ship6->length == 0) {
-                    $ship6->length++;
-                    $shipTracker6[$i][$j] = true;
-                    $positionChecked[$i][$j] = true;
-
-                    //Check spaces around this one
-                    for ($p = 1; $p <= 5; $p++) {
-                        //Check spaces directly below this location up to 5 spaces below
-                        if ($i + $p <= BOARD_SIZE && $shipMap[$i + $p][$j] == '#' && !$positionChecked[$i + $p][$j]) {
-                            $ship6->length++;
-                            $shipTracker6[$i + $p][$j] = true;
-                            $positionChecked[$i + $p][$j] = true;
+                        // Expand the ship based on its orientation
+                        if ($isVertical) {
+                            // The ship is vertical, so check downward
+                            for ($p = 1; $p <= 5 && $i + $p <= BOARD_SIZE && $shipMap[$i + $p][$j] == '#' && !$positionChecked[$i + $p][$j]; $p++) {
+                                $ship->length++;
+                                $shipTrackers[$index][$i + $p][$j] = true;
+                                $positionChecked[$i + $p][$j] = true;
+                            }
+                        } elseif ($isHorizontal) {
+                            // The ship is horizontal, so check to the right
+                            for ($p = 1; $p <= 5 && $j + $p <= BOARD_SIZE && $shipMap[$i][$j + $p] == '#' && !$positionChecked[$i][$j + $p]; $p++) {
+                                $ship->length++;
+                                $shipTrackers[$index][$i][$j + $p] = true;
+                                $positionChecked[$i][$j + $p] = true;
+                            }
                         }
 
-                        //Check spaces to right of this position up to 5 spaces away
-                        if ($j + $p <= BOARD_SIZE && $shipMap[$i][$j + $p] == '#' && !$positionChecked[$i][$j + $p]) {
-                            $ship6->length++;
-                            $shipTracker6[$i][$j + $p] = true;
-                            $positionChecked[$i][$j + $p] = true;
-                        }
-                    }
-                } //If no info for ship 7, start gathering data for ship 7
-                else if ($ship7->length == 0) {
-                    $ship7->length++;
-                    $shipTracker7[$i][$j] = true;
-                    $positionChecked[$i][$j] = true;
-
-                    //Check spaces around this one
-                    for ($p = 1; $p <= 5; $p++) {
-                        //Check spaces directly below this location up to 5 spaces below
-                        if ($i + $p <= BOARD_SIZE && $shipMap[$i + $p][$j] == '#' && !$positionChecked[$i + $p][$j]) {
-                            $ship7->length++;
-                            $shipTracker7[$i + $p][$j] = true;
-                            $positionChecked[$i + $p][$j] = true;
-                        }
-                        //Check spaces to right of this position up to 5 spaces away
-                        if ($j + $p <= BOARD_SIZE && $shipMap[$i][$j + $p] == '#' && !$positionChecked[$i][$j + $p]) {
-                            $ship7->length++;
-                            $shipTracker7[$i][$j + $p] = true;
-                            $positionChecked[$i][$j + $p] = true;
-                        }
+                        // Break out of the loop after assigning this ship
+                        break;
                     }
                 }
             }
         }
     }
 
+    // Store ships and trackers back to session
     $_SESSION['ship1'] = $ship1;
     $_SESSION['ship2'] = $ship2;
     $_SESSION['ship3'] = $ship3;
@@ -180,9 +66,7 @@ function updateShipDetails($shipMap, $positionChecked, $shipTracker1, $shipTrack
     $_SESSION['shipTracker5'] = $shipTracker5;
     $_SESSION['shipTracker6'] = $shipTracker6;
     $_SESSION['shipTracker7'] = $shipTracker7;
-
 }
-
 // Load the battleship board from a text file
 function loadBoardFromFile()
 {
@@ -266,6 +150,8 @@ function processShot($shipTra1, $shipTra2, $shipTra3, $shipTra4, $shipTra5, $shi
             $affectedCells[] = [$x, $y];
         }
 
+        $_SESSION['shotsUsed'] += count($affectedCells);
+
         // Process all affected cells
         foreach ($affectedCells as $coords) {
             [$i, $j] = $coords;
@@ -309,6 +195,7 @@ function processShot($shipTra1, $shipTra2, $shipTra3, $shipTra4, $shipTra5, $shi
 if (isset($_POST['reset'])) {
     $_SESSION['board'] = loadBoardFromFile();
     $_SESSION['shipsLeft'] = 7;
+    $_SESSION['shotsUsed'] = 0;
     $_SESSION['displayBoard'] = array_fill(1, BOARD_SIZE, array_fill(1, BOARD_SIZE, ''));
     $_SESSION['areAllSunk'] = false;
 
@@ -321,6 +208,10 @@ $fireResult = '';
 
 if (!isset($_SESSION['areAllSunk'])) {
     $_SESSION['areAllSunk'] = false;
+}
+
+if(!isset($_SESSION['shotsUsed'])) {
+    $_SESSION['shotsUsed'] = 0;
 }
 
 if (!isset($_SESSION['ship1'])) {
@@ -555,6 +446,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
             Ships Left: <?php echo $_SESSION['shipsLeft']; ?>
         </div>
 
+        <div class="ships-left">
+            Shots Used: <?php echo $_SESSION['shotsUsed']; ?>
+        </div>
+
         <div id="board" class="board">
             <!-- PHP to generate the BOARD_SIZExBOARD_SIZE board -->
             <?php
@@ -623,10 +518,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
         document.battleForm.submit(); // Submit the form only on cell click
     }
 
+    // Attach hover events to each cell
+    function attachHoverEvents() {
+        const cells = document.querySelectorAll('.cell');
+        cells.forEach(cell => {
+            const x = cell.getAttribute('data-x');
+            const y = cell.getAttribute('data-y');
+
+            cell.addEventListener('mouseover', () => handleCellHover(x, y));
+            cell.addEventListener('mouseout', resetHoverEffect);
+        });
+    }
+
     // Display hover effect for selected powerup
     function handleCellHover(x, y) {
-        let cells = document.querySelectorAll('.cell');
-        cells.forEach(cell => cell.classList.remove('hovered')); // Reset hover effect
+        resetHoverEffect(); // Reset previous hover effects
 
         if (selectedPowerUp === 'cannon') {
             highlightCannon(x, y);
@@ -637,18 +543,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
         }
     }
 
+    function resetHoverEffect() {
+        let cells = document.querySelectorAll('.cell');
+        cells.forEach(cell => cell.classList.remove('hovered')); // Reset hover effect
+    }
+
     function highlightCannon(x, y) {
+        x = parseInt(x); // Convert to integer
+        y = parseInt(y); // Convert to integer
+
         for (let i = x - 1; i <= x + 1; i++) {
             for (let j = y - 1; j <= y + 1; j++) {
-                highlightCell(i, j);
+                // Ensure the coordinates are within bounds
+                if (i >= 1 && i <= <?php echo BOARD_SIZE; ?> && j >= 1 && j <= <?php echo BOARD_SIZE; ?>) {
+                    highlightCell(i, j);
+                }
             }
         }
     }
 
     function highlightAirRaid(x, y) {
+        x = parseInt(x); // Convert to integer
+        y = parseInt(y); // Convert to integer
+
         for (let i = -2; i <= 2; i++) {
-            highlightCell(x + i, y + i); // Diagonal 1
-            highlightCell(x + i, y - i); // Diagonal 2
+            // Diagonal 1
+            if (x + i >= 1 && x + i <= <?php echo BOARD_SIZE; ?> && y + i >= 1 && y + i <= <?php echo BOARD_SIZE; ?>) {
+                highlightCell(x + i, y + i);
+            }
+            // Diagonal 2
+            if (x + i >= 1 && x + i <= <?php echo BOARD_SIZE; ?> && y - i >= 1 && y - i <= <?php echo BOARD_SIZE; ?>) {
+                highlightCell(x + i, y - i);
+            }
         }
     }
 
@@ -664,5 +590,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reset'])) {
             cell.classList.add('hovered');
         }
     }
+
+    // Call the function to attach hover events once the board is rendered
+    attachHoverEvents();
 </script>
 </html>
