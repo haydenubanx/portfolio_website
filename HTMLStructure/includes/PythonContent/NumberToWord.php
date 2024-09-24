@@ -21,12 +21,12 @@ echo $description;
         /* Main heading */
         .main-heading {
             text-align: center;
-            font-size: 2.5em;
+            font-size: 2em; /* Smaller font size for better readability on mobile */
             margin-top: 20px;
             color: #f5f5f5;
             padding-bottom: 10px;
             border-bottom: 3px solid #ffa500;
-            max-width: 600px;
+            max-width: 90%;
             margin-left: auto;
             margin-right: auto;
         }
@@ -34,32 +34,22 @@ echo $description;
         /* Description paragraph */
         .description {
             text-align: center;
-            font-size: 1.2em;
-            margin: 20px auto;
+            font-size: 1.1em; /* Slightly smaller font */
+            margin: 15px auto;
             color: #f5f5f5;
-            max-width: 600px;
-        }
-
-        /* Styling the question block */
-        .question {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            color: #f5f5f5;
-            border-bottom: 2px solid #ffa500;  /* Accent color for professionalism */
-            padding-bottom: 10px;
-            text-align: center;
+            max-width: 90%;
         }
 
         /* Container for form and content */
         .container {
-            max-width: 600px;
+            max-width: 100%; /* Full width for responsiveness */
             margin: 0 auto; /* Center horizontally */
             padding: 20px;
             background-color: #102e4a;
             border-radius: 10px;
             text-align: center;  /* Center the content */
             box-sizing: border-box; /* Ensure padding doesn't cause overflow */
-            width: 80%; /* Make container responsive */
+            width: 100%; /* Make container responsive */
         }
 
         /* Form styling */
@@ -70,7 +60,7 @@ echo $description;
             width: 100%;  /* Full width for responsiveness */
             justify-content: center;
             background-color: #f5f5f5;
-            padding: 20px;
+            padding: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 6px;
         }
@@ -84,17 +74,10 @@ echo $description;
             text-align: left;  /* Align label to the left */
         }
 
-        /* Hide the spin buttons in WebKit browsers */
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
         /* Input field */
-        input[type="text"] {
-            padding: 15px;
-            font-size: 1.5em;  /* Larger font size for better visibility */
+        input[type="number"] {
+            padding: 12px;
+            font-size: 1.2em;  /* Font size adjustment for mobile */
             border: 2px solid #ccc;
             border-radius: 6px;
             width: 100%;  /* Full width for larger screens */
@@ -104,7 +87,6 @@ echo $description;
             text-align: center;
             background-color: #f9fafb;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            -moz-appearance: textfield;
         }
 
         /* Submit button */
@@ -130,13 +112,12 @@ echo $description;
         .output {
             margin-top: 2rem;
             margin-bottom: 2rem;
-            font-size: 1.5em;  /* Larger font size for mobile readability */
+            font-size: 1.3em;  /* Slightly smaller for readability on mobile */
             color: #f5f5f5;
             background-color: #102e4a;
             border: none;
             border-radius: 6px;
-            padding: 20px;
-            /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
+            padding: 15px;
             text-align: center;  /* Center align for better presentation */
         }
 
@@ -150,13 +131,18 @@ echo $description;
 
         /* Responsive adjustments */
         @media (max-width: 600px) {
-            .question {
-                font-size: 1.3em;
+            .main-heading {
+                font-size: 1.8em; /* Further reduce heading size on smaller screens */
+            }
+
+            .description {
+                font-size: 1em; /* Smaller font size for better mobile experience */
+                max-width: 90%; /* Max width to fit smaller screens */
             }
 
             .container {
                 padding: 15px;
-                margin: 20px auto;
+                margin: 10px auto;
                 width: 90%;
             }
 
@@ -164,54 +150,50 @@ echo $description;
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start; /* Aligns the form to the left */
-                width: 90%;  /* Full width for responsiveness */
+                width: 100%;  /* Full width for responsiveness */
                 justify-content: center;
             }
 
-            input[type="text"] {
-                font-size: 1.3em;
+            input[type="number"] {
+                font-size: 1.1em;  /* Reduce input font size for mobile */
                 padding: 12px;
-                margin: auto;
+                width: 100%; /* Ensure full-width on smaller screens */
             }
 
             input[type="submit"] {
-                font-size: 15px;
+                font-size: 14px;  /* Adjust button font size */
                 padding: 10px;
             }
 
             .output {
-                font-size: 1.3em;
-                padding: 15px;
+                font-size: 1.2em; /* Further reduced output text size */
+                padding: 10px;
             }
         }
     </style>
-<?php
 
+<?php
 
 function submitNumberToWordForm()
 {
     if (isset($_POST['NumberToWord'])) {
-
         if (strlen($_POST['NumberToWord']) > 50) {
             echo('<p class="error">The value you entered is too long. Please re-enter a value that is under 50 characters.</p>');
         } else {
             $_SESSION['NumberToWord'] = $_POST['NumberToWord'];
         }
-
     }
 
-
     ?>
-
     <!-- linking to PyScript assets -->
     <link rel="stylesheet" href="https://pyscript.net/releases/2022.12.1/pyscript.css"/>
     <script defer src="https://pyscript.net/releases/2022.12.1/pyscript.js"></script>
 
     <div class="container">
-        <form method="post" action="index.php?clicked=NumberToWord"  class="number-form">
+        <form method="post" action="index.php?clicked=NumberToWord" class="number-form">
             <label for="NumberToWord">Input a Number: </label>
-            <input type="number" pattern="[0-9]*" inputmode="numeric" id="NumberToWord" name="NumberToWord"> <br/><br/>
-            <input type="submit" value="Submit" name="submit" onclick="submitNumberToWordForm()"><br/><br/><br/>
+            <input type="number" pattern="[0-9]*" inputmode="numeric" id="NumberToWord" name="NumberToWord" placeholder="Enter a number" required> <br/><br/>
+            <input type="submit" value="Submit" name="submit"><br/><br/><br/>
         </form>
     </div>
 
@@ -221,7 +203,6 @@ function submitNumberToWordForm()
 submitNumberToWordForm();
 
 if (isset($_SESSION['NumberToWord']) and $_SESSION['NumberToWord'] != "") {
-
     ?>
     <div class="output">
         <py-script>
