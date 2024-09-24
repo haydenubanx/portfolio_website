@@ -152,6 +152,7 @@
         /* Responsive Styling */
         @media (max-width: 768px) {
             table {
+                width:100%;
                 font-size: 0.9em;
             }
 
@@ -209,7 +210,6 @@
                 padding: 8px;
             }
 
-            /* Ensure table scrolls horizontally if needed */
             .table-container {
                 overflow-x: auto;
                 display: block;
