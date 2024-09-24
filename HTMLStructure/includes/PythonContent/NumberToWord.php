@@ -253,7 +253,7 @@ if (isset($_SESSION['NumberToWord']) and $_SESSION['NumberToWord'] != "") {
                 output_string += "Negative "
             # 1 Billion
             if num_digits == 10:
-                output_string += digitToText(int(number / 1000000000)) + "Billion "
+                output_string += digitToText(int(number / int(1000000000))) + "Billion "
                 # Reduce number so the millions part is removed
                 number -= int(number / 1000000000) * 1000000000
                 # Decrement the number of digits so next if statement will accept it
