@@ -511,5 +511,5 @@
 </body>
 
 
-<script defer src="../../../HTMLStructure/resources/Scripts/scroll-animations.js"></script>
+<script defer src="../../resources/Scripts/scroll-animations.js"></script>
 </html>
