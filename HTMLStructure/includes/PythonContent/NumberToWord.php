@@ -30,7 +30,7 @@ function submitNumberToWordForm()
     <div class="container">
         <form method="post" action="index.php?clicked=NumberToWord"  class="number-form">
             <label for="NumberToWord">Input a Number: </label>
-            <input type="text" id="NumberToWord" name="NumberToWord"> <br/><br/>
+            <input type="number" pattern="[0-9]*" inputmode="numeric" id="NumberToWord" name="NumberToWord"> <br/><br/>
             <input type="submit" value="Submit" name="submit" onclick="submitNumberToWordForm()"><br/><br/><br/>
         </form>
     </div>
@@ -384,6 +384,13 @@ if (isset($_SESSION['NumberToWord']) and $_SESSION['NumberToWord'] != "") {
             text-align: left;  /* Align label to the left */
         }
 
+        /* Hide the spin buttons in WebKit browsers */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
         /* Input field */
         input[type="text"] {
             padding: 15px;
@@ -397,6 +404,7 @@ if (isset($_SESSION['NumberToWord']) and $_SESSION['NumberToWord'] != "") {
             text-align: center;
             background-color: #f9fafb;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            -moz-appearance: textfield;
         }
 
         /* Submit button */
@@ -449,14 +457,14 @@ if (isset($_SESSION['NumberToWord']) and $_SESSION['NumberToWord'] != "") {
             .container {
                 padding: 15px;
                 margin: 20px auto;
-                width: 100%;
+                width: 90%;
             }
 
             .number-form {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start; /* Aligns the form to the left */
-                width: 100%;  /* Full width for responsiveness */
+                width: 90%;  /* Full width for responsiveness */
                 justify-content: center;
             }
 

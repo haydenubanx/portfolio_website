@@ -672,7 +672,7 @@ if (isset($_POST['submitScore']) && $_SESSION['shotsUsed'] != 0) {
             /* Adjust leaderboard */
             .leaderboard-container {
                 position: relative;
-                width: 90%;
+                width: 85%;
                 margin: 0 0 8rem;
                 padding: 0.6rem;
                 background-color: #2c3136;
@@ -738,18 +738,24 @@ if (isset($_POST['submitScore']) && $_SESSION['shotsUsed'] != 0) {
                 height: calc(100vw / 28);
             }
 
-            /* Adjust leaderboard font sizes */
             .leaderboard-container {
-                margin-top: 15px;
-                padding: 8px;
+                position: relative;
+                max-width: 400px;
+                width: 80%;
+                margin: 0 auto;
+                padding: 0.6rem; /* Adjust padding */
+                background-color: #2c3136;
+                border-radius: 8px;
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
             }
 
             .leaderboard {
-                font-size: 14px;
+                font-size: 16px;
             }
 
             .leaderboard-table th, .leaderboard-table td {
-                font-size: 10px;
+                font-size: 12px;
+                padding: 5px;
             }
 
             /* Smaller reset button */
