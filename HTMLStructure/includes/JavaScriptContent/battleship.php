@@ -318,9 +318,13 @@ if (isset($_POST['submitScore']) && $_SESSION['shotsUsed'] != 0) {
     $incrementValueArray = mysqli_fetch_row($valueToIncrement);
     $incrementValue = $incrementValueArray[0] + 1;
 
-    $sqlQuery = "INSERT INTO leaderboard VALUES('" . $incrementValue . "', '" . $name . "', '" . $shotsUsed . "');";
+    // Prepare the SQL statement with placeholders this prepared statement will assist in preventing vulnerability to SQL injection
+    $stmt = mysqli_prepare($_SESSION['dbConnection'], "INSERT INTO leaderboard (id, name, shots) VALUES (?, ?, ?)");
 
-    if (mysqli_query($_SESSION['dbConnection'], $sqlQuery)) {
+    // Bind the parameters (i: integer, s: string)
+    mysqli_stmt_bind_param($stmt, "isi", $incrementValue, $name, $shotsUsed);
+
+    if (mysqli_stmt_execute($stmt)) {
 
         $_SESSION['scoreSubmitted'] = true;
         $_SESSION['reset'] = true;

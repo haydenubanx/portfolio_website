@@ -34,11 +34,20 @@ function AddEmployeeForm() {
         }
 
 
-        //Checks for date validity
-        else if (checkdate($_POST['hireDate']) == false) {
-
-            echo('<br>'.'Sorry, The date you entered is incorrect!');
-        }
+//        //Checks for date validity
+//        else if ($_POST['hireDate']) {
+//
+//            $format = 'Y-m-d';
+//
+//            $d = DateTime::createFromFormat($format, $_POST['hireDate']);
+//
+//
+//            if(!$d || !(strtolower($d) === strtolower($_POST['hireDate']))) {
+//                echo('<br>'.'Sorry, The date you entered is incorrect!');
+//            }
+//
+//
+//        }
 
 
         //Checks for no input
@@ -75,7 +84,7 @@ function AddEmployeeForm() {
 
     ?>
     <!--The statements for the welcome message form -->
-    <form method="post" action="index.php?clicked=AddEmployee">
+    <form method="post" action="index.php?clicked=SQLHome&query=AddEmployee">
         <label for="addedFirstName">First name: </label>
         <input type="text" id="addedFirstName" name="addedFirstName"> <br /><br />
         <label for="addedLastName">Last name:</label>
@@ -84,7 +93,7 @@ function AddEmployeeForm() {
         <input type="text" id="email" name="email"><br /><br />
         <label for="phoneNumber">Phone Number:</label>
         <input type="text" id="phoneNumber" name="phoneNumber"><br /><br />
-        <label for="hireDate">Hire Date:</label>
+        <label for="hireDate">Hire Date (YYYY/MM/DD):</label>
         <input type="text" id="hireDate" name="hireDate"><br /><br />
         <label for="jobID">Job ID:</label>
         <input type="text" id="jobID" name="jobID"><br /><br />
@@ -113,7 +122,7 @@ if (isset($_SESSION['addedFirstName']) && isset($_SESSION['addedLastName']) && i
     if($_SESSION['addedFirstName'] != "" && $_SESSION['addedLastName'] != "" && $_SESSION['email'] != "" &&
         $_SESSION['phoneNumber'] != "" && $_SESSION['hireDate'] != "" && $_SESSION['jobID'] != ""
         && $_SESSION['salary'] != "" && $_SESSION['commissionPCT'] != "" && $_SESSION['managerID'] != ""
-        && $_SESSION['departmentID'] != ""){
+        && $_SESSION['departmentID'] != "") {
 
         //Query to retrieve the highest number so far in the Primary Key
         $sqlIncrementValueQuery = "SELECT MAX(employee_id) FROM employees;";
@@ -127,30 +136,44 @@ if (isset($_SESSION['addedFirstName']) && isset($_SESSION['addedLastName']) && i
         //Increments the primary key one above the highest
         $incrementValue = $incrementValueArray[0] + 1;
 
-        //The query to be passed to the database
-        $sqlQuery = "INSERT INTO employees 
-				 VALUES( '".$incrementValue."' , '".$_SESSION['addedFirstName']."' , '".$_SESSION['addedLastName']."' , '".$_SESSION['email']."' , '".$_SESSION['phoneNumber']."' , '".
-            $_SESSION['hireDate']."' , '".$_SESSION['jobID']."' , '".$_SESSION['salary']."' , '".$_SESSION['commissionPCT']."' , '".
-            $_SESSION['managerID']."' , '".$_SESSION['departmentID']."');";
+        // Prepared statement to insert employee data
+        $stmt = mysqli_prepare($_SESSION['dbConnection'], "INSERT INTO employees (employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id) 
+                                               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-        //Run the first query to add the name
-        mysqli_query($_SESSION['dbConnection'], $sqlQuery);
+        // Bind the parameters to the prepared statement
+        mysqli_stmt_bind_param($stmt, "issssssdsii", $incrementValue, $_SESSION['addedFirstName'], $_SESSION['addedLastName'],
+            $_SESSION['email'], $_SESSION['phoneNumber'], $_SESSION['hireDate'],
+            $_SESSION['jobID'], $_SESSION['salary'], $_SESSION['commissionPCT'],
+            $_SESSION['managerID'], $_SESSION['departmentID']);
 
-        //Second Query for retrieving entered name
-        $secondSqlQuery = "SELECT employee_ID AS 'Employee ID', first_name AS 'First Name', 
-			last_name AS 'Last Name', email AS 'Email', phone_number AS 'Phone Number', 
-			hire_date AS 'Hire Date', job_ID AS 'Job ID', salary AS 'Salary', commission_pct AS 'Commission Percentage',
-		 	manager_ID AS 'Manager ID', department_ID AS 'Department ID'
-					FROM employees
-					WHERE first_name = '". $_SESSION['addedFirstName'] . "' AND last_name = '" . $_SESSION['addedLastName']."' ;";
+        // Execute the prepared statement
+        mysqli_stmt_execute($stmt);
+
+        // Second prepared statement for selecting employee data
+        $secondStmt = mysqli_prepare($_SESSION['dbConnection'], "SELECT employee_ID AS 'Employee ID', first_name AS 'First Name', 
+                                                     last_name AS 'Last Name', email AS 'Email', phone_number AS 'Phone Number', 
+                                                     hire_date AS 'Hire Date', job_ID AS 'Job ID', salary AS 'Salary', 
+                                                     commission_pct AS 'Commission Percentage', manager_ID AS 'Manager ID', 
+                                                     department_ID AS 'Department ID' 
+                                                     FROM employees WHERE first_name = ? AND last_name = ?");
+
+        // Bind parameters for the select query
+        mysqli_stmt_bind_param($secondStmt, "ss", $_SESSION['addedFirstName'], $_SESSION['addedLastName']);
+        mysqli_stmt_execute($secondStmt);
+
+        // Get the results
+        $resultNames = mysqli_stmt_get_result($secondStmt);
+
+        // Print the formatted table
+        echo tableFormatting($resultNames);
     }
 
 }
 
 //Checks that the second query is set
-if(isset($secondSqlQuery)) {
+if(isset($secondStmt)) {
     //The fuction to perform the query and store the results in the resultNames variable
-    $resultNames= mysqli_query($_SESSION['dbConnection'], $secondSqlQuery);
+    $resultNames= mysqli_query($_SESSION['dbConnection'], $secondStmt);
 
 
     //The print statement for the question, query, and function call to print statement for the table

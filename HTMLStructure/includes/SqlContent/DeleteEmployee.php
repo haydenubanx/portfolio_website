@@ -61,23 +61,16 @@ else if(isset($_POST['yes'])) {
 function AddEmployeeForm() {
 
 
-
-
-
-
     //While valid input has not been entered, continue to present the welcome message form
 
     ?>
     <!--The statements for the welcome message form -->
-    <form method="post" action="index.php?clicked=DeleteEmployee">
+    <form method="post" action="index.php?clicked=SQLHome">
         <label for="employeeID">Employee ID: </label>
         <input type="text" id="employeeID" name="employeeID"> <br /><br />
         <input type="submit" value="Submit" name="submit"><br /><br /><br />
     </form>
     <?php
-
-
-
 
 }
 

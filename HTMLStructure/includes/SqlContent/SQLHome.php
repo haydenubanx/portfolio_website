@@ -281,8 +281,8 @@
     <a href="index.php?clicked=SQLHome&query=DepartmentName" class="query-link"> Department Name</a>
     <a href="index.php?clicked=SQLHome&query=UniqueFirstNames" class="query-link"> Unique First Names</a>
     <a href="index.php?clicked=SQLHome&query=FirstThreeCharacters" class="query-link"> FirstThreeCharacters</a>
-    <a href="index.php?clicked=SQLHome&query=AddEmployee" class="query-link"> Add Employee</a>
-    <a href="index.php?clicked=SQLHome&query=DeleteEmployee" class="query-link"> Delete Employee</a>
+<!--    <a href="index.php?clicked=SQLHome&query=AddEmployee" class="query-link"> Add Employee</a>-->
+<!--    <a href="index.php?clicked=SQLHome&query=DeleteEmployee" class="query-link"> Delete Employee</a>-->
 </section>
 
 <?php

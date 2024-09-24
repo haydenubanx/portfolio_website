@@ -25,7 +25,7 @@ echo $description;
             box-sizing: border-box;
             background-color: #102e4a;
             color: #f5f5f5;
-            min-height: 120vh;
+            min-height: 100vh;
             background-size: cover;
         }
 
