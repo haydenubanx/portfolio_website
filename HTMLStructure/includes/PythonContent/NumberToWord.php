@@ -150,14 +150,22 @@ echo $description;
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start; /* Aligns the form to the left */
-                width: 100%;  /* Full width for responsiveness */
+                width: 95%;  /* Full width for responsiveness */
                 justify-content: center;
+            }
+
+            /* Hide the spin buttons in WebKit browsers */
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
             }
 
             input[type="number"] {
                 font-size: 1.1em;  /* Reduce input font size for mobile */
                 padding: 12px;
                 width: 100%; /* Ensure full-width on smaller screens */
+                -moz-appearance: textfield;
             }
 
             input[type="submit"] {
