@@ -369,7 +369,7 @@ if (isset($_POST['submitScore']) && $_SESSION['shotsUsed'] != 0) {
 
         .container {
             max-width: 900px;
-            margin: 60px auto;
+            margin: 80px auto;
             padding: 40px;
             background-color: #2c3136;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
@@ -642,7 +642,7 @@ if (isset($_POST['submitScore']) && $_SESSION['shotsUsed'] != 0) {
             .container {
                 max-width: 100%;
                 padding: 10px;
-                margin: 0 auto;
+                margin: 9em auto;
             }
 
             .board {
@@ -652,7 +652,7 @@ if (isset($_POST['submitScore']) && $_SESSION['shotsUsed'] != 0) {
             /* Stack leaderboard above the board on mobile */
             .leaderboard-container {
                 position: relative;
-                top: auto;
+                top: 1em;
                 clear: both;
                 margin-bottom: 20px;
             }
