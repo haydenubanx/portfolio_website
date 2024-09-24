@@ -194,6 +194,10 @@
                 margin-bottom: 30px;
             }
 
+            .section-item {
+                width: 90%;
+            }
+
             .section-item h3 {
                 font-size: 1.8em;
             }

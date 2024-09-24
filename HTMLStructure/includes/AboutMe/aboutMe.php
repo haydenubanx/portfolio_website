@@ -232,6 +232,32 @@
             .skills-section-break {
                 font-size: 1.5em;
             }
+
+            .timeline-item {
+                width: 80%;
+            }
+
+            .timeline-item {
+                width: 90%;
+                margin: auto auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Center content within each item */
+            }
+
+            .timeline-item:nth-child(even) {
+                margin: auto auto;
+                left: auto;
+            }
+
+            .timeline-item::before {
+                display: none; /* Hide the dot for each timeline item on mobile */
+            }
+
+            .timeline-item-icon {
+                font-size: 2.5em; /* Reduce icon size for mobile */
+                display: block; /* Ensure the icons are visible */
+            }
         }
 
         .heading {
