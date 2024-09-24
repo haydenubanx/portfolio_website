@@ -676,6 +676,7 @@ if (isset($_POST['submitScore']) && $_SESSION['shotsUsed'] != 0) {
             /* Adjust leaderboard */
             .leaderboard-container {
                 position: relative;
+                top: 10px;
                 clear: right;
                 width: 85%;
                 margin: 0 0 8rem;
@@ -744,7 +745,8 @@ if (isset($_POST['submitScore']) && $_SESSION['shotsUsed'] != 0) {
             }
 
             .leaderboard-container {
-                position: relative;
+                position: absolute;
+                top: 100px;
                 max-width: 400px;
                 width: 80%;
                 margin: 0 auto;
