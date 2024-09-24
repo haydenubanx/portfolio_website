@@ -12,21 +12,27 @@ echo $description;
     <head>
 
         <meta name="format-detection" content="telephone=no">
-    </head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
         body {
             font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             background-color: #102e4a;
             color: #f5f5f5;
+            min-height: 120vh;
+            background-size: cover;
         }
 
         /* Main heading */
         .main-heading {
             text-align: center;
-            font-size: 2em; /* Smaller font size for better readability on mobile */
+            font-size: 2em;
             margin-top: 20px;
             color: #f5f5f5;
             padding-bottom: 10px;
@@ -39,7 +45,7 @@ echo $description;
         /* Description paragraph */
         .description {
             text-align: center;
-            font-size: 1.1em; /* Slightly smaller font */
+            font-size: 1.1em;
             margin: 15px auto;
             color: #f5f5f5;
             max-width: 90%;
@@ -47,14 +53,14 @@ echo $description;
 
         /* Container for form and content */
         .container {
-            max-width: 100%; /* Full width for responsiveness */
-            margin: 0 auto; /* Center horizontally */
+            max-width: 100%;
+            margin: 0 auto;
             padding: 20px;
             background-color: #102e4a;
             border-radius: 10px;
-            text-align: center;  /* Center the content */
-            box-sizing: border-box; /* Ensure padding doesn't cause overflow */
-            width: 80%; /* Make container responsive */
+            text-align: center;
+            box-sizing: border-box;
+            width: 80%;
         }
 
         /* Form styling */
@@ -75,8 +81,8 @@ echo $description;
             font-weight: bold;
             font-size: 1.2em;
             color: #333;
-            width: 100%;  /* Full width for consistency */
-            text-align: left;  /* Align label to the left */
+            width: 100%;
+            text-align: left;
         }
 
         /* Hide the spin buttons in WebKit browsers */
@@ -186,6 +192,9 @@ echo $description;
             }
         }
     </style>
+    </head>
+
+<body>
 
 <?php
 
@@ -483,4 +492,5 @@ if (isset($_SESSION['NumberToWord']) and $_SESSION['NumberToWord'] != "") {
 
         </py-script>
     </div>
+</body>
 <?php }
