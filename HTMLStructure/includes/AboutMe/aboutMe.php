@@ -32,7 +32,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('../../../HTMLStructure/resources/images/wallpaper.jpg') no-repeat center;
+            background: url('../../resources/images/wallpaper.jpg') no-repeat center;
             background-size: cover;
             animation: zoom 20s infinite alternate;
             z-index: -1;
@@ -251,7 +251,7 @@
     <div class="personal-statement">
         <!-- Image Section -->
         <div class="image-wrapper">
-        <img src="../../../HTMLStructure/resources/images/Hayden_Polaroid.jpeg" alt="Hayden Eubanks">
+        <img src="../../resources/images/Hayden_Polaroid.jpeg" alt="Hayden Eubanks">
         </div>
         <div class="text-context">
         <h1 class="heading">About Me</h1>
@@ -461,5 +461,5 @@
 </body>
 
 
-<script defer src="../../../HTMLStructure/resources/Scripts/scroll-animations.js"></script>
+<script defer src="../../resources/Scripts/scroll-animations.js"></script>
 </html>
