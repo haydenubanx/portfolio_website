@@ -7,6 +7,186 @@ $description = "<p class='description'>Input any number between -10 Billion and 
 echo $heading;
 echo $description;
 
+?>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #102e4a;
+            color: #f5f5f5;
+        }
+
+        /* Main heading */
+        .main-heading {
+            text-align: center;
+            font-size: 2.5em;
+            margin-top: 20px;
+            color: #f5f5f5;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ffa500;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Description paragraph */
+        .description {
+            text-align: center;
+            font-size: 1.2em;
+            margin: 20px auto;
+            color: #f5f5f5;
+            max-width: 600px;
+        }
+
+        /* Styling the question block */
+        .question {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #f5f5f5;
+            border-bottom: 2px solid #ffa500;  /* Accent color for professionalism */
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        /* Container for form and content */
+        .container {
+            max-width: 600px;
+            margin: 0 auto; /* Center horizontally */
+            padding: 20px;
+            background-color: #102e4a;
+            border-radius: 10px;
+            text-align: center;  /* Center the content */
+            box-sizing: border-box; /* Ensure padding doesn't cause overflow */
+            width: 80%; /* Make container responsive */
+        }
+
+        /* Form styling */
+        .number-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;  /* Full width for responsiveness */
+            justify-content: center;
+            background-color: #f5f5f5;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+        }
+
+        label {
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #333;
+            width: 100%;  /* Full width for consistency */
+            text-align: left;  /* Align label to the left */
+        }
+
+        /* Hide the spin buttons in WebKit browsers */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Input field */
+        input[type="text"] {
+            padding: 15px;
+            font-size: 1.5em;  /* Larger font size for better visibility */
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            width: 100%;  /* Full width for larger screens */
+            max-width: 400px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            text-align: center;
+            background-color: #f9fafb;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            -moz-appearance: textfield;
+        }
+
+        /* Submit button */
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;  /* Full width on smaller screens */
+            max-width: 400px;  /* Max width for consistency */
+            box-sizing: border-box;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Styling the output box */
+        .output {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            font-size: 1.5em;  /* Larger font size for mobile readability */
+            color: #f5f5f5;
+            background-color: #102e4a;
+            border: none;
+            border-radius: 6px;
+            padding: 20px;
+            /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
+            text-align: center;  /* Center align for better presentation */
+        }
+
+        /* Error message */
+        .error {
+            color: #ff4d4d;
+            margin-top: 10px;
+            font-size: 1em;
+            text-align: center;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .question {
+                font-size: 1.3em;
+            }
+
+            .container {
+                padding: 15px;
+                margin: 20px auto;
+                width: 90%;
+            }
+
+            .number-form {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start; /* Aligns the form to the left */
+                width: 90%;  /* Full width for responsiveness */
+                justify-content: center;
+            }
+
+            input[type="text"] {
+                font-size: 1.3em;
+                padding: 12px;
+                margin: auto;
+            }
+
+            input[type="submit"] {
+                font-size: 15px;
+                padding: 10px;
+            }
+
+            .output {
+                font-size: 1.3em;
+                padding: 15px;
+            }
+        }
+    </style>
+<?php
+
 
 function submitNumberToWordForm()
 {
@@ -307,182 +487,4 @@ if (isset($_SESSION['NumberToWord']) and $_SESSION['NumberToWord'] != "") {
 
         </py-script>
     </div>
-
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            background-color: #102e4a;
-            color: #f5f5f5;
-        }
-
-        /* Main heading */
-        .main-heading {
-            text-align: center;
-            font-size: 2.5em;
-            margin-top: 20px;
-            color: #f5f5f5;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #ffa500;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Description paragraph */
-        .description {
-            text-align: center;
-            font-size: 1.2em;
-            margin: 20px auto;
-            color: #f5f5f5;
-            max-width: 600px;
-        }
-
-        /* Styling the question block */
-        .question {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            color: #f5f5f5;
-            border-bottom: 2px solid #ffa500;  /* Accent color for professionalism */
-            padding-bottom: 10px;
-            text-align: center;
-        }
-
-        /* Container for form and content */
-        .container {
-            max-width: 600px;
-            margin: 0 auto; /* Center horizontally */
-            padding: 20px;
-            background-color: #102e4a;
-            border-radius: 10px;
-            text-align: center;  /* Center the content */
-            box-sizing: border-box; /* Ensure padding doesn't cause overflow */
-            width: 80%; /* Make container responsive */
-        }
-
-        /* Form styling */
-        .number-form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;  /* Full width for responsiveness */
-            justify-content: center;
-            background-color: #f5f5f5;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 6px;
-        }
-
-        label {
-            margin-bottom: 10px;
-            font-weight: bold;
-            font-size: 1.2em;
-            color: #333;
-            width: 100%;  /* Full width for consistency */
-            text-align: left;  /* Align label to the left */
-        }
-
-        /* Hide the spin buttons in WebKit browsers */
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        /* Input field */
-        input[type="text"] {
-            padding: 15px;
-            font-size: 1.5em;  /* Larger font size for better visibility */
-            border: 2px solid #ccc;
-            border-radius: 6px;
-            width: 100%;  /* Full width for larger screens */
-            max-width: 400px;
-            margin-bottom: 15px;
-            box-sizing: border-box;
-            text-align: center;
-            background-color: #f9fafb;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            -moz-appearance: textfield;
-        }
-
-        /* Submit button */
-        input[type="submit"] {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;  /* Full width on smaller screens */
-            max-width: 400px;  /* Max width for consistency */
-            box-sizing: border-box;
-            transition: background-color 0.3s ease;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-
-        /* Styling the output box */
-        .output {
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-            font-size: 1.5em;  /* Larger font size for mobile readability */
-            color: #f5f5f5;
-            background-color: #102e4a;
-            border: none;
-            border-radius: 6px;
-            padding: 20px;
-            /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
-            text-align: center;  /* Center align for better presentation */
-        }
-
-        /* Error message */
-        .error {
-            color: #ff4d4d;
-            margin-top: 10px;
-            font-size: 1em;
-            text-align: center;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 600px) {
-            .question {
-                font-size: 1.3em;
-            }
-
-            .container {
-                padding: 15px;
-                margin: 20px auto;
-                width: 90%;
-            }
-
-            .number-form {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start; /* Aligns the form to the left */
-                width: 90%;  /* Full width for responsiveness */
-                justify-content: center;
-            }
-
-            input[type="text"] {
-                font-size: 1.3em;
-                padding: 12px;
-                margin: auto;
-            }
-
-            input[type="submit"] {
-                font-size: 15px;
-                padding: 10px;
-            }
-
-            .output {
-                font-size: 1.3em;
-                padding: 15px;
-            }
-        }
-    </style>
 <?php }

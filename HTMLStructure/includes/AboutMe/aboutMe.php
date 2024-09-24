@@ -34,7 +34,7 @@
             height: 100%;
             background: url('../../resources/images/wallpaper.jpg') no-repeat center;
             background-size: cover;
-            animation: zoom 20s infinite alternate;
+            animation: zoom 30s infinite alternate;
             z-index: -1;
 
         }
