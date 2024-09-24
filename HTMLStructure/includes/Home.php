@@ -208,6 +208,12 @@
             .about p {
                 font-size: 1.2em;
             }
+
+            .about::before {
+                scale: 100%;
+                animation: zoom 40s infinite alternate;
+                transform: rotate(90deg);
+            }
         }
 
         .text-to-type {

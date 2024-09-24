@@ -258,6 +258,13 @@
                 font-size: 2.5em; /* Reduce icon size for mobile */
                 display: block; /* Ensure the icons are visible */
             }
+
+            .image-container::before {
+                scale: 100%;
+                animation: zoom 40s infinite alternate;
+                transform: rotate(90deg);
+
+            }
         }
 
         .heading {
