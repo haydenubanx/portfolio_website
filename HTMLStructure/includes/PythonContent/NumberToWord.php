@@ -49,7 +49,7 @@ echo $description;
             border-radius: 10px;
             text-align: center;  /* Center the content */
             box-sizing: border-box; /* Ensure padding doesn't cause overflow */
-            width: 100%; /* Make container responsive */
+            width: 80%; /* Make container responsive */
         }
 
         /* Form styling */
@@ -74,19 +74,27 @@ echo $description;
             text-align: left;  /* Align label to the left */
         }
 
+        /* Hide the spin buttons in WebKit browsers */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
         /* Input field */
         input[type="number"] {
             padding: 12px;
-            font-size: 1.2em;  /* Font size adjustment for mobile */
+            font-size: 1.2em;
             border: 2px solid #ccc;
             border-radius: 6px;
-            width: 100%;  /* Full width for larger screens */
+            width: 80%;
             max-width: 400px;
             margin-bottom: 15px;
             box-sizing: border-box;
             text-align: center;
             background-color: #f9fafb;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            -moz-appearance: textfield;
         }
 
         /* Submit button */
@@ -154,18 +162,12 @@ echo $description;
                 justify-content: center;
             }
 
-            /* Hide the spin buttons in WebKit browsers */
-            input::-webkit-outer-spin-button,
-            input::-webkit-inner-spin-button {
-                -webkit-appearance: none;
-                margin: 0;
-            }
+
 
             input[type="number"] {
                 font-size: 1.1em;  /* Reduce input font size for mobile */
                 padding: 12px;
                 width: 100%; /* Ensure full-width on smaller screens */
-                -moz-appearance: textfield;
             }
 
             input[type="submit"] {
