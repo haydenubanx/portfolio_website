@@ -233,21 +233,37 @@
                 font-size: 1.5em;
             }
 
-            .timeline-item {
-                width: 80%;
+            .timeline {
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Ensures timeline items are centered */
+                padding: 0;
+                margin: 0 auto;
             }
 
             .timeline-item {
-                width: 90%;
-                margin: auto auto;
+                width: 80%; /* Adjust the width for better fit */
+                margin: 20px auto; /* Center the item */
+                left: auto;
+                right: auto;
                 display: flex;
                 flex-direction: column;
-                align-items: center; /* Center content within each item */
+                align-items: center;
+                text-align: center;
             }
 
             .timeline-item:nth-child(even) {
-                margin: auto auto;
-                left: auto;
+                margin-left: auto;
+                /*align-items: center;*/
+                /*left: auto;*/
+                /*right: auto;*/
+            }
+            .timeline-item:nth-child(odd) {
+                margin-right: auto;
+                right: auto;
+                /*align-items: center;*/
+                /*left: auto;*/
+                /*right: auto;*/
             }
 
             .timeline-item::before {
@@ -257,6 +273,7 @@
             .timeline-item-icon {
                 font-size: 2.5em; /* Reduce icon size for mobile */
                 display: block; /* Ensure the icons are visible */
+                margin-bottom: 10px; /* Space below the icon */
             }
 
             .image-container::before {
@@ -494,5 +511,5 @@
 </body>
 
 
-<script defer src="../../resources/Scripts/scroll-animations.js"></script>
+<script defer src="../../../HTMLStructure/resources/Scripts/scroll-animations.js"></script>
 </html>
