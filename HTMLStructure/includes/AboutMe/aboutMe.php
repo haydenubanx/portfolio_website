@@ -32,7 +32,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('../../resources/images/wallpaper.jpg') no-repeat center;
+            background: url('../../../HTMLStructure/resources/images/wallpaper.jpg') no-repeat center;
             background-size: cover;
             animation: zoom 20s infinite alternate;
             z-index: -1;
@@ -77,21 +77,15 @@
         }
 
         .personal-statement h1 {
-            /*font-size: 2.5em; !* Adjust font-size for better scaling *!*/
-            /*margin: 0;*/
-            /*color: white;*/
-
             font-size: 2.5em;
             margin-bottom: 20px;
             color: white;
         }
 
         .personal-statement p {
-            font-size: 1.2em; /* Slightly smaller font for mobile */
+            font-size: 1.2em;
             color: white;
             line-height: 1.6;
-            /*padding: 0 15px; !* Added padding for better text alignment *!*/
-            /*color: white;*/
         }
 
         .text-context {
@@ -117,14 +111,13 @@
 
         /* Section Styles */
         section {
-            /*padding: 30px 15px; !* Adjusted padding for smaller screens *!*/
             text-align: center;
         }
 
         .AboutH2Heading {
             margin-bottom: 30px;
-            font-size: 2em; /* Adjusted heading size for mobile */
-            color: white;;
+            font-size: 2em;
+            color: white;
         }
 
         .skills-section, .section-item {
@@ -184,11 +177,18 @@
             margin-bottom: 5px;
         }
 
-        /* Media Query for Mobile Devices */
+        /* Additions for Mobile Optimization */
         @media (max-width: 768px) {
+            .personal-statement {
+                flex-direction: column;
+                padding: 20px;
+                text-align: center;
+            }
+
             .personal-statement img {
-                width: 120px;
-                height: 120px;
+                width: 150px;
+                height: 150px;
+                margin-bottom: 20px;
             }
 
             .personal-statement h1 {
@@ -200,53 +200,38 @@
                 padding: 0 10px;
             }
 
-            .AboutH2Heading {
-                font-size: 1.5em;
-            }
-
-            .section-item {
-                padding: 15px;
+            .text-context {
+                flex: none;
+                padding: 0;
+                text-align: center;
             }
 
             .skills-list {
-                flex-direction: column;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr); /* Three columns layout */
+                gap: 10px; /* Space between items */
+                padding: 0 20px;
             }
 
-            .timeline-item-icon {
-                font-size: 2em;
+            .skills-section, .section-item {
+                padding: 20px 10px;
             }
 
-            .personal-statement::before, .personal-statement::after {
-                display: none; /* Hide the decorative circles for better spacing */
-            }
-        }
-
-
-        /* Media Query for Mobile Devices */
-        @media (max-width: 768px) {
-            .personal-statement img {
-                width: 120px;
-                height: 120px;
-            }
-
-            .personal-statement h1 {
+            .AboutH2Heading {
                 font-size: 1.8em;
             }
 
-            .personal-statement p {
-                font-size: 1em;
-                padding: 0 10px;
-            }
-
-            .AboutH2Heading {
+            .section-item h3 {
                 font-size: 1.5em;
             }
 
-
-            .skills-list {
-                flex-direction: column;
+            .section-item p {
+                font-size: 0.9em;
             }
 
+            .skills-section-break {
+                font-size: 1.5em;
+            }
         }
 
         .heading {
@@ -256,8 +241,6 @@
         .location {
             color: white;
         }
-
-
     </style>
 </head>
 <body>
@@ -268,7 +251,7 @@
     <div class="personal-statement">
         <!-- Image Section -->
         <div class="image-wrapper">
-        <img src="../../resources/images/Hayden_Polaroid.jpeg" alt="Hayden Eubanks">
+        <img src="../../../HTMLStructure/resources/images/Hayden_Polaroid.jpeg" alt="Hayden Eubanks">
         </div>
         <div class="text-context">
         <h1 class="heading">About Me</h1>
@@ -478,5 +461,5 @@
 </body>
 
 
-<script defer src="../../resources/Scripts/scroll-animations.js"></script>
+<script defer src="../../../HTMLStructure/resources/Scripts/scroll-animations.js"></script>
 </html>

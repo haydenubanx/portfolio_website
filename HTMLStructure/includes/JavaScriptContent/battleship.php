@@ -630,6 +630,172 @@ if (isset($_POST['submitScore']) && $_SESSION['shotsUsed'] != 0) {
             cursor: pointer;
             font-size: 20px;
         }
+
+        /* Media Query for Mobile */
+        @media (max-width: 768px) {
+            .container {
+                max-width: 100%;
+                padding: 10px;
+                margin: 0 auto;
+            }
+
+            .board {
+                display: grid;
+                grid-template-columns: repeat(25, minmax(12px, 1fr)); /* Ensure grid items adjust evenly */
+                grid-template-rows: repeat(25, minmax(12px, 1fr));    /* Same for rows */
+                gap: 0.1rem; /* Smaller gap between cells for better fit */
+                justify-content: center;
+            }
+
+            .cell {
+                width: calc(100vw / 26);  /* Make sure cells fit within the screen width */
+                height: calc(100vw / 26); /* Maintain square cells */
+                max-width: 20px;  /* Limit maximum size */
+                max-height: 20px;
+                background-color: #454c54;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                border-radius: 2px;
+                transition: background-color 0.3s ease;
+            }
+
+            .cell.hit {
+                background-color: #ff453a;
+            }
+
+            .cell.miss {
+                background-color: #9da5ad;
+            }
+
+            /* Adjust leaderboard */
+            .leaderboard-container {
+                position: relative;
+                width: 90%;
+                margin: 0 0 8rem;
+                padding: 0.6rem;
+                background-color: #2c3136;
+                border-radius: 8px;
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            .leaderboard {
+                font-size: 16px;
+            }
+
+            .leaderboard-table th, .leaderboard-table td {
+                font-size: 12px;
+                padding: 5px;
+            }
+
+            /* Adjust title and spacing */
+            h1 {
+                font-size: 22px;
+                margin-bottom: 10px;
+            }
+
+            .ships-left {
+                font-size: 16px;
+                margin: 10px 0;
+            }
+
+            /* Reduce padding on reset button */
+            .reset-button {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            /* Power-ups buttons adjusted for mobile */
+            .powerups-container {
+                flex-direction: column;
+                align-items: stretch;
+                margin-top: 20px;
+            }
+
+            .power-button {
+                font-size: 12px;
+                padding: 10px;
+                margin-bottom: 10px;
+                border-radius: 6px;
+            }
+        }
+
+        /* Adjust smaller screens (phones) */
+        @media (max-width: 480px) {
+            .container {
+                padding: 5px;
+            }
+
+            .board {
+                grid-template-columns: repeat(25, minmax(8px, 1fr)); /* Smaller grid cells */
+                grid-template-rows: repeat(25, minmax(8px, 1fr));
+                gap: 0.05rem; /* Minimal gap between cells */
+            }
+
+            .cell {
+                width: calc(100vw / 28);  /* Further adjustment for very small screens */
+                height: calc(100vw / 28);
+            }
+
+            /* Adjust leaderboard font sizes */
+            .leaderboard-container {
+                margin-top: 15px;
+                padding: 8px;
+            }
+
+            .leaderboard {
+                font-size: 14px;
+            }
+
+            .leaderboard-table th, .leaderboard-table td {
+                font-size: 10px;
+            }
+
+            /* Smaller reset button */
+            .reset-button {
+                font-size: 12px;
+                padding: 8px;
+            }
+
+            /* Reduce margins for ships-left */
+            .ships-left {
+                font-size: 14px;
+                margin: 5px 0;
+            }
+
+            /* Smaller power-up buttons */
+            .power-button {
+                font-size: 10px;
+                padding: 8px;
+            }
+        }
+
+        /* Default leaderboard styling */
+        .leaderboard-content {
+            display: block;
+        }
+
+        /* Toggle button styling */
+        .toggle-leaderboard {
+            background-color: #ffa500;
+            color: #2c3136;
+            border: none;
+            padding: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        /* Media Query for Mobile - Collapsible functionality */
+        @media (max-width: 768px) {
+            .leaderboard-content {
+                display: none; /* Hide leaderboard by default on mobile */
+            }
+        }
     </style>
 
     <script>
@@ -639,29 +805,68 @@ if (isset($_POST['submitScore']) && $_SESSION['shotsUsed'] != 0) {
             document.getElementById('yCoordinate').value = y;
             document.battleForm.submit(); // Submit the form automatically
         }
+
+        // Function to toggle the leaderboard visibility
+        function toggleLeaderboard() {
+            const leaderboardContent = document.getElementById("leaderboardContent");
+            const toggleButton = document.querySelector(".toggle-leaderboard");
+
+            // Toggle visibility of the leaderboard content
+            if (leaderboardContent.style.display === "none" || leaderboardContent.style.display === "") {
+                leaderboardContent.style.display = "block";
+                toggleButton.textContent = "Hide Leaderboard";
+            } else {
+                leaderboardContent.style.display = "none";
+                toggleButton.textContent = "Show Leaderboard";
+            }
+        }
+
+        // Function to update the leaderboard button text based on screen size and visibility
+        function updateLeaderboardButton() {
+            const leaderboardContent = document.getElementById("leaderboardContent");
+            const toggleButton = document.querySelector(".toggle-leaderboard");
+
+            // Check screen width to determine if leaderboard should be displayed by default
+            if (window.innerWidth <= 768) {
+                // On mobile, hide the leaderboard and set button text to "Show Leaderboard"
+                leaderboardContent.style.display = "none";
+                toggleButton.textContent = "Show Leaderboard";
+            } else {
+                // On larger screens, display the leaderboard and set button text to "Hide Leaderboard"
+                leaderboardContent.style.display = "block";
+                toggleButton.textContent = "Hide Leaderboard";
+            }
+        }
+
+        // Add event listeners for page load and resize to update the leaderboard button correctly
+        window.addEventListener("load", updateLeaderboardButton);
+        window.addEventListener("resize", updateLeaderboardButton);
     </script>
 </head>
 <body>
 <div class="leaderboard-container">
-    <h3 class="leaderboard">Leaderboard</h3>
-    <table class="leaderboard-table">
-        <thead>
-        <tr>
-            <th>Rank</th>
-            <th>Name</th>
-            <th>Shots Taken</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php while($row = mysqli_fetch_assoc($leaderBoardResults)): ?>
+    <button class="toggle-leaderboard" onclick="toggleLeaderboard()">Show Leaderboard</button>
+    <div id="leaderboardContent" class="leaderboard-content">
+        <h3 class="leaderboard">Leaderboard</h3>
+        <table class="leaderboard-table">
+            <thead>
             <tr>
-                <td><?php echo $row['Ranking']; ?></td>
-                <td><?php echo $row['Name']; ?></td>
-                <td><?php echo $row['Shots Taken']; ?></td>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Shots Taken</th>
             </tr>
-        <?php endwhile; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <?php while($row = mysqli_fetch_assoc($leaderBoardResults)): ?>
+                <tr>
+                    <td><?php echo $row['Ranking']; ?></td>
+                    <td><?php echo $row['Name']; ?></td>
+                    <td><?php echo $row['Shots Taken']; ?></td>
+                </tr>
+            <?php endwhile; ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 
     <div class="container">

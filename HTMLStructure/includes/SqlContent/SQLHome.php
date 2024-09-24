@@ -16,6 +16,15 @@
             background-color: #f4f4f4;
         }
 
+        .sqlQuery {
+            font-family: 'Roboto', sans-serif;
+            margin: 0 1rem;
+            padding: 0.5rem;
+            box-sizing: border-box;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
         /* Navigation styling */
         nav {
             background-color: #333;
@@ -110,6 +119,145 @@
             width: 80%;
         }
 
+        /* General Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            table-layout: auto; /* Adjusts column width automatically */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #1eaa;
+            color: white;
+            font-weight: bold;
+        }
+
+        td {
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* Responsive table container */
+        .table-container {
+            overflow-x: auto;
+            max-width: 100%;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            table {
+                width: 100%;
+                font-size: 0.9em;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+
+            nav {
+                padding: 0.8em;
+            }
+
+            nav a {
+                font-size: 1em;
+                margin: 0 0.5em;
+            }
+
+            .database-design-btn {
+                top: 80px;
+                right: 10px;
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+
+            .sql-section {
+                padding: 30px 15px;
+            }
+
+            .sql-section h1 {
+                font-size: 2em;
+                margin-bottom: 15px;
+            }
+
+            .sql-section p {
+                font-size: 1em;
+                margin-bottom: 20px;
+            }
+
+            .query-link, .query-link-close {
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            table {
+                width: 100%;
+                font-size: 0.85em;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+
+            /* Ensure table scrolls horizontally if needed */
+            .table-container {
+                overflow-x: auto;
+                display: block;
+                width: 100%;
+                white-space: nowrap;
+            }
+
+            /* For really small screens, ensure tables stack properly */
+            table {
+                display: block;
+                overflow-x: auto;
+                width: 100%;
+                white-space: nowrap;
+            }
+
+            nav a {
+                font-size: 0.9em;
+            }
+
+            .database-design-btn {
+                top: 70px;
+                right: 5px;
+                padding: 6px 12px;
+                font-size: 0.8em;
+            }
+
+            .sql-section h1 {
+                font-size: 1.8em;
+            }
+
+            .sql-section p {
+                font-size: 0.9em;
+            }
+
+            .query-link, .query-link-close {
+                padding: 10px 16px;
+                font-size: 0.9em;
+            }
+
+            blockquote {
+                font-size: 0.9em;
+                word-wrap: break-word;
+            }
+
+            .table-container {
+                font-size: 0.5rem;
+                padding: 0;
+                overflow-x: scroll;
+            }
+        }
     </style>
 </head>
 <body>

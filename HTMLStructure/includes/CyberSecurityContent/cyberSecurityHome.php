@@ -11,7 +11,7 @@
             margin: 0;
             height: 100%;
             box-sizing: border-box;
-            background-color: #102e4a; /* Soft white background */
+            background-color: #102e4a;
             color: #333;
             overflow-x: hidden;
         }
@@ -20,17 +20,17 @@
         .cyber-header {
             position: relative;
             height: 60vh;
-            background-color: #f5f5f5; /* Almost black light blue */
-            color: #102e4a; /* Soft white text */
+            background-color: #f5f5f5;
+            color: #102e4a;
             text-align: center;
             padding-top: 60px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center; /* Center content horizontally */
-            background-size: cover; /* Ensure background covers entire header */
-            background-position: center; /* Center background */
-            margin: 0; /* Remove margin */
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+            margin: 0;
             box-sizing: border-box;
         }
 
@@ -43,17 +43,15 @@
         .cyber-header p {
             font-size: 1.4em;
             margin-top: 10px;
-            color: #102e4a; /* Lighter blue for subtext */
+            color: #102e4a;
         }
 
         /* Section Styling */
         section {
-            /*padding: 60px 20px;*/
             text-align: center;
         }
 
         .cyber-h2 {
-            /*margin-top: 4em;*/
             background-size: cover;
             z-index: 2;
             margin-bottom: 40px;
@@ -88,7 +86,7 @@
             color: #555;
         }
 
-
+        /* Links styling */
         .project-link {
             font-size: 1.1em;
             color: #007bff;
@@ -100,6 +98,7 @@
             color: #0056b3;
         }
 
+        /* Wave styling */
         .wave {
             position: relative;
             top: 0;
@@ -107,24 +106,25 @@
             width: 100%;
             overflow: hidden;
             line-height: 0;
+            margin: 0;
         }
 
         .wave svg {
             position: relative;
             display: block;
-            width: calc(148% + 1.3px);
-            height: 223px;
+            width: 100%;
+            height: auto;
         }
 
         .wave .shape-fill {
-            fill: #F5F5F5;
+            fill: #f5f5f5;
         }
 
         /* Buttons Container styling */
         .cta-container {
             display: flex;
             justify-content: center;
-            gap: 20px; /* Space between buttons */
+            gap: 20px;
             flex-wrap: wrap;
             margin-top: 20px;
             margin-bottom: 40px;
@@ -160,11 +160,11 @@
             height: 90vh;
             margin: 30px auto;
             background-color: white;
-            display: none; /* Hidden by default */
+            display: none;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Slightly larger shadow */
-            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
             padding: 20px;
         }
 
@@ -174,7 +174,77 @@
             border-radius: 8px;
         }
 
+        /* Media queries for mobile devices */
+        @media (max-width: 768px) {
+            .cyber-header {
+                height: 50vh;
+                padding-top: 40px;
+            }
 
+            .cyber-header h1 {
+                font-size: 2.5em;
+            }
+
+            .cyber-header p {
+                font-size: 1.2em;
+            }
+
+            .cyber-h2 {
+                font-size: 2em;
+                margin-bottom: 30px;
+            }
+
+            .section-item h3 {
+                font-size: 1.8em;
+            }
+
+            .section-item p {
+                font-size: 1em;
+            }
+
+            .cta-button {
+                padding: 10px 25px;
+                font-size: 0.9em;
+            }
+
+            /* Ensure the wave SVG is well-behaved on small screens */
+            .wave svg {
+                width: 100%;
+            }
+        }
+
+        /* Further adjustments for very small screens */
+        @media (max-width: 480px) {
+            .cyber-header {
+                height: 40vh;
+                padding-top: 30px;
+            }
+
+            .cyber-header h1 {
+                font-size: 2em;
+            }
+
+            .cyber-header p {
+                font-size: 1em;
+            }
+
+            .cyber-h2 {
+                font-size: 1.8em;
+            }
+
+            .section-item h3 {
+                font-size: 1.6em;
+            }
+
+            .section-item p {
+                font-size: 0.9em;
+            }
+
+            .cta-button {
+                padding: 8px 20px;
+                font-size: 0.85em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -187,7 +257,7 @@
 <div class="wave">
     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
         <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-              class="shape-fill"></path>
+              class="shape-fill" stroke="none"></path>
     </svg>
 </div>
 

@@ -46,7 +46,7 @@ $resultNames= mysqli_query($_SESSION['dbConnection'], $sqlQuery);
 
 //Prints the question and query and calls function to print table of results
 echo '<p><strong>' . $question . '</strong></p>' .
-    '<pre>' . $sqlQuery .'</pre>' .
+    '<p class="sqlQuery">' . $sqlQuery .'</p>' .
     tableFormatting($resultNames);
 
 ?>
