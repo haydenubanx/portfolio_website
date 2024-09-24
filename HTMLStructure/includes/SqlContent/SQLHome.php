@@ -121,16 +121,15 @@
 
         /* General Table Styling */
         table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            table-layout: auto; /* Adjusts column width automatically */
+            font-size: 0.9em;
         }
 
         th, td {
-            padding: 12px;
-            text-align: left;
-            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        .table-container {
+            justify-content: center;
         }
 
         th {
@@ -153,12 +152,15 @@
         /* Responsive Styling */
         @media (max-width: 768px) {
             table {
-                width: 100%;
                 font-size: 0.9em;
             }
 
             th, td {
                 padding: 10px;
+            }
+
+            .table-container {
+                justify-content: center;
             }
 
             nav {
