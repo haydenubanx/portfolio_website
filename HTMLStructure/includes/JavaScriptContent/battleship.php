@@ -523,15 +523,17 @@ if (isset($_POST['submitScore']) && $_SESSION['shotsUsed'] != 0) {
 
         /* Leaderboard Container */
         .leaderboard-container {
-            position: fixed;
-            left: 30px;
-            top: 100px;
-            width: 180px; /* Reduced width */
-            padding: 15px; /* Adjust padding */
+            position: relative;
+            top: 20px;
+            width: 60%;
+            padding: 15px;
             background-color: #33383e;
+            margin-left: auto;
+            margin-right: auto;
             color: #e3e4e6;
             border-radius: 10px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
         }
 
         .leaderboard {
@@ -644,11 +646,20 @@ if (isset($_POST['submitScore']) && $_SESSION['shotsUsed'] != 0) {
             }
 
             .board {
-                display: grid;
-                grid-template-columns: repeat(25, minmax(12px, 1fr)); /* Ensure grid items adjust evenly */
-                grid-template-rows: repeat(25, minmax(12px, 1fr));    /* Same for rows */
-                gap: 0.1rem; /* Smaller gap between cells for better fit */
-                justify-content: center;
+                grid-template-columns: repeat(25, minmax(12px, 1fr));
+            }
+
+            /* Stack leaderboard above the board on mobile */
+            .leaderboard-container {
+                position: relative;
+                top: auto;
+                clear: both;
+                margin-bottom: 20px;
+            }
+
+            .leaderboard-table th, .leaderboard-table td {
+                font-size: 12px;
+                padding: 5px;
             }
 
             .cell {
@@ -673,27 +684,11 @@ if (isset($_POST['submitScore']) && $_SESSION['shotsUsed'] != 0) {
                 background-color: #9da5ad;
             }
 
-            /* Adjust leaderboard */
-            .leaderboard-container {
-                position: relative;
-                top: 10px;
-                clear: right;
-                width: 85%;
-                margin: 0 0 8rem;
-                padding: 0.6rem;
-                background-color: #2c3136;
-                border-radius: 8px;
-                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-            }
 
             .leaderboard {
                 font-size: 16px;
             }
 
-            .leaderboard-table th, .leaderboard-table td {
-                font-size: 12px;
-                padding: 5px;
-            }
 
             /* Adjust title and spacing */
             h1 {
