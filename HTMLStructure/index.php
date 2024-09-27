@@ -38,39 +38,36 @@ function setVisitCookies($cookieName, $cookieValue)
     }
 }
 
-// Starts a session and include the dependency
-//session_start();
-include_once 'includes/DbConnection/db.php';
 
-$cookie_value = null;
-$cookie_name = 'user';
-
-if (!isset($_COOKIE['user']) || !isset($_COOKIE['timesVisited']) || !isset($_COOKIE['firstName']) || !isset($_COOKIE['lastName'])) {
-    updateVisitCount();
-    setVisitCookies($cookie_name, $cookie_value);
-}
-else {
-    updateVisitCount();
-    setVisitCookies('user', $_SESSION['firstName'] . "&nbsp" . $_SESSION['lastName']);
-}
-
-// Other parts of the code...
-
-		//If both cookies are set
-		if(isset($_COOKIE['user']) && isset($_COOKIE['timesVisited'])) {
-
-			//Variable to store the name value of the cookie
-			$currentValue = $_COOKIE['user'];
-
-			//Explode the array into both first and last names
-			$cookieArray = explode("&nbsp", $currentValue);
-
-			//If both parts of the array are set, set the session variables for both first and last name
-			if (isset($cookieArray[0]) && isset($cookieArray[1]) ) {
-				$_SESSION['firstName'] = $cookieArray[0];
-				$_SESSION['LastName'] = $cookieArray[1];
-			}
-		}
+//$cookie_value = null;
+//$cookie_name = 'user';
+//
+//if (!isset($_COOKIE['user']) || !isset($_COOKIE['timesVisited']) || !isset($_COOKIE['firstName']) || !isset($_COOKIE['lastName'])) {
+//    updateVisitCount();
+//    setVisitCookies($cookie_name, $cookie_value);
+//}
+//else {
+//    updateVisitCount();
+//    setVisitCookies('user', $_SESSION['firstName'] . "&nbsp" . $_SESSION['lastName']);
+//}
+//
+//// Other parts of the code...
+//
+//		//If both cookies are set
+//		if(isset($_COOKIE['user']) && isset($_COOKIE['timesVisited'])) {
+//
+//			//Variable to store the name value of the cookie
+//			$currentValue = $_COOKIE['user'];
+//
+//			//Explode the array into both first and last names
+//			$cookieArray = explode("&nbsp", $currentValue);
+//
+//			//If both parts of the array are set, set the session variables for both first and last name
+//			if (isset($cookieArray[0]) && isset($cookieArray[1]) ) {
+//				$_SESSION['firstName'] = $cookieArray[0];
+//				$_SESSION['LastName'] = $cookieArray[1];
+//			}
+//		}
 
 
 

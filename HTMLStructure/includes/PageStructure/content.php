@@ -74,6 +74,9 @@
         $page = $_GET['clicked'];
         include 'includes/DevelopmentContent/'.$page.'.php';
     }
+    else {
+        include 'includes/Home.php';
+    }
     ?>
 </section>
 
