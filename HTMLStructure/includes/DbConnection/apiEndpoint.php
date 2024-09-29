@@ -1,4 +1,16 @@
 <?php
+// Allow CORS from any origin
+header("Access-Control-Allow-Origin: *");  // Allow all origins
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");  // Allow specific methods
+header("Access-Control-Allow-Headers: Content-Type, Authorization");  // Allow specific headers
+
+// Handle preflight OPTIONS request
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    // Return the allowed headers and methods
+    exit(0);  // No need to send the actual content on OPTIONS requests
+}
+
+
 // Database connection details
 $hostname = "o0i.h.filess.io";
 $database = "SentimentAnalysis_facingwent";
