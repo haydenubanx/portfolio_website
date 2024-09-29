@@ -21,7 +21,7 @@ if ($conn->connect_error) {
 }
 
 // SQL query to select comments and their sentiment from the database
-$sql = "SELECT sentiment, comment_text FROM comments";
+$sql = "SELECT sentiment, comment_text FROM youtube_comments";
 
 // Execute the query
 $result = $conn->query($sql);
