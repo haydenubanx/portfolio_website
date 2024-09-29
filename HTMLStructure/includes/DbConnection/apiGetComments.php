@@ -1,4 +1,10 @@
 <?php
+// Allow CORS from any origin
+header("Access-Control-Allow-Origin: *");  // Allow all origins
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");  // Allow specific methods
+header("Access-Control-Allow-Headers: Content-Type, Authorization");  // Allow specific headers
+
+
 // Database connection details
 $hostname = "o0i.h.filess.io";
 $database = "SentimentAnalysis_facingwent";
