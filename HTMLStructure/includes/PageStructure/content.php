@@ -17,7 +17,7 @@
 
     $allowed_java_pages = ['#'];
 
-    $allowed_javascript_pages = ['battleship'];
+    $allowed_javascript_pages = ['battleship', 'sentimentAnalysis'];
 
     $allowed_cybersecurity_pages = ['cyberSecurityHome', 'cleanDeskPolicy', 'acceptableUsePolicy'];
 

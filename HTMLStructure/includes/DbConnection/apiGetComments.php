@@ -6,14 +6,14 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");  // Allow s
 
 
 // Database connection details
-$hostname = "o0i.h.filess.io";
-$database = "SentimentAnalysis_facingwent";
+$hostname = "bzBpLmguZmlsZXNzLmlv";
+$database = "U2VudGltZW50QW5hbHlzaXNfZmFjaW5nd2VudA==";
 $port     = "3307";
-$username = "SentimentAnalysis_facingwent";
-$password = "5fd4719c1fc36d0e9439458916ab87bbefab578e";
+$username = "U2VudGltZW50QW5hbHlzaXNfZmFjaW5nd2VudA==";
+$password = "NWZkNDcxOWMxZmMzNmQwZTk0Mzk0NTg5MTZhYjg3YmJlZmFiNTc4ZQ==";
 
 // Set up connection to the MySQL database
-$conn = new mysqli($hostname, $username, $password, $database, $port);
+$conn = new mysqli(base64_decode($hostname), base64_decode($username), base64_decode($password), base64_decode($database), $port);
 
 // Check the connection
 if ($conn->connect_error) {

@@ -404,6 +404,7 @@
             <ul>
                 <li>Refactored automation repo to reduce runtime by 70%, reducing test execution time from 50 minutes to 15 minutes.</li>
                 <li>Created and maintained a new BDD test automation service for regression testing across three microservices.</li>
+                <li>Finalist, together with team, for the Tackling Economic Crime: Outstanding team award 2024</li>
             </ul>
         </div>
         <div class="project-card">
@@ -419,6 +420,11 @@
             <h3>ISTQB Certified Tester</h3>
             <p>Foundation Level</p>
             <p><strong>Certificate Obtained:</strong> November 2, 2023</p>
+            <br>
+            <h3>Awards</h3>
+            <h3>TECA: Outstanding Team Award</h3>
+            <p>Finalist, together with team, for the Tackling Economic Crime: Outstanding Team Award 2024</p>
+            <p><strong>Year:</strong> 2024</p>
         </div>
     </div>
 
@@ -431,10 +437,9 @@
             <h3>Battleship</h3>
             <p>Interactive JavaScript page where you can play battleship.</p>
         </a>
-        <a href="#" class="project-card">
+        <a href="index.php?clicked=sentimentAnalysis" class="project-card">
             <h3>Sentiment Analysis Chrome Extension</h3>
             <p>A Chrome extension that performs sentiment analysis on a YouTube comment section to determine viewer sentiment.</p>
-            <h4 class="coming-soon">**Coming Soon**</h4>
         </a>
         <a href="#" class="project-card">
             <h3>BDD Test Repo</h3>
