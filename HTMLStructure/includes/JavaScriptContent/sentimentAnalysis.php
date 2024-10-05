@@ -8,19 +8,26 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f0f0f0 0%, #e5e5e5 100%);
+            background: linear-gradient(135deg, #2c2c2c 0%, #3a3a3a 100%);
             color: #333;
             margin: 0;
             padding: 0;
         }
 
+        .title-header {
+            background-color: #fff;
+
+        }
+
         header .title-text {
             text-align: center;
+            background-color: #fff;
+            font-weight: bold;
             margin-left: auto;
             margin-right: auto;
             font-size: 3rem;
             padding: 40px 0;
-            color: #f5f5f5;
+            color: #333;
             border-bottom: 3px solid darkorange;
         }
 
@@ -152,12 +159,12 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
+
         .github-link a:hover {
             background-color: #333;
         }
 
 
-        /* Professional background styling */
         body:before {
             content: "";
             position: fixed;
@@ -174,7 +181,7 @@
 <body>
 
 <div class="container">
-    <header>
+    <header class="title-header">
         <h1 class="title-text">Sentiment Analysis Chrome Extension for YouTube</h1>
     </header>
 
@@ -221,11 +228,11 @@
 
 <script>
     const images = [
-        "../../../HTMLStructure/resources/images/chromeExtension.png",
-        "../../../HTMLStructure/resources/images/chromeExtension2.png",
-        "../../../HTMLStructure/resources/images/chromeExtension3.png",
-        "../../../HTMLStructure/resources/images/chromeExtension4.png",
-        "../../../HTMLStructure/resources/images/chromeExtension5.png"
+        "../../resources/images/chromeExtension.png",
+        "../../resources/images/chromeExtension2.png",
+        "../../resources/images/chromeExtension3.png",
+        "../../resources/images/chromeExtension4.png",
+        "../../resources/images/chromeExtension5.png"
     ];
     let currentIndex = 0;
     let isAnimating = false;
