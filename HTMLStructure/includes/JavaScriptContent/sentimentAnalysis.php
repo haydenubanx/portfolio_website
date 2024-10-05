@@ -176,6 +176,58 @@
             z-index: -1;
             opacity: 0.5; /* Subtle background texture */
         }
+
+        @media (max-width: 768px) {
+            header .title-text {
+                font-size: 2.5rem;
+                padding: 30px 0;
+            }
+
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+
+            .project-description h2 {
+                font-size: 24px;
+            }
+
+            .project-description p, .key-features ul {
+                font-size: 16px;
+            }
+
+            .carousel {
+                height: 250px;
+            }
+
+            .carousel .arrow {
+                font-size: 1.5rem;
+            }
+
+            .github-link a {
+                font-size: 16px;
+                padding: 12px 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header .title-text {
+                font-size: 2rem;
+            }
+
+            .carousel {
+                height: 200px;
+            }
+
+            .carousel .arrow {
+                font-size: 1.2rem;
+            }
+
+            .github-link a {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -188,7 +240,7 @@
     <!-- Carousel section -->
     <section class="carousel">
         <div class="arrow left" onclick="nextImage()">&#10094;</div>
-        <img id="carouselImage" class="active" src="../../../HTMLStructure/resources/images/chromeExtension.png" alt="Sentiment Analysis Extension Screenshot">
+        <img id="carouselImage" class="active" src="../../resources/images/chromeExtension.png" alt="Sentiment Analysis Extension Screenshot">
         <div class="arrow right" onclick="prevImage()">&#10095;</div>
     </section>
 
